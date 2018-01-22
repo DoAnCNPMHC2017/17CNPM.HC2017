@@ -95,9 +95,9 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="CGPModel.Account">
         <MappingFragment StoreEntitySet="Account">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

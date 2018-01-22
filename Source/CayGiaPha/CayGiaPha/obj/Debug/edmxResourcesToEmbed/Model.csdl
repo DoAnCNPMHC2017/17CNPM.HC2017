@@ -83,16 +83,6 @@
     <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="Account">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="Username" />
-      <PropertyRef Name="Password" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityContainer Name="CGPEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AchievementDetails" EntityType="Self.AchievementDetail" />
     <EntitySet Name="BirthPlaces" EntityType="Self.BirthPlace" />
@@ -103,6 +93,14 @@
     <EntitySet Name="Members" EntityType="Self.Member" />
     <EntitySet Name="Relationships" EntityType="Self.Relationship" />
     <EntitySet Name="Trees" EntityType="Self.Tree" />
-    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Accounts" EntityType="CGPModel.Account" />
   </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

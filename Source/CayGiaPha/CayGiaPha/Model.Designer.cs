@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'c:\users\admin\documents\visual studio 2015\Projects\CayGiaPha\CayGiaPha\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Courses\17CNPM.HC2017\Source\CayGiaPha\CayGiaPha\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
