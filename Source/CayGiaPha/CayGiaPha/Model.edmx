@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CGPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AchievementDetail">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="AchievementID" />
+          </Key>
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="AchievementID" Type="int" Nullable="false" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="BirthPlace">
+          <Key>
+            <PropertyRef Name="BirthPlaceID" />
+          </Key>
+          <Property Name="BirthPlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BirthPlaceName" Type="nvarchar" MaxLength="300" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="BurialPlace">
+          <Key>
+            <PropertyRef Name="BurialPlaceID" />
+          </Key>
+          <Property Name="BurialPlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BurialPlaceName" Type="nvarchar" MaxLength="300" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="CauseOfDeath">
+          <Key>
+            <PropertyRef Name="CauseOfDeathID" />
+          </Key>
+          <Property Name="CauseOfDeathID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CauseOfDeathText" Type="nvarchar" MaxLength="350" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="150" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="ListAchievement">
+          <Key>
+            <PropertyRef Name="IDAchievement" />
+          </Key>
+          <Property Name="IDAchievement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AchievementName" Type="nvarchar" MaxLength="200" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Job" Type="nvarchar" MaxLength="150" />
+          <Property Name="AddressID" Type="nvarchar" MaxLength="300" />
+          <Property Name="Memberold" Type="int" />
+          <Property Name="TypeRelationship" Type="int" />
+          <Property Name="Date_Create" Type="datetime" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="DateOfDeath" Type="datetime" />
+          <Property Name="BirthPlaceId" Type="int" />
+          <Property Name="BurialPlaceId" Type="int" />
+          <Property Name="CauseOfDeath" Type="int" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="RelationshipID" />
+          </Key>
+          <Property Name="RelationshipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RelationshipName" Type="nvarchar" MaxLength="100" />
+          <Property Name="TreeID" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tree">
+          <Key>
+            <PropertyRef Name="TreeID" />
+          </Key>
+          <Property Name="TreeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="200" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="CGPModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AchievementDetail" EntityType="Self.AchievementDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BirthPlace" EntityType="Self.BirthPlace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BurialPlace" EntityType="Self.BurialPlace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CauseOfDeath" EntityType="Self.CauseOfDeath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListAchievement" EntityType="Self.ListAchievement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relationship" EntityType="Self.Relationship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tree" EntityType="Self.Tree" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CGPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AchievementDetail">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="AchievementID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="AchievementID" Type="Int32" Nullable="false" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BirthPlace">
+          <Key>
+            <PropertyRef Name="BirthPlaceID" />
+          </Key>
+          <Property Name="BirthPlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BirthPlaceName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BurialPlace">
+          <Key>
+            <PropertyRef Name="BurialPlaceID" />
+          </Key>
+          <Property Name="BurialPlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BurialPlaceName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CauseOfDeath">
+          <Key>
+            <PropertyRef Name="CauseOfDeathID" />
+          </Key>
+          <Property Name="CauseOfDeathID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CauseOfDeathText" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ListAchievement">
+          <Key>
+            <PropertyRef Name="IDAchievement" />
+          </Key>
+          <Property Name="IDAchievement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AchievementName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Job" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AddressID" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Memberold" Type="Int32" />
+          <Property Name="TypeRelationship" Type="Int32" />
+          <Property Name="Date_Create" Type="DateTime" Precision="3" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="DateOfDeath" Type="DateTime" Precision="3" />
+          <Property Name="BirthPlaceId" Type="Int32" />
+          <Property Name="BurialPlaceId" Type="Int32" />
+          <Property Name="CauseOfDeath" Type="Int32" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="RelationshipID" />
+          </Key>
+          <Property Name="RelationshipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RelationshipName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TreeID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tree">
+          <Key>
+            <PropertyRef Name="TreeID" />
+          </Key>
+          <Property Name="TreeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CGPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AchievementDetails" EntityType="Self.AchievementDetail" />
+          <EntitySet Name="BirthPlaces" EntityType="Self.BirthPlace" />
+          <EntitySet Name="BurialPlaces" EntityType="Self.BurialPlace" />
+          <EntitySet Name="CauseOfDeaths" EntityType="Self.CauseOfDeath" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="ListAchievements" EntityType="Self.ListAchievement" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="Relationships" EntityType="Self.Relationship" />
+          <EntitySet Name="Trees" EntityType="Self.Tree" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CGPModelStoreContainer" CdmEntityContainer="CGPEntities">
+          <EntitySetMapping Name="AchievementDetails">
+            <EntityTypeMapping TypeName="CGPModel.AchievementDetail">
+              <MappingFragment StoreEntitySet="AchievementDetail">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="AchievementID" ColumnName="AchievementID" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BirthPlaces">
+            <EntityTypeMapping TypeName="CGPModel.BirthPlace">
+              <MappingFragment StoreEntitySet="BirthPlace">
+                <ScalarProperty Name="BirthPlaceID" ColumnName="BirthPlaceID" />
+                <ScalarProperty Name="BirthPlaceName" ColumnName="BirthPlaceName" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BurialPlaces">
+            <EntityTypeMapping TypeName="CGPModel.BurialPlace">
+              <MappingFragment StoreEntitySet="BurialPlace">
+                <ScalarProperty Name="BurialPlaceID" ColumnName="BurialPlaceID" />
+                <ScalarProperty Name="BurialPlaceName" ColumnName="BurialPlaceName" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CauseOfDeaths">
+            <EntityTypeMapping TypeName="CGPModel.CauseOfDeath">
+              <MappingFragment StoreEntitySet="CauseOfDeath">
+                <ScalarProperty Name="CauseOfDeathID" ColumnName="CauseOfDeathID" />
+                <ScalarProperty Name="CauseOfDeathText" ColumnName="CauseOfDeathText" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="CGPModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListAchievements">
+            <EntityTypeMapping TypeName="CGPModel.ListAchievement">
+              <MappingFragment StoreEntitySet="ListAchievement">
+                <ScalarProperty Name="IDAchievement" ColumnName="IDAchievement" />
+                <ScalarProperty Name="AchievementName" ColumnName="AchievementName" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="CGPModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="Memberold" ColumnName="Memberold" />
+                <ScalarProperty Name="TypeRelationship" ColumnName="TypeRelationship" />
+                <ScalarProperty Name="Date_Create" ColumnName="Date_Create" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="DateOfDeath" ColumnName="DateOfDeath" />
+                <ScalarProperty Name="BirthPlaceId" ColumnName="BirthPlaceId" />
+                <ScalarProperty Name="BurialPlaceId" ColumnName="BurialPlaceId" />
+                <ScalarProperty Name="CauseOfDeath" ColumnName="CauseOfDeath" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relationships">
+            <EntityTypeMapping TypeName="CGPModel.Relationship">
+              <MappingFragment StoreEntitySet="Relationship">
+                <ScalarProperty Name="RelationshipID" ColumnName="RelationshipID" />
+                <ScalarProperty Name="RelationshipName" ColumnName="RelationshipName" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trees">
+            <EntityTypeMapping TypeName="CGPModel.Tree">
+              <MappingFragment StoreEntitySet="Tree">
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CGPModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

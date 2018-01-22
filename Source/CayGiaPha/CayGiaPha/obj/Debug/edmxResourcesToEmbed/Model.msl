@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CGPModelStoreContainer" CdmEntityContainer="CGPEntities">
+    <EntitySetMapping Name="AchievementDetails">
+      <EntityTypeMapping TypeName="CGPModel.AchievementDetail">
+        <MappingFragment StoreEntitySet="AchievementDetail">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="AchievementID" ColumnName="AchievementID" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BirthPlaces">
+      <EntityTypeMapping TypeName="CGPModel.BirthPlace">
+        <MappingFragment StoreEntitySet="BirthPlace">
+          <ScalarProperty Name="BirthPlaceID" ColumnName="BirthPlaceID" />
+          <ScalarProperty Name="BirthPlaceName" ColumnName="BirthPlaceName" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BurialPlaces">
+      <EntityTypeMapping TypeName="CGPModel.BurialPlace">
+        <MappingFragment StoreEntitySet="BurialPlace">
+          <ScalarProperty Name="BurialPlaceID" ColumnName="BurialPlaceID" />
+          <ScalarProperty Name="BurialPlaceName" ColumnName="BurialPlaceName" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CauseOfDeaths">
+      <EntityTypeMapping TypeName="CGPModel.CauseOfDeath">
+        <MappingFragment StoreEntitySet="CauseOfDeath">
+          <ScalarProperty Name="CauseOfDeathID" ColumnName="CauseOfDeathID" />
+          <ScalarProperty Name="CauseOfDeathText" ColumnName="CauseOfDeathText" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="CGPModel.Job">
+        <MappingFragment StoreEntitySet="Job">
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="JobName" ColumnName="JobName" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListAchievements">
+      <EntityTypeMapping TypeName="CGPModel.ListAchievement">
+        <MappingFragment StoreEntitySet="ListAchievement">
+          <ScalarProperty Name="IDAchievement" ColumnName="IDAchievement" />
+          <ScalarProperty Name="AchievementName" ColumnName="AchievementName" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="CGPModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Job" ColumnName="Job" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="Memberold" ColumnName="Memberold" />
+          <ScalarProperty Name="TypeRelationship" ColumnName="TypeRelationship" />
+          <ScalarProperty Name="Date_Create" ColumnName="Date_Create" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="DateOfDeath" ColumnName="DateOfDeath" />
+          <ScalarProperty Name="BirthPlaceId" ColumnName="BirthPlaceId" />
+          <ScalarProperty Name="BurialPlaceId" ColumnName="BurialPlaceId" />
+          <ScalarProperty Name="CauseOfDeath" ColumnName="CauseOfDeath" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Relationships">
+      <EntityTypeMapping TypeName="CGPModel.Relationship">
+        <MappingFragment StoreEntitySet="Relationship">
+          <ScalarProperty Name="RelationshipID" ColumnName="RelationshipID" />
+          <ScalarProperty Name="RelationshipName" ColumnName="RelationshipName" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trees">
+      <EntityTypeMapping TypeName="CGPModel.Tree">
+        <MappingFragment StoreEntitySet="Tree">
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="CGPModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

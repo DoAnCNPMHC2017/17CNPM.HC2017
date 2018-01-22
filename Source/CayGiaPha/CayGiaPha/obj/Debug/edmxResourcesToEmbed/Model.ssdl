@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CGPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AchievementDetail">
+    <Key>
+      <PropertyRef Name="MemberID" />
+      <PropertyRef Name="AchievementID" />
+    </Key>
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="AchievementID" Type="int" Nullable="false" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
+  <EntityType Name="BirthPlace">
+    <Key>
+      <PropertyRef Name="BirthPlaceID" />
+    </Key>
+    <Property Name="BirthPlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BirthPlaceName" Type="nvarchar" MaxLength="300" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
+  <EntityType Name="BurialPlace">
+    <Key>
+      <PropertyRef Name="BurialPlaceID" />
+    </Key>
+    <Property Name="BurialPlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BurialPlaceName" Type="nvarchar" MaxLength="300" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
+  <EntityType Name="CauseOfDeath">
+    <Key>
+      <PropertyRef Name="CauseOfDeathID" />
+    </Key>
+    <Property Name="CauseOfDeathID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CauseOfDeathText" Type="nvarchar" MaxLength="350" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobName" Type="nvarchar" MaxLength="150" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
+  <EntityType Name="ListAchievement">
+    <Key>
+      <PropertyRef Name="IDAchievement" />
+    </Key>
+    <Property Name="IDAchievement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AchievementName" Type="nvarchar" MaxLength="200" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Job" Type="nvarchar" MaxLength="150" />
+    <Property Name="AddressID" Type="nvarchar" MaxLength="300" />
+    <Property Name="Memberold" Type="int" />
+    <Property Name="TypeRelationship" Type="int" />
+    <Property Name="Date_Create" Type="datetime" />
+    <Property Name="Birthday" Type="datetime" />
+    <Property Name="DateOfDeath" Type="datetime" />
+    <Property Name="BirthPlaceId" Type="int" />
+    <Property Name="BurialPlaceId" Type="int" />
+    <Property Name="CauseOfDeath" Type="int" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
+  <EntityType Name="Relationship">
+    <Key>
+      <PropertyRef Name="RelationshipID" />
+    </Key>
+    <Property Name="RelationshipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RelationshipName" Type="nvarchar" MaxLength="100" />
+    <Property Name="TreeID" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Tree">
+    <Key>
+      <PropertyRef Name="TreeID" />
+    </Key>
+    <Property Name="TreeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="200" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="CGPModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AchievementDetail" EntityType="Self.AchievementDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BirthPlace" EntityType="Self.BirthPlace" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BurialPlace" EntityType="Self.BurialPlace" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CauseOfDeath" EntityType="Self.CauseOfDeath" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ListAchievement" EntityType="Self.ListAchievement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Relationship" EntityType="Self.Relationship" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tree" EntityType="Self.Tree" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
