@@ -6,13 +6,18 @@ using System.Web.Mvc;
 
 namespace CayGiaPha.Controllers
 {
-    public class HomeController : Controller
+    public class CGPController : Controller
     {
-        // GET: Home
+        // GET: CGP
         public ActionResult Index()
         {
             return View();
         }
-        
+
+        // GET: CGP
+        public ActionResult CreateCGP()
+        {
+            return View();
+        }
     }
 }
