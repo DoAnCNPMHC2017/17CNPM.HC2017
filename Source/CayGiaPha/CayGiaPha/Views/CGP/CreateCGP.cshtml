@@ -4,7 +4,95 @@
         <script src="~/assets/Library/jquery.min.js"></script>
         <script src="~/assets/Library/kendo.all.min.js"></script>
         <script src="~/assets/CGP.js"></script>
-<div class="container">
+<link href="~/assets/css/simple-sidebar.css" rel="stylesheet" />
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        
+        <ul class="sidebar-nav">
+
+            <li class="sidebar-brand">
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary">Thêm</button>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-success">Sửa</button>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-danger">Xóa</button>
+                </div>
+            </li>
+            
+            <h1 style="text-align:center">Thông tin thành viên</h1>
+            <table>
+                <tr>
+                    <td class="lablename">Thành viên củ</td>
+                    <td>
+                        <input class="k-textbox" style="width: 280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Loại quan hệ</td>
+                    <td>
+                        <input id="Relasionship" style="width: 280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Ngày phát sinh</td>
+                    <td>
+                        <input id="CreateDate" style="width: 280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Họ và tên</td>
+                    <td>
+                        <input class="k-textbox" style="width: 280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Giới tính</td>
+                    <td>
+                        <input style="width: 280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Ngày giờ sinh</td>
+                    <td>
+                        <input id="BirthDate" style="width:280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Quê quán</td>
+                    <td>
+                        <input style="width: 280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Nghề nghiệp</td>
+                    <td>
+                        <input style="width: 280px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lablename">Địa chỉ</td>
+                    <td>
+                        <input style="width: 280px" />
+                    </td>
+                </tr>
+            </table>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <h1>Vẽ ở đây</h1>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<!--<div class="container">
     <div class="row">
         <div class="col-sm-4" style="background-color:#0dbf3c;">
             <div class="row">
@@ -92,3 +180,4 @@
         </div>
     </div>
 </div>
+-->
