@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     CreateControl();
+    LoadData();
 });
 
 function CreateControl() {
@@ -9,37 +10,55 @@ function CreateControl() {
         dataValueField: 'ID',
         dataSource: [
                 { ID: 0, Name: 'Con' },
-                { ID: 1, Name: 'Chồng' },
-                { ID: 2, Name: 'Vợ' }
+                { ID: 1, Name: 'Vợ/Chồng' },
         ],
         showSelectAll: true,
         autoClose: false,
         change: function (e) {
             ChangeType();
         }
-        //optionLabel: "Chọn Loại gói..."
     });
-    //$("#Relasionship").kendoDropDownList({
-    //    filter: "startswith",
-    //    dataTextField: "ProductName",
-    //    dataValueField: "ProductID",
-    //    dataSource: {
-    //        type: "odata",
-    //        serverFiltering: true,
-    //        transport: {
-    //            read: {
-    //                url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products",
-    //            }
-    //        }
-    //    }
-    //});
+    //noi sinh
+    $("#BirthPlace").kendoDropDownList({
+        //serverFiltering: false,
+        dataTextField: 'BirthPlaceName',
+        dataValueField: 'BirthPlaceID',
+        dataSource: [],
+        //showSelectAll: true,
+        autoClose: true,
+        change: function (e) {
+        }
+        ,optionLabel: "Chọn quê quán ..."
+    });
+    //giới tính
+    $("#Sex").kendoDropDownList({
+        //serverFiltering: false,
+        dataTextField: 'Name',
+        dataValueField: 'ID',
+        dataSource: [
+                { ID: 0, Name: 'Nữ' },
+                { ID: 1, Name: 'Nam' },
+        ],
+        showSelectAll: true,
+        autoClose: true
+    });
+    //nghề nghiệp
+    $("#Job").kendoDropDownList({
+        //serverFiltering: false,
+        dataTextField: 'JobName',
+        dataValueField: 'JobID',
+        dataSource: [],
+        //showSelectAll: true,
+        autoClose: true
+        , optionLabel: "Chọn nghề nghiệp ..."
+    });
     $("#BirthDate").kendoDateTimePicker({
         value: new Date(),
         dateInput: true
     });
     $("#CreateDate").kendoDatePicker({
-        start: "year",
-        depth: "year",
+        //start: "year",
+        //depth: "year",
         format: "dd/MM/yyyy",
         value: new Date(),
         dateInput: true,
@@ -109,4 +128,19 @@ function CreateControl() {
     //        }
     //    },
     //});
+}
+function LoadData()
+{
+    $.ajax({
+        dataType: 'json',
+        url: '/CGP/GetControl',
+        //data: { ID: ID },
+        success: function (result) {
+            console.log(result);
+            $('#BirthPlace').data("kendoDropDownList").setDataSource(result.Bl);
+            $('#Job').data("kendoDropDownList").setDataSource(result.Jo);
+        },
+        error: function () {
+        }
+    });
 }

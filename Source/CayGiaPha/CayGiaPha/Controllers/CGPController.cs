@@ -19,5 +19,16 @@ namespace CayGiaPha.Controllers
         {
             return View();
         }
+        #region Ajax
+        public ActionResult GetControl()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                var Bl = dt.BirthPlaces.Where(b => b.TreeID == 1).ToList();
+                var Jo = dt.Jobs.Where(b => b.TreeID == 1).ToList();
+                return Json(new{Bl=Bl,Jo=Jo}, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
     }
 }
