@@ -9,6 +9,7 @@ namespace CayGiaPha.Controllers
     public class CGPController : Controller
     {
         // GET: CGP
+        
         public ActionResult Index()
         {
             return View();

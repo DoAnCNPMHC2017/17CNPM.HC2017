@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CGPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CGPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="ID" />
@@ -20,6 +20,14 @@
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="AchievementID" Type="int" Nullable="false" />
+          <Property Name="TreeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="350" />
           <Property Name="TreeID" Type="int" />
         </EntityType>
         <EntityType Name="BirthPlace">
@@ -79,6 +87,7 @@
           <Property Name="BurialPlaceId" Type="int" />
           <Property Name="CauseOfDeath" Type="int" />
           <Property Name="TreeID" Type="int" />
+          <Property Name="Sex" Type="bit" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -93,12 +102,13 @@
             <PropertyRef Name="TreeID" />
           </Key>
           <Property Name="TreeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="200" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityContainer Name="CGPModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AchievementDetail" EntityType="Self.AchievementDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BirthPlace" EntityType="Self.BirthPlace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BurialPlace" EntityType="Self.BurialPlace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CauseOfDeath" EntityType="Self.CauseOfDeath" Schema="dbo" store:Type="Tables" />
@@ -108,10 +118,19 @@
           <EntitySet Name="Relationship" EntityType="Self.Relationship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tree" EntityType="Self.Tree" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CGPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="AchievementDetail">
           <Key>
             <PropertyRef Name="MemberID" />
@@ -119,6 +138,14 @@
           </Key>
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="AchievementID" Type="Int32" Nullable="false" />
+          <Property Name="TreeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
           <Property Name="TreeID" Type="Int32" />
         </EntityType>
         <EntityType Name="BirthPlace">
@@ -178,6 +205,7 @@
           <Property Name="BurialPlaceId" Type="Int32" />
           <Property Name="CauseOfDeath" Type="Int32" />
           <Property Name="TreeID" Type="Int32" />
+          <Property Name="Sex" Type="Boolean" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -192,11 +220,13 @@
             <PropertyRef Name="TreeID" />
           </Key>
           <Property Name="TreeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityContainer Name="CGPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="AchievementDetails" EntityType="Self.AchievementDetail" />
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="BirthPlaces" EntityType="Self.BirthPlace" />
           <EntitySet Name="BurialPlaces" EntityType="Self.BurialPlace" />
           <EntitySet Name="CauseOfDeaths" EntityType="Self.CauseOfDeath" />
@@ -205,27 +235,36 @@
           <EntitySet Name="Members" EntityType="Self.Member" />
           <EntitySet Name="Relationships" EntityType="Self.Relationship" />
           <EntitySet Name="Trees" EntityType="Self.Tree" />
-          <EntitySet Name="Accounts" EntityType="CGPModel.Account" />
         </EntityContainer>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CGPModelStoreContainer" CdmEntityContainer="CGPEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CGPModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AchievementDetails">
             <EntityTypeMapping TypeName="CGPModel.AchievementDetail">
               <MappingFragment StoreEntitySet="AchievementDetail">
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="AchievementID" ColumnName="AchievementID" />
+                <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="CGPModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="TreeID" ColumnName="TreeID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -291,6 +330,7 @@
                 <ScalarProperty Name="BurialPlaceId" ColumnName="BurialPlaceId" />
                 <ScalarProperty Name="CauseOfDeath" ColumnName="CauseOfDeath" />
                 <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -307,17 +347,8 @@
             <EntityTypeMapping TypeName="CGPModel.Tree">
               <MappingFragment StoreEntitySet="Tree">
                 <ScalarProperty Name="TreeID" ColumnName="TreeID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="CGPModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

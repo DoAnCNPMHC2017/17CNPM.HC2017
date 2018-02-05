@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CGPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="AchievementDetail">
     <Key>
       <PropertyRef Name="MemberID" />
@@ -7,6 +15,14 @@
     </Key>
     <Property Name="MemberID" Type="Int32" Nullable="false" />
     <Property Name="AchievementID" Type="Int32" Nullable="false" />
+    <Property Name="TreeID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
     <Property Name="TreeID" Type="Int32" />
   </EntityType>
   <EntityType Name="BirthPlace">
@@ -66,6 +82,7 @@
     <Property Name="BurialPlaceId" Type="Int32" />
     <Property Name="CauseOfDeath" Type="Int32" />
     <Property Name="TreeID" Type="Int32" />
+    <Property Name="Sex" Type="Boolean" />
   </EntityType>
   <EntityType Name="Relationship">
     <Key>
@@ -80,11 +97,13 @@
       <PropertyRef Name="TreeID" />
     </Key>
     <Property Name="TreeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityContainer Name="CGPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="AchievementDetails" EntityType="Self.AchievementDetail" />
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
     <EntitySet Name="BirthPlaces" EntityType="Self.BirthPlace" />
     <EntitySet Name="BurialPlaces" EntityType="Self.BurialPlace" />
     <EntitySet Name="CauseOfDeaths" EntityType="Self.CauseOfDeath" />
@@ -93,14 +112,5 @@
     <EntitySet Name="Members" EntityType="Self.Member" />
     <EntitySet Name="Relationships" EntityType="Self.Relationship" />
     <EntitySet Name="Trees" EntityType="Self.Tree" />
-    <EntitySet Name="Accounts" EntityType="CGPModel.Account" />
   </EntityContainer>
-  <EntityType Name="Account">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>

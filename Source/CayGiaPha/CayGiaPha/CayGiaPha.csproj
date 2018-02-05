@@ -180,6 +180,9 @@
     <Compile Include="AchievementDetail.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Address.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BirthPlace.cs">
       <DependentUpon>Model.tt</DependentUpon>

@@ -25,7 +25,9 @@ namespace CayGiaPha
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AchievementDetail> AchievementDetails { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<BirthPlace> BirthPlaces { get; set; }
         public virtual DbSet<BurialPlace> BurialPlaces { get; set; }
         public virtual DbSet<CauseOfDeath> CauseOfDeaths { get; set; }
@@ -34,6 +36,5 @@ namespace CayGiaPha
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Relationship> Relationships { get; set; }
         public virtual DbSet<Tree> Trees { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
     }
 }

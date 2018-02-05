@@ -17,6 +17,14 @@
     <Property Name="AchievementID" Type="int" Nullable="false" />
     <Property Name="TreeID" Type="int" />
   </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="350" />
+    <Property Name="TreeID" Type="int" />
+  </EntityType>
   <EntityType Name="BirthPlace">
     <Key>
       <PropertyRef Name="BirthPlaceID" />
@@ -74,6 +82,7 @@
     <Property Name="BurialPlaceId" Type="int" />
     <Property Name="CauseOfDeath" Type="int" />
     <Property Name="TreeID" Type="int" />
+    <Property Name="Sex" Type="bit" />
   </EntityType>
   <EntityType Name="Relationship">
     <Key>
@@ -88,12 +97,13 @@
       <PropertyRef Name="TreeID" />
     </Key>
     <Property Name="TreeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="varchar" MaxLength="200" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
     <Property Name="CreateDate" Type="datetime" />
   </EntityType>
   <EntityContainer Name="CGPModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AchievementDetail" EntityType="Self.AchievementDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BirthPlace" EntityType="Self.BirthPlace" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BurialPlace" EntityType="Self.BurialPlace" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CauseOfDeath" EntityType="Self.CauseOfDeath" Schema="dbo" store:Type="Tables" />

@@ -12,10 +12,10 @@ namespace CayGiaPha
     using System;
     using System.Collections.Generic;
     
-    public partial class Tree
+    public partial class Address
     {
-        public int TreeID { get; set; }
-        public string Name { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
+        public int AddressID { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> TreeID { get; set; }
     }
 }

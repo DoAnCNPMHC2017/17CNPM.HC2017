@@ -16,13 +16,13 @@
     <div class="navbar navbar-fixed-top" style="background-color:darkred;">
         <div class="container">
             <div class="navbar-header">
-                <img src="~/assets/imgs/cen_bn.jpg" style="height:50px"/>
+                <img src="~/assets/imgs/cen_bn.jpg" style="height:50px" />
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
-                
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+                    
                     @if (CurrentContext.IsLogged() == true)
                     {
                         <li class="dropdown">
@@ -48,6 +48,21 @@
                             </ul>
                         </li>
                     }
+                    else
+                    {
+                        <li>
+                            <a id="logoutLink" href="@Url.Action("Login","Account")" style="color:hotpink">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Đăng nhập
+                            </a>
+                        </li>
+                        <li>
+                            <a id="logoutLink" href="@Url.Action("Register","Account")" style="color:hotpink">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Đăng ký
+                            </a>
+                        </li>
+                    }
                 </ul>
                 <form id="frmLogout" method="post" action="@Url.Action("Logout","Account")"></form>
             </div>
@@ -55,7 +70,7 @@
     </div>
     @RenderBody()
     <div class="container body-content">
-        
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -68,8 +83,8 @@
         })
     </script>
     @RenderSection("js", false)
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     @*<script src="~/assets/CGP.js"></script>*@
 </body>
 </html>
