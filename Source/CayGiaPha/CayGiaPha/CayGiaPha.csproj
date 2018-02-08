@@ -127,6 +127,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\bootstrap\bootstrap.min.css" />
+    <Content Include="assets\bootstrap\bootstrap.min.js" />
     <Content Include="assets\CGP.js" />
     <Content Include="assets\imgs\asq.jpg" />
     <Content Include="assets\imgs\banner.jpg" />

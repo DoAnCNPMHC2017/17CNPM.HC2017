@@ -10,9 +10,40 @@ namespace CayGiaPha.Controllers
     public class CGPController : Controller
     {
         // GET: CGP
-       
+
+        [CheckLogin]
         public ActionResult Index()
         {
+            return View();
+        }
+        //POST: CGP
+        [HttpPost]
+        public ActionResult Index(Tree model)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+
+                try
+                {
+                    string t = model.Name;
+                    string t2 = model.TreeID.ToString();
+                    model.CreateDate = DateTime.Now;
+                    ctx.Trees.Add(model);
+                    ctx.SaveChanges();
+
+                    //@ViewBag.Error = false;
+
+
+                    Response.Write("<script LANGUAGE='JavaScript' >alert('Tạo  cây thành công')</script>");
+                    return RedirectToAction("Index", "CGP");
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script LANGUAGE='JavaScript' >alert('Lỗi.')</script>" + ex.ToString());
+                }
+
+
+            }
             return View();
         }
 
