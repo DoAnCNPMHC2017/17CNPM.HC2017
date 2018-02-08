@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CayGiaPha.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,13 +10,14 @@ namespace CayGiaPha.Controllers
     public class CGPController : Controller
     {
         // GET: CGP
-        
+       
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: CGP
+        // GET: CGP 
+        [CheckLogin]
         public ActionResult CreateCGP()
         {
             return View();

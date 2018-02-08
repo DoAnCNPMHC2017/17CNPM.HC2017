@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CheckLoginAttribute.cs" />
     <Compile Include="Helper\CurrentContext.cs" />
     <Compile Include="Helper\StringUtils.cs" />
     <Compile Include="Job.cs">
