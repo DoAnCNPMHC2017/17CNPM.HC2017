@@ -5,6 +5,10 @@
 <script src="~/assets/Library/jquery.min.js"></script>
 <script src="~/assets/Library/kendo.all.min.js"></script>
 <script src="~/assets/CGP.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+      rel="stylesheet" type="text/css" />
 <link href="~/assets/css/simple-sidebar.css" rel="stylesheet" />
 <form class="form-horizontal" action="" method="post" id="Form-Add">
     <div id="wrapper" class="toggled">
@@ -12,9 +16,7 @@
 
             <ul class="sidebar-nav">
 
-<<<<<<< HEAD
-</div>
-=======
+
                 <li class="sidebar-brand">
                     <div class="col-sm-4">
                         <button type="submit" class="btn btn-primary">Thêm</button>
@@ -73,20 +75,23 @@
                     <tr>
                         <td class="lablename">Quê quán (id)</td>
                         <td>
-                            <input id="BirthPlace" name="BirthPlaceId" style="width: 280px" disabled/>
+                            <input id="BirthPlace" name="BirthPlaceId" style="width: 220px" />
+                            <button type="button" id="btnBirthPlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;" >Thêm</button>
                         </td>
                     </tr>
                     <tr>
                         <td class="lablename">Nghề nghiệp</td>
                         <td>
                             @*<input id="Job" name="Job" style="width: 280px" />*@
-                            <input type="text" name="Job" style="width: 280px" />
+                            <input type="text" name="Job" style="width: 220px" />
+                            <button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
                     <tr>
                         <td class="lablename">Nơi ở</td>
                         <td>
-                            <input id="Address" name="AddressID" style="width: 280px" />
+                            <input id="Address" name="AddressID" style="width: 220px" />
+                            <button type="button" id="btnAddress" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
                     <tr>
@@ -98,13 +103,15 @@
                     <tr>
                         <td class="lablename">Nơi mất (id)</td>
                         <td>
-                            <input id="BirthPlace" name="BurialPlaceId" style="width: 280px" disabled />
+                            <input id="DiePlace" name="BurialPlaceId" style="width: 220px" disabled />
+                            <button type="button" id="btnDiePlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
                     <tr>
                         <td class="lablename">Nguyên nhân chết (id)</td>
                         <td>
-                            <input id="BirthPlace" name="CauseOfDeath" style="width: 280px" disabled />
+                            <input id="CauseOfDeath" name="CauseOfDeath" style="width: 220px" disabled />
+                            <button type="button" id="btnCauseOfDeath" class="btn btn-primary center-block" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
                 </table>
@@ -121,6 +128,21 @@
 
     </div>
 </form>
+<div id="dialogBirthPlace" style="display: none" align="center">
+    Thêm quê quán
+</div>
+<div id="dialogJob" style="display: none" align="center">
+    Thêm nghề nghiệp
+</div>
+<div id="dialogAddress" style="display: none" align="center">
+    Thêm nơi ở
+</div>
+<div id="dialogDiePlace" style="display: none" align="center">
+    Thêm nơi mất
+</div>
+<div id="dialogCauseOfDeath" style="display: none" align="center">
+    Thêm nguyên nhân chết
+</div>
 <!--<div class="container">
     <div class="row">
         <div class="col-sm-4" style="background-color:#0dbf3c;">
@@ -220,7 +242,61 @@
         else {
             $('#sex').val("F");
         }
-
+    });
+    //Show dialog quê quán
+    $("#dialogBirthPlace").dialog({
+        modal: true,
+        autoOpen: false,
+        title: "Thêm quê quán",
+        width: 500,
+        height: 300
+    });
+    $("#btnBirthPlace").click(function () {
+        $('#dialogBirthPlace').dialog('open');
+    });
+    //Show dialog nghề nghiệp
+    $("#dialogJob").dialog({
+        modal: true,
+        autoOpen: false,
+        title: "Thêm nghề nghiệp",
+        width: 500,
+        height: 300
+    });
+    $("#btnJob").click(function () {
+        $('#dialogJob').dialog('open');
+    });
+    //Show dialog nơi ở
+    $("#dialogAddress").dialog({
+        modal: true,
+        autoOpen: false,
+        title: "Thêm nơi ở",
+        width: 500,
+        height: 300
+    });
+    $("#btnAddress").click(function () {
+        $('#dialogAddress').dialog('open');
+    });
+    //Show dialog nơi mất
+    $("#dialogDiePlace").dialog({
+        modal: true,
+        autoOpen: false,
+        title: "Thêm nơi mất",
+        width: 500,
+        height: 300
+    });
+    $("#btnDiePlace").click(function () {
+        $('#dialogDiePlace').dialog('open');
+    });
+    //Show dialog nguyên nhân chết
+    $("#dialogCauseOfDeath").dialog({
+        modal: true,
+        autoOpen: false,
+        title: "Thêm nguyên nhân chết",
+        width: 500,
+        height: 300
+    });
+    $("#btnCauseOfDeath").click(function () {
+        $('#dialogCauseOfDeath').dialog('open');
     });
 </script>
->>>>>>> 5f52e526b3f67f9546b474d2398c1a190474ef4f
+
