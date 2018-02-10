@@ -84,6 +84,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -127,6 +128,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\bootstrap\bootstrap.min.css" />
+    <Content Include="assets\bootstrap\bootstrap.min.js" />
     <Content Include="assets\CGP.js" />
     <Content Include="assets\imgs\asq.jpg" />
     <Content Include="assets\imgs\banner.jpg" />
@@ -200,6 +203,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CheckLoginAttribute.cs" />
     <Compile Include="Helper\CurrentContext.cs" />
     <Compile Include="Helper\StringUtils.cs" />
     <Compile Include="Job.cs">

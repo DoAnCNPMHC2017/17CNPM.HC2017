@@ -82,7 +82,7 @@
     <Property Name="BurialPlaceId" Type="Int32" />
     <Property Name="CauseOfDeath" Type="Int32" />
     <Property Name="TreeID" Type="Int32" />
-    <Property Name="Sex" Type="Boolean" />
+    <Property Name="Sex" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Relationship">
     <Key>

@@ -1,93 +1,226 @@
-﻿@{
+﻿@model Member
+@{
     ViewBag.Title = "CreateCGP";
 }
-        <script src="~/assets/Library/jquery.min.js"></script>
-        <script src="~/assets/Library/kendo.all.min.js"></script>
-        <script src="~/assets/CGP.js"></script>
+<script src="~/assets/Library/jquery.min.js"></script>
+<script src="~/assets/Library/kendo.all.min.js"></script>
+<script src="~/assets/CGP.js"></script>
 <link href="~/assets/css/simple-sidebar.css" rel="stylesheet" />
-<div id="wrapper" class="toggled">
-    <div id="sidebar-wrapper">
-        
-        <ul class="sidebar-nav">
+<form class="form-horizontal" action="" method="post" id="Form-Add">
+    <div id="wrapper" class="toggled">
+        <div id="sidebar-wrapper">
 
-            <li class="sidebar-brand">
-                <div class="col-sm-4">
+            <ul class="sidebar-nav">
+
+<<<<<<< HEAD
+</div>
+=======
+                <li class="sidebar-brand">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-success">Sửa</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-danger">Xóa</button>
+                    </div>
+                </li>
+
+                <h1 style="text-align:center">Thông tin thành viên</h1>
+                <table>
+
+                    <tr>
+                        <td class="lablename">Thành viên củ</td>
+                        <td>
+                            <input class="k-textbox" style="width: 280px" disabled/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Loại quan hệ</td>
+                        <td>
+                            <input id="Relasionship" style="width: 280px" disabled/>
+                        </td>
+                    </tr>
+
+                    @* Phát sinh thì tự động chứ nhỉ
+                        <tr>
+                        <td class="lablename">Ngày phát sinh</td>
+                        <td>
+                            <input id="CreateDate" style="width: 280px" />
+                        </td>
+                    </tr>*@
+                    <tr>
+                        <td class="lablename">Họ và tên</td>
+                        <td>
+                            <input class="k-textbox" id="tenn" name="FullName" style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Giới tính</td>
+                        <td>
+                            <input class="gender" type="radio" name="Gender" value="male" checked /> Nam
+                            <input class="gender" type="radio" name="Gender" /> Nữ
+                            <input type="hidden" name="Sex" id="sex" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Ngày giờ sinh</td>
+                        <td>
+                            <input id="BirthDate" name="Birthday" style="width:280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Quê quán (id)</td>
+                        <td>
+                            <input id="BirthPlace" name="BirthPlaceId" style="width: 280px" disabled/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Nghề nghiệp</td>
+                        <td>
+                            @*<input id="Job" name="Job" style="width: 280px" />*@
+                            <input type="text" name="Job" style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Nơi ở</td>
+                        <td>
+                            <input id="Address" name="AddressID" style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Ngày giờ mất</td>
+                        <td>
+                            <input class="BirthDate" name="DateOfDeath" style="width:280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Nơi mất (id)</td>
+                        <td>
+                            <input id="BirthPlace" name="BurialPlaceId" style="width: 280px" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Nguyên nhân chết (id)</td>
+                        <td>
+                            <input id="BirthPlace" name="CauseOfDeath" style="width: 280px" disabled />
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Vẽ ở đây</h1>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+</form>
+<!--<div class="container">
+    <div class="row">
+        <div class="col-sm-4" style="background-color:#0dbf3c;">
+            <div class="row">
+                <div class="col-sm-3">
+                    <select class="form-control">
+                        <option value="">Con</option>
+                        <option value="">Chồng\</option>
+                        <option value="">Vợ</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
                     <button type="button" class="btn btn-primary">Thêm</button>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <button type="button" class="btn btn-success">Sửa</button>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <button type="button" class="btn btn-danger">Xóa</button>
                 </div>
-            </li>
-            
-            <h1 style="text-align:center">Thông tin thành viên</h1>
-            <table>
-                <tr>
-                    <td class="lablename">Thành viên củ</td>
-                    <td>
-                        <input class="k-textbox" style="width: 280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Loại quan hệ</td>
-                    <td>
-                        <input id="Relasionship" style="width: 280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Ngày phát sinh</td>
-                    <td>
-                        <input id="CreateDate" style="width: 280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Họ và tên</td>
-                    <td>
-                        <input class="k-textbox" style="width: 280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Giới tính</td>
-                    <td>
-                        <input id="Sex" style="width: 280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Ngày giờ sinh</td>
-                    <td>
-                        <input id="BirthDate" style="width:280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Quê quán</td>
-                    <td>
-                        <input id="BirthPlace" style="width: 280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Nghề nghiệp</td>
-                    <td>
-                        <input id="Job" style="width: 280px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lablename">Địa chỉ</td>
-                    <td>
-                        <input id="Address" style="width: 280px" />
-                    </td>
-                </tr>
-            </table>
-        </ul>
-    </div>
-    <!-- /#sidebar-wrapper -->
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <h1>Vẽ ở đây</h1>
+            </div><br/>
+            <div class="row text-center">
+                <h1 style="text-align:center">Thông tin thành viên</h1>
+                <table>
+                    <tr>
+                        <td class="lablename">Thành viên củ</td>
+                        <td>
+                            <input class="k-textbox" style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Loại quan hệ</td>
+                        <td>
+                            <input id="Relasionship" style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Ngày phát sinh</td>
+                        <td>
+                            <input id="CreateDate" style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Họ và tên</td>
+                        <td>
+                            <input class="k-textbox" style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Giới tính</td>
+                        <td>
+                            <input style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Ngày giờ sinh</td>
+                        <td>
+                            <input id="BirthDate" style="width:280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Quê quán</td>
+                        <td>
+                            <input  style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Nghề nghiệp</td>
+                        <td>
+                            <input style="width: 280px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lablename">Địa chỉ</td>
+                        <td>
+                            <input style="width: 280px" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        @*Phần show cây*@
+        <div class="col-sm-8" style="background-color:#8FBC8F;">
+            <h1>Show cây ở đây</h1>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-
 </div>
+-->
+<script type="text/javascript">
+    $('input[name="Gender"]').change(function () {
+
+        var check = $('input[name="Gender"]:checked').val();
+        if (check == "male") {
+            $('#sex').val("M");
+        }
+        else {
+            $('#sex').val("F");
+        }
+
+    });
+</script>
+>>>>>>> 5f52e526b3f67f9546b474d2398c1a190474ef4f

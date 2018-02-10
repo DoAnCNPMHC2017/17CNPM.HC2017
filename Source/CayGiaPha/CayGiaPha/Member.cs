@@ -27,6 +27,6 @@ namespace CayGiaPha
         public Nullable<int> BurialPlaceId { get; set; }
         public Nullable<int> CauseOfDeath { get; set; }
         public Nullable<int> TreeID { get; set; }
-        public Nullable<bool> Sex { get; set; }
+        public string Sex { get; set; }
     }
 }

@@ -1,21 +1,64 @@
-﻿
+﻿@model Tree
 @{
     ViewBag.Title = "Index";
 }
+@*<link href="~/assets/bootstrap/bootstrap.min.css" rel="stylesheet" />*@
+<script src="~/assets/bootstrap/bootstrap.min.js"></script>
+
 <script src="~/assets/Library/jquery.min.js"></script>
 <script src="~/assets/Library/kendo.all.min.js"></script>
 <script src="~/assets/CGP.js"></script>
-<div class="container">
-    <div class="jumbotron text-center" style="background-color:#8FBC8F">
-        <h1>Tạo cây gia tộc mới</h1>
-        <input type="text" class="text-center" id="" placeholder="Tên cây gia tộc" /><br/><br/>
-        <div class="center-block">
-            <button id="singlebutton" name="singlebutton" class="btn btn-primary center-block">Tạo mới</button>
+<form class="form-horizontal" method="post" action="" id="form_register">
+    <div class="container">
+        <div class="jumbotron text-center" style="background-color:#8FBC8F">
+            <h1>Tạo cây gia tộc mới</h1>
+            <input type="text" class="text-center" id="txtName" name="Name" placeholder="Tên cây gia tộc" value="" /><br /><br />
+            <div class="center-block">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary center-block">Tạo mới</button>
+                @*<button type="submit" class="btn btn-success" name="create" id="create">
+                        <i class="fa fa-check"></i>
+                        Tạo mới
+                    </button>*@
+            </div>
         </div>
-    </div>
-    <div class="jumbotron text-center" style="background-color:#8FBC8F">
-        <h1>Danh sách gia tộc</h1>
-        <div id="GridTree"></div>
-    </div>
-</div>
+        <div class="jumbotron text-center">
+            <h1>Danh sách gia tộc</h1>
+            @{
+                var ctx = new CGPEntities();
+                var mytree = ctx.Trees;
+                int stt = 1;
+            }
+            <div class="card-content table-responsive">
+                <table class="table">
+                    <thead class="text-primary">
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Cây</th>
+                            <th>Ngày tạo</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        @foreach (var cim in mytree)
+                        {
+                            
+                            <tr>
+                                <th>@stt</th>
+                                <td>@cim.Name</td>
+                                <td>@cim.CreateDate.ToString()</td>
+                                <td><a href="@Url.Action("CreateCGP", "CGP", new { id = @cim.TreeID})">Chi tiết</a></td>
+                            </tr>
+                            stt++;
+                        }
+                    </tbody>
+                </table>
 
+
+            </div>
+                @*<div id="GridTree">
+
+            </div>*@
+            </div>
+    </div>
+</form>

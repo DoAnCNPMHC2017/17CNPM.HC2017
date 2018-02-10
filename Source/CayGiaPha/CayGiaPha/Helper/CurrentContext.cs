@@ -45,13 +45,20 @@ namespace CayGiaPha.Helper
             }
             return (Account)HttpContext.Current.Session["user"];
         }
-
+        public static void SetCurrentTree(int id)
+        {
+            HttpContext.Current.Session["tree"] = id;
+        }
+        public static int GetCurrentTree()
+        {
+            return (int)HttpContext.Current.Session["tree"];
+        }
         public static void Destroy()
         {
             HttpContext.Current.Session["isLogin"] = 0;
             HttpContext.Current.Session["user"] = null;
-
-            HttpContext.Current.Response.Cookies["userID"].Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Session["tree"] = null;
+            //HttpContext.Current.Response.Cookies["userID"].Expires = DateTime.Now.AddDays(-1);
         }
     }
 }
