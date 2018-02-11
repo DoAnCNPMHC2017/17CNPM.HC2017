@@ -101,13 +101,18 @@ namespace CayGiaPha.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('Lỗi.')</script>"+ex.ToString());
+                    Response.Write("<script LANGUAGE='JavaScript' >alert('Lỗi.')</script>" + ex.ToString());
                 }
 
 
             }
 
             return View(model);
+        }
+
+        public ActionResult Profile()
+        {
+            return View();
         }
 
     }
