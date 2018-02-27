@@ -2,6 +2,7 @@
     CreateControl();
     LoadData();
     ControlCreateTree();
+    createDiagram();
 });
 
 function CreateControl() {
@@ -149,3 +150,247 @@ function ControlCreateTree()
         },
     });
 }
+function visualTemplate(options) {
+    var dataviz = kendo.dataviz;
+    var g = new dataviz.diagram.Group();
+    var dataItem = options.dataItem;
+
+    g.append(new dataviz.diagram.Rectangle({
+        width: 210,
+        height: 75,
+        stroke: {
+            width: 0
+        },
+        fill: {
+            gradient: {
+                type: "linear",
+                stops: [{
+                    color: dataItem.colorScheme,
+                    offset: 0,
+                    opacity: 0.5
+                }, {
+                    color: dataItem.colorScheme,
+                    offset: 1,
+                    opacity: 1
+                }]
+            }
+        }
+    }));
+
+    g.append(new dataviz.diagram.TextBlock({
+        text: dataItem.firstName + " " + dataItem.lastName,
+        x: 85,
+        y: 20,
+        fill: "#fff"
+    }));
+
+    g.append(new dataviz.diagram.TextBlock({
+        text: dataItem.title,
+        x: 85,
+        y: 40,
+        fill: "#fff"
+    }));
+
+    g.append(new dataviz.diagram.Image({
+        source: "../content/dataviz/diagram/people/" + dataItem.image,
+        x: 3,
+        y: 3,
+        width: 68,
+        height: 68
+    }));
+
+    return g;
+}
+function createDiagram() {
+    var data = [{
+        firstName: "Antonio",
+        lastName: "Moreno",
+        image: "antonio.jpg",
+        title: "Team Lead",
+        colorScheme: "#1696d3",
+        items: [{
+            firstName: "Elizabeth",
+            image: "elizabeth.jpg",
+            lastName: "Brown",
+            title: "Design Lead",
+            colorScheme: "#ef6944",
+            items: [{
+                firstName: "Ann",
+                lastName: "Devon",
+                image: "ann.jpg",
+                title: "UI Designer",
+                colorScheme: "#ef6944"
+            }]
+        }, {
+            firstName: "Diego",
+            lastName: "Roel",
+            image: "diego.jpg",
+            title: "QA Engineer",
+            colorScheme: "#ee587b",
+            items: [{
+                firstName: "Fran",
+                lastName: "Wilson",
+                image: "fran.jpg",
+                title: "QA Intern",
+                colorScheme: "#ee587b"
+            }]
+        }, {
+            firstName: "Felipe",
+            lastName: "Izquiedro",
+            image: "felipe.jpg",
+            title: "Senior Developer",
+            colorScheme: "#75be16",
+            items: [{
+                firstName: "Daniel",
+                lastName: "Tonini",
+                image: "daniel.jpg",
+                title: "Developer",
+                colorScheme: "#75be16"
+            }]
+        }]
+    }];
+    $("#diagram").kendoDiagram({
+        dataSource: new kendo.data.HierarchicalDataSource({
+            data: data,
+            schema: {
+                model: {
+                    children: "items"
+                }
+            }
+        }),
+        layout: {
+            type: "layered"
+        },
+        shapeDefaults: {
+            visual: visualTemplate
+        },
+        connectionDefaults: {
+            stroke: {
+                color: "#979797",
+                width: 2
+            }
+        }
+    });
+
+    var diagram = $("#diagram").getKendoDiagram();
+    diagram.bringIntoView(diagram.shapes);
+}
+//function createDiagram() {
+//    $.ajax({
+//        async: false,
+//        dataType: 'json',
+//        url: '/CGP/GetMember',
+//        //data: { ID: ID },
+//        success: function (result) {
+//            console.log(result);
+//            Items = result;
+//        },
+//        error: function () {
+//        }
+//    });
+//    // Tao item
+//    //var itemnews = Tree(null);
+//    //gan node cha
+//    //for (var i = 0 ; i < Items.length ; i++) {
+//    //    if(Items[i].Sex == 'M' && Items[i].Memberold== null)
+//    //    {
+//    //        itemnew.push({
+//    //            ID: Items[i].Id,
+//    //            Sex: Items[i].Sex,
+//    //            Memberold: Items[i].Memberold,
+//    //            Name: Items[i].FullName,
+//    //            //image: "antonio.jpg",
+//    //            title: "",
+//    //            colorScheme: "#00ff2b",
+//    //            items: []
+//    //        });
+//    //        Items.splice(i, 1);
+//    //        break;
+//    //    }
+//    //}
+//    ////gan node tiep theo
+//    //while (Items.length > 0)
+//    //{
+//    //    //duyet item mới
+
+//    //        for(var i=0;i<Items.length;i++)
+//    //        {
+//    //            if(itemnew[0].ID == Items[i].Memberold)
+//    //            {
+//    //                //them vao item
+//    //                itemnew[0].items.push(
+//    //                    {
+//    //                        ID: Items[i].Id,
+//    //                        Sex: Items[i].Sex,
+//    //                        Memberold: Items[i].Memberold,
+//    //                        Name: Items[i].FullName,
+//    //                        //image: "antonio.jpg",
+//    //                        title: "",
+//    //                        colorScheme: "#00ff2b",
+//    //                        items: []
+//    //                    });
+//    //                Items.splice(i, 1);
+//    //                i--;
+//    //                continue;
+//    //            }
+//    //            if (itemnew[0].Memberold == Items[i].Memberold)
+//    //            {
+//    //                itemnew[0].title = Items[i].FullName;
+//    //                Items.splice(i, 1);
+//    //                i--;
+//    //                continue;
+//    //            }
+//    //        }
+//    //}
+//    //console.log(Items);
+//    //console.log(itemnew);
+//    ///
+//    //var data = [{
+//    //    Name: "Nguyễn Nhất Ngôn",
+//    //    //image: "antonio.jpg",
+//    //    title: "Đời 1",
+//    //    colorScheme: "#00ff2b",
+//    //    items: [{
+//    //        //image: "elizabeth.jpg",
+//    //        Name: "Tô Thị Hồng Nhung",
+//    //        title: "Vợ",
+//    //        colorScheme: "#00ff2b",
+//    //        items: [{
+//    //            Name: "Nguyễn An Nhiên",
+//    //            //image: "ann.jpg",
+//    //            title: "Con Gái",
+//    //            colorScheme: "#00ff2b"
+//    //        }, {
+//    //            Name: "Nguyễn Thiên Vũ",
+//    //            //image: "ann.jpg",
+//    //            title: "Con Trai",
+//    //            colorScheme: "#00ff2b"
+//    //        }]
+//    //    }]
+//    //}];
+//    $("#diagram").kendoDiagram({
+//        dataSource: new kendo.data.HierarchicalDataSource({
+//            data: itemnews,
+//            schema: {
+//                model: {
+//                    children: "items"
+//                }
+//            }
+//        }),
+//        layout: {
+//            type: "layered"
+//        },
+//        shapeDefaults: {
+//            visual: visualTemplate
+//        },
+//        connectionDefaults: {
+//            stroke: {
+//                color: "#979797",
+//                width: 2
+//            }
+//        }
+//    });
+
+//    var diagram = $("#diagram").getKendoDiagram();
+//    diagram.bringIntoView(diagram.shapes);
+//}

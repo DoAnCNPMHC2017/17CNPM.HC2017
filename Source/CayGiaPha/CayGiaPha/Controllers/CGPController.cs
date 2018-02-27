@@ -49,7 +49,7 @@ namespace CayGiaPha.Controllers
         }
 
         // GET: CGP/CreateCGP 
-        [CheckLogin]
+        //[CheckLogin]
         public ActionResult CreateCGP(int? id)
         {
             if (id.HasValue == false)
