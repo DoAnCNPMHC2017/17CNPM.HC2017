@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿var Items = [];
+$(document).ready(function () {
     CreateControl();
     LoadData();
     ControlCreateTree();
@@ -103,6 +104,7 @@ function CreateControl() {
 function LoadData()
 {
     $.ajax({
+        async:false,
         dataType: 'json',
         url: '/CGP/GetControl',
         //data: { ID: ID },
@@ -156,7 +158,7 @@ function visualTemplate(options) {
     var dataItem = options.dataItem;
 
     g.append(new dataviz.diagram.Rectangle({
-        width: 210,
+        width: 380,
         height: 75,
         stroke: {
             width: 0
@@ -178,7 +180,7 @@ function visualTemplate(options) {
     }));
 
     g.append(new dataviz.diagram.TextBlock({
-        text: dataItem.firstName + " " + dataItem.lastName,
+        text: dataItem.Name,
         x: 85,
         y: 20,
         fill: "#fff"
@@ -201,57 +203,71 @@ function visualTemplate(options) {
 
     return g;
 }
+function TimVo(Mbold)
+{
+    for (var i = 0; i < Items.length; i++) {
+        if (Items[i].Memberold == Mbold && Items[i].Sex =='F') {
+            //luu
+            var ItemsTemp = Items[i];
+            //xóa
+            Items.splice(i, 1);
+            //tra ve tên
+            return '     Vợ: ' + ItemsTemp.FullName;
+        }
+    }
+    return "";
+}
+function Tree(Mbold)
+{
+    var Itemnew = [];
+    for(var i=0;i<Items.length;i++)
+    {
+        if(Items[i].Memberold == Mbold && Items[i].Sex =='M')
+        {
+            //luu
+            var ItemsTemp = Items[i];
+            //xóa
+            Items.splice(i, 1);
+            //xu ly
+            var Vo=TimVo(ItemsTemp.Memberold);
+            var chong = ItemsTemp.FullName;
+            if (Vo != "")
+            {
+                chong = 'Chồng: ' + chong;
+            }
+            Itemnew.push({
+                ID: ItemsTemp.Id,
+                Sex: ItemsTemp.Sex,
+                Memberold: ItemsTemp.Memberold,
+                Name: chong,
+                //image: "antonio.jpg",
+                title: Vo,
+                colorScheme: "#00ff2b",
+                items: Tree(ItemsTemp.Id)
+            });
+            i--;
+        }
+    }
+    return Itemnew;
+}
 function createDiagram() {
-    var data = [{
-        firstName: "Antonio",
-        lastName: "Moreno",
-        image: "antonio.jpg",
-        title: "Team Lead",
-        colorScheme: "#1696d3",
-        items: [{
-            firstName: "Elizabeth",
-            image: "elizabeth.jpg",
-            lastName: "Brown",
-            title: "Design Lead",
-            colorScheme: "#ef6944",
-            items: [{
-                firstName: "Ann",
-                lastName: "Devon",
-                image: "ann.jpg",
-                title: "UI Designer",
-                colorScheme: "#ef6944"
-            }]
-        }, {
-            firstName: "Diego",
-            lastName: "Roel",
-            image: "diego.jpg",
-            title: "QA Engineer",
-            colorScheme: "#ee587b",
-            items: [{
-                firstName: "Fran",
-                lastName: "Wilson",
-                image: "fran.jpg",
-                title: "QA Intern",
-                colorScheme: "#ee587b"
-            }]
-        }, {
-            firstName: "Felipe",
-            lastName: "Izquiedro",
-            image: "felipe.jpg",
-            title: "Senior Developer",
-            colorScheme: "#75be16",
-            items: [{
-                firstName: "Daniel",
-                lastName: "Tonini",
-                image: "daniel.jpg",
-                title: "Developer",
-                colorScheme: "#75be16"
-            }]
-        }]
-    }];
+    $.ajax({
+        async:false,
+        dataType: 'json',
+        url: '/CGP/GetMember',
+        //data: { ID: ID },
+        success: function (result) {
+            console.log(result);
+            Items = result;
+        },
+        error: function () {
+        }
+    });
+    var Itemnew = Tree(null);
+    console.log(Itemnew);
     $("#diagram").kendoDiagram({
         dataSource: new kendo.data.HierarchicalDataSource({
-            data: data,
+            data: Itemnew,
             schema: {
                 model: {
                     children: "items"

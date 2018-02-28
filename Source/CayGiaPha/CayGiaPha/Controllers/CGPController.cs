@@ -113,6 +113,14 @@ namespace CayGiaPha.Controllers
                 return Json(new { Bl = Bl, Jo = Jo }, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult GetMember()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                var m = dt.Members.Where(b => b.TreeID == 1).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
     }
 }
