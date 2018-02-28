@@ -5,10 +5,10 @@
 <script src="~/assets/Library/jquery.min.js"></script>
 <script src="~/assets/Library/kendo.all.min.js"></script>
 <script src="~/assets/CGP.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
-      rel="stylesheet" type="text/css" />
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>*@
+@*<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>*@
+@*<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+      rel="stylesheet" type="text/css" />*@
 <link href="~/assets/css/simple-sidebar.css" rel="stylesheet" />
 <form class="form-horizontal" action="" method="post" id="Form-Add">
     <div id="wrapper" class="toggled">
@@ -82,8 +82,8 @@
                     <tr>
                         <td class="lablename">Nghề nghiệp</td>
                         <td>
-                            @*<input id="Job" name="Job" style="width: 280px" />*@
-                            <input type="text" name="Job" style="width: 220px" />
+                            <input id="Job" name="Job" style="width: 280px" />
+                            @*<input type="text" name="Job" style="width: 220px" />*@
                             <button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
@@ -120,7 +120,7 @@
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
+            <div id="diagram" class="container-fluid">
                 <h1>Vẽ ở đây</h1>
             </div>
         </div>

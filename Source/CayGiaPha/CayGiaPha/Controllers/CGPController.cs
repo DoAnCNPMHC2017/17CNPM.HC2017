@@ -49,7 +49,7 @@ namespace CayGiaPha.Controllers
         }
 
         // GET: CGP/CreateCGP 
-        [CheckLogin]
+        //[CheckLogin]
         public ActionResult CreateCGP(int? id)
         {
             if (id.HasValue == false)
@@ -111,6 +111,14 @@ namespace CayGiaPha.Controllers
                 var Bl = dt.BirthPlaces.Where(b => b.TreeID == 1).ToList();
                 var Jo = dt.Jobs.Where(b => b.TreeID == 1).ToList();
                 return Json(new { Bl = Bl, Jo = Jo }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetMember()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                var m = dt.Members.Where(b => b.TreeID == 1).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion
