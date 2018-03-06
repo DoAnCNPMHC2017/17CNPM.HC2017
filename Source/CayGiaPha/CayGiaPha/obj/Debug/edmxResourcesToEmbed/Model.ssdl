@@ -71,7 +71,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FullName" Type="nvarchar" MaxLength="200" />
-    <Property Name="Job" Type="nvarchar" MaxLength="150" />
+    <Property Name="Job" Type="int" />
     <Property Name="AddressID" Type="nvarchar" MaxLength="300" />
     <Property Name="Memberold" Type="int" />
     <Property Name="TypeRelationship" Type="int" />

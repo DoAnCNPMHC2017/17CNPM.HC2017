@@ -71,7 +71,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Job" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Job" Type="Int32" />
     <Property Name="AddressID" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="Memberold" Type="Int32" />
     <Property Name="TypeRelationship" Type="Int32" />

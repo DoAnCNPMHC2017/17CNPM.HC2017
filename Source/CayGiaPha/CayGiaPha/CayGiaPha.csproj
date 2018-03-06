@@ -163,6 +163,10 @@
     <Content Include="assets\admin\vendor\jquery\jquery.min.js" />
     <Content Include="assets\admin\vendor\jquery\jquery.slim.js" />
     <Content Include="assets\admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="assets\bootstrap\bootstrap-datetimepicker.css" />
+    <Content Include="assets\bootstrap\bootstrap-datetimepicker.fr.js" />
+    <Content Include="assets\bootstrap\bootstrap-datetimepicker.js" />
+    <Content Include="assets\bootstrap\bootstrap-datetimepicker.min.css" />
     <Content Include="assets\bootstrap\bootstrap.min.css" />
     <Content Include="assets\bootstrap\bootstrap.min.js" />
     <Content Include="assets\CGP.js" />
@@ -199,13 +203,6 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Content>
     <Content Include="assets\admin\pug\blank.pug" />
     <Content Include="assets\admin\pug\cards.pug" />
     <Content Include="assets\admin\pug\charts.pug" />
@@ -278,6 +275,13 @@
     <Content Include="assets\admin\vendor\font-awesome\scss\_variables.scss" />
     <Content Include="assets\admin\vendor\jquery\jquery.min.map" />
     <Content Include="assets\admin\vendor\jquery\jquery.slim.min.map" />
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -310,6 +314,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CGPController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -368,6 +373,9 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\Test\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

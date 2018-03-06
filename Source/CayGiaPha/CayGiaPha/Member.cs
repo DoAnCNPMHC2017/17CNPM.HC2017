@@ -16,7 +16,7 @@ namespace CayGiaPha
     {
         public int Id { get; set; }
         public string FullName { get; set; }
-        public string Job { get; set; }
+        public Nullable<int> Job { get; set; }
         public string AddressID { get; set; }
         public Nullable<int> Memberold { get; set; }
         public Nullable<int> TypeRelationship { get; set; }
