@@ -18,7 +18,6 @@ function CreateControl() {
         showSelectAll: true,
         autoClose: false,
         change: function (e) {
-            ChangeType();
         }
     });
     //noi sinh
@@ -206,7 +205,7 @@ function visualTemplate(options) {
 function TimVo(Mbold)
 {
     for (var i = 0; i < Items.length; i++) {
-        if (Items[i].Memberold == Mbold && Items[i].Sex =='F') {
+        if (Items[i].Memberold == Mbold && Items[i].Sex =='F' && Items[i].TypeRelationship == 0) {
             //luu
             var ItemsTemp = Items[i];
             //xóa

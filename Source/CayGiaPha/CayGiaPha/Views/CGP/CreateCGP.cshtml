@@ -13,10 +13,7 @@
 <form class="form-horizontal" action="" method="post" id="Form-Add">
     <div id="wrapper" class="toggled">
         <div id="sidebar-wrapper">
-
             <ul class="sidebar-nav">
-
-
                 <li class="sidebar-brand">
                     <div class="col-sm-4">
                         <button type="submit" class="btn btn-primary">Thêm</button>
@@ -35,13 +32,13 @@
                     <tr>
                         <td class="lablename">Thành viên củ</td>
                         <td>
-                            <input class="k-textbox" style="width: 280px" disabled/>
+                            <input class="k-textbox" style="width: 280px" />
                         </td>
                     </tr>
                     <tr>
                         <td class="lablename">Loại quan hệ</td>
                         <td>
-                            <input id="Relasionship" style="width: 280px" disabled/>
+                            <input id="Relasionship" style="width: 280px" />
                         </td>
                     </tr>
 
@@ -82,7 +79,7 @@
                     <tr>
                         <td class="lablename">Nghề nghiệp</td>
                         <td>
-                            <input id="Job" name="Job" style="width: 280px" />
+                            <input id="Job" name="Job" style="width: 220px" />
                             @*<input type="text" name="Job" style="width: 220px" />*@
                             <button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
@@ -94,7 +91,7 @@
                             <button type="button" id="btnAddress" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
-                    <tr>
+                    @*<tr>
                         <td class="lablename">Ngày giờ mất</td>
                         <td>
                             <input class="BirthDate" name="DateOfDeath" style="width:280px" />
@@ -113,7 +110,7 @@
                             <input id="CauseOfDeath" name="CauseOfDeath" style="width: 220px" disabled />
                             <button type="button" id="btnCauseOfDeath" class="btn btn-primary center-block" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
-                    </tr>
+                    </tr>*@
                 </table>
             </ul>
         </div>
@@ -143,95 +140,6 @@
 <div id="dialogCauseOfDeath" style="display: none" align="center">
     Thêm nguyên nhân chết
 </div>
-<!--<div class="container">
-    <div class="row">
-        <div class="col-sm-4" style="background-color:#0dbf3c;">
-            <div class="row">
-                <div class="col-sm-3">
-                    <select class="form-control">
-                        <option value="">Con</option>
-                        <option value="">Chồng\</option>
-                        <option value="">Vợ</option>
-                    </select>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="btn btn-primary">Thêm</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="btn btn-success">Sửa</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="btn btn-danger">Xóa</button>
-                </div>
-            </div><br/>
-            <div class="row text-center">
-                <h1 style="text-align:center">Thông tin thành viên</h1>
-                <table>
-                    <tr>
-                        <td class="lablename">Thành viên củ</td>
-                        <td>
-                            <input class="k-textbox" style="width: 280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Loại quan hệ</td>
-                        <td>
-                            <input id="Relasionship" style="width: 280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Ngày phát sinh</td>
-                        <td>
-                            <input id="CreateDate" style="width: 280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Họ và tên</td>
-                        <td>
-                            <input class="k-textbox" style="width: 280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Giới tính</td>
-                        <td>
-                            <input style="width: 280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Ngày giờ sinh</td>
-                        <td>
-                            <input id="BirthDate" style="width:280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Quê quán</td>
-                        <td>
-                            <input  style="width: 280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Nghề nghiệp</td>
-                        <td>
-                            <input style="width: 280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Địa chỉ</td>
-                        <td>
-                            <input style="width: 280px" />
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        @*Phần show cây*@
-        <div class="col-sm-8" style="background-color:#8FBC8F;">
-            <h1>Show cây ở đây</h1>
-        </div>
-    </div>
-</div>
--->
 <script type="text/javascript">
     $('input[name="Gender"]').change(function () {
 
