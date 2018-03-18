@@ -1,9 +1,9 @@
 ﻿var Items = [];
 $(document).ready(function () {
     CreateControl();
-    LoadData();
     ControlCreateTree();
-    createDiagram();
+    LoadData();
+    //createDiagram();
 });
 
 function CreateControl() {
@@ -67,38 +67,6 @@ function CreateControl() {
         footer: "Hôm nay - #: kendo.toString(data, 'dd/MM/yyyy') #"
     });
     
-    //$('#GridListDetailHDDT').kendoGrid({
-    //    //toolbar: ["excel"],
-    //    excel: {
-    //        allPages: true,
-    //        fileName: "DetailHDDT.xlsx"
-    //    },
-    //    resizable: true,
-    //    selectable: true,
-    //    scrollable: true,
-    //    height: 500,
-    //    pageable: {
-    //        pageSizes: true,
-    //        refresh: true,
-    //        buttonCount: 5,
-    //        pageSize: 100,
-    //        pageSizes: [100, 250, 500, 1000],
-    //        messages: {
-    //            itemsPerPage: "dòng / trang",
-    //            display: "Hiển thị {0} - {1} / {2}",
-    //            empty: "Không tìm thấy dữ liệu"
-    //        }
-    //    },
-    //    filterable: {
-    //        extra: false,
-    //        messages: { and: "và", or: "hoặc", filter: "Lọc", clear: "Hủy lọc", info: "" },
-    //        operators: {
-    //            string: { eq: "Bằng", neq: "Khác", startswith: "Bắt đầu từ", contains: "Chứa", doesnotcontain: "Không chứa", endswith: "Kết thúc bằng" }
-    //            , number: { eq: "=", neq: "!=", gte: ">=", gt: ">", lte: "<=", lt: "<" }
-    //            , date: { neq: "!=", gte: ">=", gt: ">", lte: "<=", lt: "<" }
-    //        }
-    //    },
-    //});
 }
 function LoadData()
 {
@@ -108,13 +76,14 @@ function LoadData()
         url: '/CGP/GetControl',
         //data: { ID: ID },
         success: function (result) {
-            console.log(result);
+            //console.log(result);
             $('#BirthPlace').data("kendoDropDownList").setDataSource(result.Bl);
             $('#Job').data("kendoDropDownList").setDataSource(result.Jo);
         },
         error: function () {
         }
     });
+    
 }
 function ControlCreateTree()
 {
@@ -150,149 +119,174 @@ function ControlCreateTree()
             }
         },
     });
-}
-function visualTemplate(options) {
-    var dataviz = kendo.dataviz;
-    var g = new dataviz.diagram.Group();
-    var dataItem = options.dataItem;
-
-    g.append(new dataviz.diagram.Rectangle({
-        width: 380,
-        height: 75,
-        stroke: {
-            width: 0
-        },
-        fill: {
-            gradient: {
-                type: "linear",
-                stops: [{
-                    color: dataItem.colorScheme,
-                    offset: 0,
-                    opacity: 0.5
-                }, {
-                    color: dataItem.colorScheme,
-                    offset: 1,
-                    opacity: 1
-                }]
-            }
-        }
-    }));
-
-    g.append(new dataviz.diagram.TextBlock({
-        text: dataItem.Name,
-        x: 85,
-        y: 20,
-        fill: "#fff"
-    }));
-
-    g.append(new dataviz.diagram.TextBlock({
-        text: dataItem.title,
-        x: 85,
-        y: 40,
-        fill: "#fff"
-    }));
-
-    g.append(new dataviz.diagram.Image({
-        source: "../content/dataviz/diagram/people/" + dataItem.image,
-        x: 3,
-        y: 3,
-        width: 68,
-        height: 68
-    }));
-
-    return g;
-}
-function TimVo(Mbold)
-{
-    for (var i = 0; i < Items.length; i++) {
-        if (Items[i].Memberold == Mbold && Items[i].Sex =='F' && Items[i].TypeRelationship == 1) {
-            //luu
-            var ItemsTemp = Items[i];
-            //xóa
-            Items.splice(i, 1);
-            //tra ve tên
-            return '     Vợ: ' + ItemsTemp.FullName;
-        }
-    }
-    return "";
-}
-function Tree(Mbold)
-{
-    var Itemnew = [];
-    for(var i=0;i<Items.length;i++)
-    {
-        if(Items[i].Memberold == Mbold && Items[i].Sex =='M')
-        {
-            //luu
-            var ItemsTemp = Items[i];
-            //xóa
-            Items.splice(i, 1);
-            //xu ly
-            var Vo=TimVo(ItemsTemp.Memberold);
-            var chong = ItemsTemp.FullName;
-            if (Vo != "")
-            {
-                chong = 'Chồng: ' + chong;
-            }
-            Itemnew.push({
-                ID: ItemsTemp.Id,
-                Sex: ItemsTemp.Sex,
-                Memberold: ItemsTemp.Memberold,
-                Name: chong,
-                //image: "antonio.jpg",
-                title: Vo,
-                colorScheme: "#00ff2b",
-                items: Tree(ItemsTemp.Id)
-            });
-            i--;
-        }
-    }
-    return Itemnew;
-}
-function createDiagram() {
+    var grid = $('#GridTree').data("kendoGrid");
+    var options = grid.options;
+    options.columns = setColumns('0');
     $.ajax({
-        async:false,
+        async: false,
         dataType: 'json',
-        url: '/CGP/GetMember',
-        //data: { ID: ID },
+        url: '/CGP/getListMember',
+        data: { TreeID: 1 },
         success: function (result) {
-            console.log(result);
-            Items = result;
+            options.dataSource = result;
         },
         error: function () {
         }
     });
-    var Itemnew = Tree(null);
-    console.log(Itemnew);
-    $("#diagram").kendoDiagram({
-        dataSource: new kendo.data.HierarchicalDataSource({
-            data: Itemnew,
-            schema: {
-                model: {
-                    children: "items"
-                }
-            }
-        }),
-        layout: {
-            type: "layered"
-        },
-        shapeDefaults: {
-            visual: visualTemplate
-        },
-        connectionDefaults: {
-            stroke: {
-                color: "#979797",
-                width: 2
-            }
-        }
-    });
-
-    var diagram = $("#diagram").getKendoDiagram();
-    diagram.bringIntoView(diagram.shapes);
+    $('#GridTree').empty().kendoGrid(options);
 }
+function Edit(id)
+{
+
+}
+function setColumns(typeID) {
+    var columns = null;
+    switch (typeID) {
+        case '0':
+            columns = [{
+                title: "Họ Tên",
+                width: 240,
+                template: "<a style='color:blue' onclick='Edit(#=ID#)' href=\"javascript:;\">#=FullName#</a>"
+            }, {
+                field: "Birthday",
+                title: "Ngày Sinh",
+                template: "#= kendo.toString(data.Birthday, 'yyyy/MM/dd HH:mm:ss') #"
+            }, {
+                //field: "",
+                title: "Đời"
+            }, {
+                field: "Mo",
+                title: "Cha/Mẹ",
+                width:250,
+                template: "#if(data.Fa !=''){#<p>Cha: <strong>#=Fa #</strong></p>#}#" +
+                          "#if(data.Mo !=''){#<p>Mẹ: <strong>#=Mo #</strong></p>#}#"
+            }];
+            break;
+    }
+    return columns;
+}
+function FormatName(str)
+{
+    if (str == "")
+        return str;
+    var ArrStr = str.split(",");
+    var Cha = "<p>Cha: <strong>" + ArrStr[0] + "</strong></p>";
+    var Me = "<p>Mẹ: <strong>" + ArrStr[1] + "</strong></p>";
+    if (ArrStr[0] == "")
+        return Me;
+    else if (ArrStr[1] == "")
+        return Cha;
+    else
+        return Cha +Me;
+}
+/////////////////////START Tao cay\\\\\\\\\\\\\\\\\\\\\\
+//function visualTemplate(options) {
+//    var dataviz = kendo.dataviz;
+//    var g = new dataviz.diagram.Group();
+//    var dataItem = options.dataItem;
+
+//    g.append(new dataviz.diagram.Rectangle({
+//        width: 380,
+//        height: 75,
+//        stroke: {
+//            width: 0
+//        },
+//        fill: {
+//            gradient: {
+//                type: "linear",
+//                stops: [{
+//                    color: dataItem.colorScheme,
+//                    offset: 0,
+//                    opacity: 0.5
+//                }, {
+//                    color: dataItem.colorScheme,
+//                    offset: 1,
+//                    opacity: 1
+//                }]
+//            }
+//        }
+//    }));
+
+//    g.append(new dataviz.diagram.TextBlock({
+//        text: dataItem.Name,
+//        x: 85,
+//        y: 20,
+//        fill: "#fff"
+//    }));
+
+//    g.append(new dataviz.diagram.TextBlock({
+//        text: dataItem.title,
+//        x: 85,
+//        y: 40,
+//        fill: "#fff"
+//    }));
+
+//    g.append(new dataviz.diagram.Image({
+//        source: "../content/dataviz/diagram/people/" + dataItem.image,
+//        x: 3,
+//        y: 3,
+//        width: 68,
+//        height: 68
+//    }));
+
+//    return g;
+//}
+//function TimVoChong(Mbold)
+//{
+//    for (var i = 0; i < Items.length; i++) {
+//        if (Items[i].Memberold == Mbold  && Items[i].TypeRelationship == 1) {
+//            //luu
+//            var ItemsTemp = Items[i];
+//            //xóa
+//            Items.splice(i, 1);
+//            //tra ve tên     
+//            return ItemsTemp.FullName;
+//        }
+//    }
+//    return "";
+//}
+//function Tree(Mbold)
+//{
+//    var Itemnew = [];
+//    for(var i=0;i<Items.length;i++)
+//    {
+//        if(Items[i].Memberold == Mbold)
+//        {
+//            //luu
+//            var ItemsTemp = Items[i];
+//            //xóa
+//            Items.splice(i, 1);
+//            //xu ly
+//            var BanDoi2='     Vợ: ';
+//            var BanDoi1 ='Chồng: '; 
+//            if (ItemsTemp.Sex == 'M')//chồng
+//            {
+//                BanDoi1 +=ItemsTemp.FullName;
+//                BanDoi2 +=TimVoChong(ItemsTemp.Id);
+//            }
+//            else //vợ
+//            {
+//                BanDoi2 +=ItemsTemp.FullName;
+//                BanDoi1 +=TimVoChong(ItemsTemp.Id);
+//            }
+//            Itemnew.push({
+//                ID: ItemsTemp.Id,
+//                Sex: ItemsTemp.Sex,
+//                Memberold: ItemsTemp.Memberold,
+//                Name: BanDoi1,
+//                //image: "antonio.jpg",
+//                title: BanDoi2,
+//                colorScheme: "#00ff2b",
+//                items: Tree(ItemsTemp.Id)
+//            });
+//            i--;
+//        }
+//    }
+//    return Itemnew;
+//}
 //function createDiagram() {
 //    $.ajax({
-//        async: false,
+//        async:false,
 //        dataType: 'json',
 //        url: '/CGP/GetMember',
 //        //data: { ID: ID },
@@ -303,89 +297,11 @@ function createDiagram() {
 //        error: function () {
 //        }
 //    });
-//    // Tao item
-//    //var itemnews = Tree(null);
-//    //gan node cha
-//    //for (var i = 0 ; i < Items.length ; i++) {
-//    //    if(Items[i].Sex == 'M' && Items[i].Memberold== null)
-//    //    {
-//    //        itemnew.push({
-//    //            ID: Items[i].Id,
-//    //            Sex: Items[i].Sex,
-//    //            Memberold: Items[i].Memberold,
-//    //            Name: Items[i].FullName,
-//    //            //image: "antonio.jpg",
-//    //            title: "",
-//    //            colorScheme: "#00ff2b",
-//    //            items: []
-//    //        });
-//    //        Items.splice(i, 1);
-//    //        break;
-//    //    }
-//    //}
-//    ////gan node tiep theo
-//    //while (Items.length > 0)
-//    //{
-//    //    //duyet item mới
-
-//    //        for(var i=0;i<Items.length;i++)
-//    //        {
-//    //            if(itemnew[0].ID == Items[i].Memberold)
-//    //            {
-//    //                //them vao item
-//    //                itemnew[0].items.push(
-//    //                    {
-//    //                        ID: Items[i].Id,
-//    //                        Sex: Items[i].Sex,
-//    //                        Memberold: Items[i].Memberold,
-//    //                        Name: Items[i].FullName,
-//    //                        //image: "antonio.jpg",
-//    //                        title: "",
-//    //                        colorScheme: "#00ff2b",
-//    //                        items: []
-//    //                    });
-//    //                Items.splice(i, 1);
-//    //                i--;
-//    //                continue;
-//    //            }
-//    //            if (itemnew[0].Memberold == Items[i].Memberold)
-//    //            {
-//    //                itemnew[0].title = Items[i].FullName;
-//    //                Items.splice(i, 1);
-//    //                i--;
-//    //                continue;
-//    //            }
-//    //        }
-//    //}
-//    //console.log(Items);
-//    //console.log(itemnew);
-//    ///
-//    //var data = [{
-//    //    Name: "Nguyễn Nhất Ngôn",
-//    //    //image: "antonio.jpg",
-//    //    title: "Đời 1",
-//    //    colorScheme: "#00ff2b",
-//    //    items: [{
-//    //        //image: "elizabeth.jpg",
-//    //        Name: "Tô Thị Hồng Nhung",
-//    //        title: "Vợ",
-//    //        colorScheme: "#00ff2b",
-//    //        items: [{
-//    //            Name: "Nguyễn An Nhiên",
-//    //            //image: "ann.jpg",
-//    //            title: "Con Gái",
-//    //            colorScheme: "#00ff2b"
-//    //        }, {
-//    //            Name: "Nguyễn Thiên Vũ",
-//    //            //image: "ann.jpg",
-//    //            title: "Con Trai",
-//    //            colorScheme: "#00ff2b"
-//    //        }]
-//    //    }]
-//    //}];
+//    var Itemnew = Tree(null);
+//    console.log(Itemnew);
 //    $("#diagram").kendoDiagram({
 //        dataSource: new kendo.data.HierarchicalDataSource({
-//            data: itemnews,
+//            data: Itemnew,
 //            schema: {
 //                model: {
 //                    children: "items"
@@ -409,3 +325,4 @@ function createDiagram() {
 //    var diagram = $("#diagram").getKendoDiagram();
 //    diagram.bringIntoView(diagram.shapes);
 //}
+/////////////////////END Tao cay\\\\\\\\\\\\\\\\\\\\\\

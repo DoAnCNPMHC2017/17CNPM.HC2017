@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using CayGiaPha.Models;
 namespace CayGiaPha.Controllers
 {
     public class CGPController : Controller
@@ -49,7 +49,7 @@ namespace CayGiaPha.Controllers
         }
 
         // GET: CGP/CreateCGP 
-        [CheckLogin]
+        //[CheckLogin]
         public ActionResult CreateCGP(int? id)
         {
             if (id.HasValue == false)
@@ -121,6 +121,24 @@ namespace CayGiaPha.Controllers
                 return Json(m, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult getListMember(int TreeID)
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                string Query = "Select  M1.*,Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
+                               " From" +
+                               " (Select ID,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID.ToString() + " AND TypeRelationship = 0 ) AS M1" +
+                               " INNER JOIN" +
+                               " (Select ID,Memberold,FullName,Sex from CGP..Member where TreeID = " + TreeID.ToString() + ") AS M2 ON M1.Memberold = M2.Id" +
+                               " LEFT JOIN" +
+                               " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID.ToString() + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
+                               " UNION" +
+                               " Select ID,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID.ToString() + " AND TypeRelationship != 0 ";
+               var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
+                //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
+                //    .ToList();
+                return Json(kq, JsonRequestBehavior.AllowGet);
+            }        }
         #endregion
     }
 }
