@@ -88,6 +88,8 @@
           <Property Name="CauseOfDeath" Type="int" />
           <Property Name="TreeID" Type="int" />
           <Property Name="Sex" Type="nvarchar" MaxLength="1" />
+          <Property Name="Generation" Type="int" />
+          <Property Name="DateTimeUpdate" Type="datetime" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -206,6 +208,8 @@
           <Property Name="CauseOfDeath" Type="Int32" />
           <Property Name="TreeID" Type="Int32" />
           <Property Name="Sex" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Generation" Type="Int32" />
+          <Property Name="DateTimeUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -331,6 +335,8 @@
                 <ScalarProperty Name="CauseOfDeath" ColumnName="CauseOfDeath" />
                 <ScalarProperty Name="TreeID" ColumnName="TreeID" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Generation" ColumnName="Generation" />
+                <ScalarProperty Name="DateTimeUpdate" ColumnName="DateTimeUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

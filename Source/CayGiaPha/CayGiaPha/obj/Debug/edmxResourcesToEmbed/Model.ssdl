@@ -83,6 +83,8 @@
     <Property Name="CauseOfDeath" Type="int" />
     <Property Name="TreeID" Type="int" />
     <Property Name="Sex" Type="nvarchar" MaxLength="1" />
+    <Property Name="Generation" Type="int" />
+    <Property Name="DateTimeUpdate" Type="datetime" />
   </EntityType>
   <EntityType Name="Relationship">
     <Key>

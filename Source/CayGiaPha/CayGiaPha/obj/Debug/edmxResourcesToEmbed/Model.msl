@@ -90,6 +90,8 @@
           <ScalarProperty Name="CauseOfDeath" ColumnName="CauseOfDeath" />
           <ScalarProperty Name="TreeID" ColumnName="TreeID" />
           <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Generation" ColumnName="Generation" />
+          <ScalarProperty Name="DateTimeUpdate" ColumnName="DateTimeUpdate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -28,5 +28,7 @@ namespace CayGiaPha
         public Nullable<int> CauseOfDeath { get; set; }
         public Nullable<int> TreeID { get; set; }
         public string Sex { get; set; }
+        public Nullable<int> Generation { get; set; }
+        public Nullable<System.DateTime> DateTimeUpdate { get; set; }
     }
 }
