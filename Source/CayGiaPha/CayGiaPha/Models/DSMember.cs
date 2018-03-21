@@ -9,6 +9,7 @@ namespace CayGiaPha.Models
     {
          public int ID {get;set;}
          public string FullName {get;set;}
+         public int Generation { get; set; } 
          public string Sex {get;set;}
          public int Memberold {get;set;}
          public DateTime Birthday {get;set;}

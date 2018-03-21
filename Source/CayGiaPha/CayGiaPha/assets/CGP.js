@@ -38,8 +38,8 @@ function CreateControl() {
         dataTextField: 'Name',
         dataValueField: 'ID',
         dataSource: [
-                { ID: 0, Name: 'Nữ' },
-                { ID: 1, Name: 'Nam' },
+                { ID: 'F', Name: 'Nữ' },
+                { ID: 'M', Name: 'Nam' },
         ],
         showSelectAll: true,
         autoClose: true
@@ -58,13 +58,32 @@ function CreateControl() {
         value: new Date(),
         dateInput: true
     });
-    $("#CreateDate").kendoDatePicker({
+    $("#DateOfDeath").kendoDateTimePicker({
         //start: "year",
         //depth: "year",
-        format: "dd/MM/yyyy",
+        //format: "dd/MM/yyyy",
+        //value: new Date(),
+        //dateInput: true,
+        //footer: "Hôm nay - #: kendo.toString(data, 'dd/MM/yyyy') #"
         value: new Date(),
-        dateInput: true,
-        footer: "Hôm nay - #: kendo.toString(data, 'dd/MM/yyyy') #"
+        dateInput: true
+    });
+    //
+    $("#CauseOfDeath").kendoDropDownList({
+        //serverFiltering: false,
+        dataTextField: 'CauseOfDeathText',
+        dataValueField: 'CauseOfDeathID',
+        dataSource: [],
+        //showSelectAll: true,
+        autoClose: true
+    });
+    $("#BurialPlace").kendoDropDownList({
+        //serverFiltering: false,
+        dataTextField: 'BurialPlaceName',
+        dataValueField: 'BurialPlaceId',
+        dataSource: [],
+        //showSelectAll: true,
+        autoClose: true
     });
     
 }
@@ -79,6 +98,8 @@ function LoadData()
             //console.log(result);
             $('#BirthPlace').data("kendoDropDownList").setDataSource(result.Bl);
             $('#Job').data("kendoDropDownList").setDataSource(result.Jo);
+            $('#CauseOfDeath').data("kendoDropDownList").setDataSource(result.Cod);
+            $('#BurialPlace').data("kendoDropDownList").setDataSource(result.Bp);
         },
         error: function () {
         }
@@ -128,6 +149,17 @@ function ControlCreateTree()
         url: '/CGP/getListMember',
         data: { TreeID: 1 },
         success: function (result) {
+            var dataSource = new kendo.data.DataSource({
+                data: result
+                , schema: {
+                    model: {
+                        fields: {
+                            Birthday: { nullable: false, type: "datetime" }
+                        },
+                    }
+                },
+                pageSize: 100,
+            });
             options.dataSource = result;
         },
         error: function () {
@@ -135,9 +167,39 @@ function ControlCreateTree()
     });
     $('#GridTree').empty().kendoGrid(options);
 }
-function Edit(id)
+function LoadInfomationMember(ID)
 {
+    $.ajax({
+        async: false,
+        dataType: 'json',
+        url: '/CGP/InfomationMember',
+        data: { TreeID: 1, ID: ID },
+        success: function (result) {
+            var Res = result;
+            console.log(Res);
+            
+            $('#FullName').val(Res[0].FullName);
+            $('#Address').val(Res[0].AddressID);
+            $('#Sex').data('kendoDropDownList').value(Res[0].Sex);
+            $('#Job').data('kendoDropDownList').value(Res[0].Job);
+            //
+            $('#Relasionship').data('kendoDropDownList').value(Res[0].TypeRelationship);
+            $('#BirthDate').data('kendoDateTimePicker').value(Res[0].Birthday);
+            $('#BirthPlace').data('kendoDropDownList').value(Res[0].BirthPlaceId);
+            //
+            $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
+            $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
+            $('#BurialPlace').data('kendoDropDownList').value(1);
+            //Res[0].BurialPlaceId
 
+            //
+            
+            
+            
+        },
+        error: function () {
+        }
+    });
 }
 function setColumns(typeID) {
     var columns = null;
@@ -146,14 +208,15 @@ function setColumns(typeID) {
             columns = [{
                 title: "Họ Tên",
                 width: 240,
-                template: "<a style='color:blue' onclick='Edit(#=ID#)' href=\"javascript:;\">#=FullName#</a>"
+                template: "<a style='color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#=FullName#</a>"
             }, {
                 field: "Birthday",
                 title: "Ngày Sinh",
-                template: "#= kendo.toString(data.Birthday, 'yyyy/MM/dd HH:mm:ss') #"
+
             }, {
-                //field: "",
-                title: "Đời"
+                //field: "Generation",
+                title: "Đời",
+                template: "<strong>Đời Thứ #=Generation#</strong>"
             }, {
                 field: "Mo",
                 title: "Cha/Mẹ",

@@ -32,7 +32,7 @@
                     <tr>
                         <td class="lablename">Thành viên củ</td>
                         <td>
-                            <input class="k-textbox" style="width: 280px" />
+                            <input id="OldID" class="k-textbox" style="width: 280px" />
                         </td>
                     </tr>
                     <tr>
@@ -52,15 +52,13 @@
                     <tr>
                         <td class="lablename">Họ và tên</td>
                         <td>
-                            <input class="k-textbox" id="tenn" name="FullName" style="width: 280px" />
+                            <input class="k-textbox" id="FullName" name="FullName" style="width: 280px" />
                         </td>
                     </tr>
                     <tr>
                         <td class="lablename">Giới tính</td>
                         <td>
-                            <input class="gender" type="radio" name="Gender" value="male" checked /> Nam
-                            <input class="gender" type="radio" name="Gender" /> Nữ
-                            <input type="hidden" name="Sex" id="sex" value="" />
+                            <input id="Sex" name="" style="width: 280px" />
                         </td>
                     </tr>
                     <tr>
@@ -80,37 +78,36 @@
                         <td class="lablename">Nghề nghiệp</td>
                         <td>
                             <input id="Job" name="Job" style="width: 220px" />
-                            @*<input type="text" name="Job" style="width: 220px" />*@
                             <button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr >
                         <td class="lablename">Nơi ở</td>
                         <td>
                             <input id="Address" name="AddressID" style="width: 220px" />
                             <button type="button" id="btnAddress" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
-                    @*<tr>
-                        <td class="lablename">Ngày giờ mất</td>
-                        <td>
-                            <input class="BirthDate" name="DateOfDeath" style="width:280px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Nơi mất (id)</td>
-                        <td>
-                            <input id="DiePlace" name="BurialPlaceId" style="width: 220px" disabled />
-                            <button type="button" id="btnDiePlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lablename">Nguyên nhân chết (id)</td>
-                        <td>
-                            <input id="CauseOfDeath" name="CauseOfDeath" style="width: 220px" disabled />
-                            <button type="button" id="btnCauseOfDeath" class="btn btn-primary center-block" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
-                        </td>
-                    </tr>*@
+                        <tr hidden>
+                            <td class="lablename">Ngày giờ mất</td>
+                            <td>
+                                <input id="DateOfDeath" name="DateOfDeath" style="width:280px" />
+                            </td>
+                        </tr>
+                        <tr hidden>
+                            <td class="lablename">Nơi mất (id)</td>
+                            <td>
+                                <input id="BurialPlace" name="BurialPlaceId" style="width: 220px" />
+                                <button type="button" id="btnDiePlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
+                            </td>
+                        </tr>
+                        <tr hidden>
+                            <td class="lablename">Nguyên nhân chết (id)</td>
+                            <td>
+                                <input id="CauseOfDeath" name="CauseOfDeath" style="width: 220px"  />
+                                <button type="button" id="btnCauseOfDeath" class="btn btn-primary center-block" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
+                            </td>
+                        </tr>
                 </table>
             </ul>
         </div>
