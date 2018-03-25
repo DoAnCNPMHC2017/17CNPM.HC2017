@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CayGiaPha.Models;
+using System.Globalization;
 namespace CayGiaPha.Controllers
 {
     public class CGPController : Controller
@@ -56,7 +57,7 @@ namespace CayGiaPha.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
+            ViewBag.Id = id;
             using (var ctx = new CGPEntities())
             {
                 int idt = int.Parse(id.ToString());
@@ -104,15 +105,16 @@ namespace CayGiaPha.Controllers
             return View();
         }
         #region Ajax
-        public ActionResult GetControl()
+        public ActionResult GetControl(int ID)
         {
             using (CGPEntities dt = new CGPEntities())
             {
-                var Bl = dt.BirthPlaces.Where(b => b.TreeID == 1).ToList();
-                var Jo = dt.Jobs.Where(b => b.TreeID == 1).ToList();
-                var Bp = dt.BurialPlaces.Where(b => b.TreeID == 1).ToList();
-                var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == 1).ToList();
-                return Json(new { Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod }, JsonRequestBehavior.AllowGet);
+                var Bl = dt.BirthPlaces.Where(b => b.TreeID == ID).ToList();
+                var Jo = dt.Jobs.Where(b => b.TreeID == ID).ToList();
+                var Bp = dt.BurialPlaces.Where(b => b.TreeID == ID).ToList();
+                var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == ID).ToList();
+                var OldID = dt.Members.Where(b => b.TreeID == ID && b.TypeRelationship != 1).Select(b => new { ID = b.Id, Name = b.FullName }).ToList();
+                return Json(new { Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID }, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult GetMember()
@@ -129,13 +131,13 @@ namespace CayGiaPha.Controllers
             {
                 string Query = "Select  M1.*,Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
                                " From" +
-                               " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID.ToString() + " AND TypeRelationship = 0 ) AS M1" +
+                               " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 0 ) AS M1" +
                                " INNER JOIN" +
-                               " (Select ID,Memberold,FullName,Sex from CGP..Member where TreeID = " + TreeID.ToString() + ") AS M2 ON M1.Memberold = M2.Id" +
+                               " (Select ID,Memberold,FullName,Sex from CGP..Member where TreeID = " + TreeID + ") AS M2 ON M1.Memberold = M2.Id" +
                                " LEFT JOIN" +
-                               " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID.ToString() + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
+                               " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
                                " UNION" +
-                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID.ToString() + " AND TypeRelationship != 0 ";
+                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 ";
                var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
                 //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
                 //    .ToList();
@@ -148,9 +150,45 @@ namespace CayGiaPha.Controllers
             {
                 string Query = "Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID;
                 var kq = dt.Database.SqlQuery<Member>(Query).ToList();
+                //int? memberold = kq[0].Memberold;
+                //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
                 //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
                 //    .ToList();
                 return Json(kq, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public JsonResult AddMemberNew(int TreeID, string FName, string DChi, string GTinh, int VLam, string MBOld, int QHe, string NSinh, int NoiSinh, string CDate)
+        {
+            CGPEntities db = new CGPEntities();
+            var Mem = new Member();
+            Mem.TreeID = TreeID;
+            Mem.FullName = FName;
+            Mem.AddressID = DChi;
+            Mem.Sex = GTinh;
+            Mem.Job = VLam;
+            if (MBOld != "")
+                Mem.Memberold = Int32.Parse(MBOld);
+            Mem.TypeRelationship = QHe;
+            Mem.Birthday = DateTime.ParseExact(NSinh, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            Mem.Date_Create = DateTime.Parse(CDate);
+            Mem.BirthPlaceId = NoiSinh;
+            var kq = db.Members.Where(b => b.TreeID == TreeID).Select(b => new { Doi = b.Generation }).ToList();
+            int? SoDoi = kq[0].Doi;
+            var Doi = QHe == 1 ? SoDoi : SoDoi + 1;
+            Mem.Generation = Doi;
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    ctx.Members.Add(Mem);
+                    ctx.SaveChanges();
+                    return Json("Thêm Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
             }
         }
         #endregion
