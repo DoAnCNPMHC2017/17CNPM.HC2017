@@ -11,11 +11,12 @@
       rel="stylesheet" type="text/css" />*@
 <link href="~/assets/css/simple-sidebar.css" rel="stylesheet" />
 <form class="form-horizontal" action="" method="post" id="Form-Add">
+    <input id="TreeID" value="@ViewBag.Id" hidden />
     <div id="wrapper" class="toggled">
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" style="background-color:#cac3c3">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <div class="col-sm-4">
+                    @*<div class="col-sm-4">
                         <button type="submit" class="btn btn-primary">Thêm</button>
                     </div>
                     <div class="col-sm-4">
@@ -23,16 +24,15 @@
                     </div>
                     <div class="col-sm-4">
                         <button type="button" class="btn btn-danger">Xóa</button>
-                    </div>
+                    </div>*@
                 </li>
 
                 <h1 style="text-align:center">Thông tin thành viên</h1>
                 <table>
-
                     <tr>
                         <td class="lablename">Thành viên củ</td>
                         <td>
-                            <input id="OldID" class="k-textbox" style="width: 280px" />
+                            <input id="OldID" class="" style="width: 280px" />
                         </td>
                     </tr>
                     <tr>
@@ -41,14 +41,12 @@
                             <input id="Relasionship" style="width: 280px" />
                         </td>
                     </tr>
-
-                    @* Phát sinh thì tự động chứ nhỉ
                         <tr>
                         <td class="lablename">Ngày phát sinh</td>
                         <td>
-                            <input id="CreateDate" style="width: 280px" />
+                            <input id="CreateDate" style="width: 280px" readonly/>
                         </td>
-                    </tr>*@
+                    </tr>
                     <tr>
                         <td class="lablename">Họ và tên</td>
                         <td>
@@ -64,7 +62,7 @@
                     <tr>
                         <td class="lablename">Ngày giờ sinh</td>
                         <td>
-                            <input id="BirthDate" name="Birthday" style="width:280px" />
+                            <input id="BirthDate" name="Birthday" style="width:280px" onchange="formatdatetime()"/>
                         </td>
                     </tr>
                     <tr>
@@ -84,31 +82,40 @@
                     <tr >
                         <td class="lablename">Nơi ở</td>
                         <td>
-                            <input id="Address" name="AddressID" style="width: 220px" />
+                            <input class="k-textbox"  id="Address" name="AddressID" style="width: 220px" />
                             <button type="button" id="btnAddress" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
-                        <tr hidden>
-                            <td class="lablename">Ngày giờ mất</td>
-                            <td>
-                                <input id="DateOfDeath" name="DateOfDeath" style="width:280px" />
-                            </td>
-                        </tr>
-                        <tr hidden>
-                            <td class="lablename">Nơi mất (id)</td>
-                            <td>
-                                <input id="BurialPlace" name="BurialPlaceId" style="width: 220px" />
-                                <button type="button" id="btnDiePlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
-                            </td>
-                        </tr>
-                        <tr hidden>
-                            <td class="lablename">Nguyên nhân chết (id)</td>
-                            <td>
-                                <input id="CauseOfDeath" name="CauseOfDeath" style="width: 220px"  />
-                                <button type="button" id="btnCauseOfDeath" class="btn btn-primary center-block" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
-                            </td>
-                        </tr>
+                    <tr id="tbDateOfDeath" hidden>
+                        <td class="lablename">Ngày giờ mất</td>
+                        <td>
+                            <input id="DateOfDeath" name="DateOfDeath" style="width:280px" />
+                        </td>
+                    </tr>
+                    <tr id="tbBurialPlace" hidden>
+                        <td class="lablename">Nơi mất (id)</td>
+                        <td>
+                            <input id="BurialPlace" name="BurialPlaceId" style="width: 220px" />
+                            <button type="button" id="btnDiePlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
+                        </td>
+                    </tr>
+                    <tr id="tbCauseOfDeath" hidden>
+                        <td class="lablename">Nguyên nhân chết (id)</td>
+                        <td>
+                            <input id="CauseOfDeath" name="CauseOfDeath" style="width: 220px" />
+                            <button type="button" id="btnCauseOfDeath" class="btn btn-primary center-block" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td ></td>
+                        <td>
+                            <button type="button" id="AddMember" class="btn btn-primary" onclick="AddMemberNew()">Thêm</button>
+                            <button type="button" id="UpdateMember" class="btn btn-primary" onclick="UpdateMember()" hidden>Cập Nhật</button>
+                            <button hidden type="button" id="ChangeStatus" onclick="ChangeAddMember()" class="k-primary">Trở về thêm </button>
+                        </td>
+                    </tr>
                 </table>
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

@@ -1,8 +1,10 @@
 ﻿var Items = [];
+var Res = [];
 $(document).ready(function () {
     CreateControl();
     ControlCreateTree();
-    LoadData();
+    LoadData($('#TreeID').val());
+    formatdatetime();
     //createDiagram();
 });
 
@@ -54,7 +56,24 @@ function CreateControl() {
         autoClose: true
         , optionLabel: "Chọn nghề nghiệp ..."
     });
+    //
+    $('#OldID').kendoDropDownList({
+        //serverFiltering: false,
+        dataTextField: 'Name',
+        dataValueField: 'ID',
+        dataSource: [],
+        //showSelectAll: true,
+        autoClose: true
+        , optionLabel: "Chọn Thành Viên Cũ ..."
+    });
+    $("#CreateDate").kendoDatePicker({
+        value: new Date(),
+        format: "dd/MM/yyyy",
+        dateInput: true
+    });
     $("#BirthDate").kendoDateTimePicker({
+        format: "dd/MM/yyyy HH:mm:tt",
+        parseFormats: ["MMMM yyyy", "HH:mm:tt"],
         value: new Date(),
         dateInput: true
     });
@@ -80,26 +99,28 @@ function CreateControl() {
     $("#BurialPlace").kendoDropDownList({
         //serverFiltering: false,
         dataTextField: 'BurialPlaceName',
-        dataValueField: 'BurialPlaceId',
+        dataValueField: 'BurialPlaceID',
         dataSource: [],
         //showSelectAll: true,
         autoClose: true
     });
     
 }
-function LoadData()
+function LoadData(ID)
 {
     $.ajax({
         async:false,
         dataType: 'json',
         url: '/CGP/GetControl',
-        //data: { ID: ID },
+        data: { ID: ID },
         success: function (result) {
             //console.log(result);
             $('#BirthPlace').data("kendoDropDownList").setDataSource(result.Bl);
             $('#Job').data("kendoDropDownList").setDataSource(result.Jo);
             $('#CauseOfDeath').data("kendoDropDownList").setDataSource(result.Cod);
             $('#BurialPlace').data("kendoDropDownList").setDataSource(result.Bp);
+            $('#OldID').data("kendoDropDownList").setDataSource(result.OldID);
+            console.log(result.OldID);
         },
         error: function () {
         }
@@ -140,6 +161,10 @@ function ControlCreateTree()
             }
         },
     });
+    LoadDataTree();
+}
+function LoadDataTree()
+{
     var grid = $('#GridTree').data("kendoGrid");
     var options = grid.options;
     options.columns = setColumns('0');
@@ -147,7 +172,7 @@ function ControlCreateTree()
         async: false,
         dataType: 'json',
         url: '/CGP/getListMember',
-        data: { TreeID: 1 },
+        data: { TreeID: $('#TreeID').val() },
         success: function (result) {
             var dataSource = new kendo.data.DataSource({
                 data: result
@@ -160,7 +185,7 @@ function ControlCreateTree()
                 },
                 pageSize: 100,
             });
-            options.dataSource = result;
+            options.dataSource = dataSource;
         },
         error: function () {
         }
@@ -173,29 +198,97 @@ function LoadInfomationMember(ID)
         async: false,
         dataType: 'json',
         url: '/CGP/InfomationMember',
-        data: { TreeID: 1, ID: ID },
+        data: { TreeID: $('#TreeID').val(), ID: ID },
         success: function (result) {
-            var Res = result;
+            Res = result;
             console.log(Res);
             
             $('#FullName').val(Res[0].FullName);
             $('#Address').val(Res[0].AddressID);
             $('#Sex').data('kendoDropDownList').value(Res[0].Sex);
             $('#Job').data('kendoDropDownList').value(Res[0].Job);
+            $('#OldID').data('kendoDropDownList').value(Res[0].Memberold);
             //
             $('#Relasionship').data('kendoDropDownList').value(Res[0].TypeRelationship);
             $('#BirthDate').data('kendoDateTimePicker').value(Res[0].Birthday);
             $('#BirthPlace').data('kendoDropDownList').value(Res[0].BirthPlaceId);
             //
-            $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
-            $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
-            $('#BurialPlace').data('kendoDropDownList').value(1);
-            //Res[0].BurialPlaceId
-
+            if (Res[0].CauseOfDeath != null || Res[0].DateOfDeath != null || Res[0].BurialPlaceId != null)
+            {
+                $('#tbCauseOfDeath').show();
+                $('#tbDateOfDeath').show();
+                $('#tbBurialPlace').show();
+                $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
+                $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
+                $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
+            }
+            else {
+                $('#tbCauseOfDeath').hide();
+                $('#tbDateOfDeath').hide();
+                $('#tbBurialPlace').hide();
+                $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
+                $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
+                $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
+            }
             //
-            
-            
-            
+            $('#UpdateMember').show();
+            $('#ChangeStatus').show();
+            $('#AddMember').hide();
+        },
+        error: function () {
+        }
+    });
+}
+function ChangeAddMember()
+{
+    $('#UpdateMember').hide();
+    $('#ChangeStatus').hide();
+    $('#AddMember').show();
+    $('#FullName').val("");
+    $('#Address').val("");
+    $('#OldID').data('kendoDropDownList').value("");
+    $('#Job').data('kendoDropDownList').value("");
+    $('#Sex').data('kendoDropDownList').value('F');
+    $('#Relasionship').data('kendoDropDownList').value('0');
+    //
+    //$('#Relasionship').data('kendoDropDownList').setDataSource({});
+    $('#BirthDate').data('kendoDateTimePicker').value(new Date());
+    $('#BirthPlace').data('kendoDropDownList').setDataSource({});
+    $('#tbCauseOfDeath').hide();
+    $('#tbDateOfDeath').hide();
+    $('#tbBurialPlace').hide();
+    LoadData($('#TreeID').val());
+}
+function formatdatetime()
+{
+    str = $('#BirthDate').val();
+    str = str.replace(":PM", "");
+    str = str.replace(":AM", "");
+    $('#BirthDate').val(str);
+}
+function AddMemberNew()
+{
+    var FName=$('#FullName').val();
+    var DChi = $('#Address').val();
+    var GTinh = $('#Sex').val();
+    var VLam = $('#Job').val();
+    var MBOld = $('#OldID').val();
+    //
+    var QHe = $('#Relasionship').val();
+    var NSinh = $('#BirthDate').val();
+    var NoiSinh = $('#BirthPlace').val();
+    var CDate = $("#CreateDate").val();
+    $.ajax({
+        async: false,
+        type: "post",
+        dataType: 'json',     
+        url: '/CGP/AddMemberNew',
+        data: { TreeID: $('#TreeID').val(), FName: FName, DChi: DChi, GTinh: GTinh, VLam: VLam, MBOld: MBOld, QHe: QHe, NSinh: NSinh, NoiSinh: NoiSinh, CDate: CDate },
+        success: function (result) {
+            alert(result);
+            LoadData($('#TreeID').val());
+            LoadDataTree();
+            ChangeAddMember($('#TreeID').val());
         },
         error: function () {
         }
@@ -212,7 +305,7 @@ function setColumns(typeID) {
             }, {
                 field: "Birthday",
                 title: "Ngày Sinh",
-
+                format: "{0: yyyy-MM-dd HH:mm:ss}"
             }, {
                 //field: "Generation",
                 title: "Đời",
@@ -228,20 +321,7 @@ function setColumns(typeID) {
     }
     return columns;
 }
-function FormatName(str)
-{
-    if (str == "")
-        return str;
-    var ArrStr = str.split(",");
-    var Cha = "<p>Cha: <strong>" + ArrStr[0] + "</strong></p>";
-    var Me = "<p>Mẹ: <strong>" + ArrStr[1] + "</strong></p>";
-    if (ArrStr[0] == "")
-        return Me;
-    else if (ArrStr[1] == "")
-        return Cha;
-    else
-        return Cha +Me;
-}
+
 /////////////////////START Tao cay\\\\\\\\\\\\\\\\\\\\\\
 //function visualTemplate(options) {
 //    var dataviz = kendo.dataviz;

@@ -16,4 +16,17 @@ namespace CayGiaPha.Models
          public string Fa {get;set;}
          public string Mo { get; set; }
     }
+    public class DataCreate
+    {
+        public int TreeID {get;set;}
+        public string FName{get;set;}
+        public string DChi{get;set;}
+        public string GTinh{get;set;}
+        public int VLam{get;set;}
+        public string MBOld{get;set;}
+        public int QHe{get;set;}
+        public DateTime NSinh { get; set; }
+        public int NoiSinh{get;set;}
+        public DateTime CDate { get; set; }
+    }
 }
