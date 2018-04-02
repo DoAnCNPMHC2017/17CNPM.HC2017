@@ -29,13 +29,13 @@
 
                 <h1 style="text-align:center">Thông tin thành viên</h1>
                 <table>
-                    <tr>
+                    <tr id="trdOldID" hidden>
                         <td class="lablename">Thành viên củ</td>
                         <td>
                             <input id="OldID" class="" style="width: 280px" />
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="trdRelationship" hidden>
                         <td class="lablename">Loại quan hệ</td>
                         <td>
                             <input id="Relasionship" style="width: 280px" />
@@ -150,7 +150,7 @@
 <div id="dialogCauseOfDeath" style="display: none" align="center">
     Thêm nguyên nhân chết
 </div>
-<script type="text/javascript">
+@*<script type="text/javascript">
     $('input[name="Gender"]').change(function () {
 
         var check = $('input[name="Gender"]:checked').val();
@@ -216,5 +216,5 @@
     $("#btnCauseOfDeath").click(function () {
         $('#dialogCauseOfDeath').dialog('open');
     });
-</script>
+</script>*@
 

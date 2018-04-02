@@ -114,7 +114,8 @@ namespace CayGiaPha.Controllers
                 var Bp = dt.BurialPlaces.Where(b => b.TreeID == ID).ToList();
                 var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == ID).ToList();
                 var OldID = dt.Members.Where(b => b.TreeID == ID && b.TypeRelationship != 1).Select(b => new { ID = b.Id, Name = b.FullName }).ToList();
-                return Json(new { Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID }, JsonRequestBehavior.AllowGet);
+                var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from CGP..Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from CGP..Member where TreeID = " + ID + " AND TypeRelationship <> 0 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id OR ISNULL(A.Memberold,0) =B.Id ").ToList();
+                return Json(new { Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID ,couple = couple}, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult GetMember()
@@ -125,11 +126,13 @@ namespace CayGiaPha.Controllers
                 return Json(m, JsonRequestBehavior.AllowGet);
             }
         }
+        //cho nay
         public ActionResult getListMember(int TreeID)
         {
             using (CGPEntities dt = new CGPEntities())
             {
-                string Query = "Select  M1.*,Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
+                string Query = "Select  M1.*,Format(Birthday,'dd/MM/yyyy hh:mm') bd" +
+                    ",Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
                                " From" +
                                " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 0 ) AS M1" +
                                " INNER JOIN" +
@@ -137,7 +140,7 @@ namespace CayGiaPha.Controllers
                                " LEFT JOIN" +
                                " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
                                " UNION" +
-                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 ";
+                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy hh:mm') bd,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 ";
                var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
                 //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
                 //    .ToList();
@@ -158,7 +161,7 @@ namespace CayGiaPha.Controllers
             }
         }
         [HttpPost]
-        public JsonResult AddMemberNew(int TreeID, string FName, string DChi, string GTinh, int VLam, string MBOld, int QHe, string NSinh, int NoiSinh, string CDate)
+        public JsonResult AddMemberNew(int TreeID, string FName, string DChi, string GTinh, string VLam, string MBOld, int QHe, string NSinh, string NoiSinh, string CDate)
         {
             CGPEntities db = new CGPEntities();
             var Mem = new Member();
@@ -166,16 +169,22 @@ namespace CayGiaPha.Controllers
             Mem.FullName = FName;
             Mem.AddressID = DChi;
             Mem.Sex = GTinh;
-            Mem.Job = VLam;
-            if (MBOld != "")
-                Mem.Memberold = Int32.Parse(MBOld);
+            if (VLam != "")
+                Mem.Job = Int32.Parse(VLam);
             Mem.TypeRelationship = QHe;
             Mem.Birthday = DateTime.ParseExact(NSinh, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
             Mem.Date_Create = DateTime.Parse(CDate);
-            Mem.BirthPlaceId = NoiSinh;
-            var kq = db.Members.Where(b => b.TreeID == TreeID).Select(b => new { Doi = b.Generation }).ToList();
-            int? SoDoi = kq[0].Doi;
-            var Doi = QHe == 1 ? SoDoi : SoDoi + 1;
+            if (NoiSinh != "")
+                Mem.BirthPlaceId = Int32.Parse(NoiSinh);
+            int SoDoi = 1;
+            //neu khong co thanh vien cu (la nguoi đứng đầu gia phả)
+            if(MBOld !="")
+            {
+                var kq = db.Members.Where(b => b.TreeID == TreeID).Select(b => new { Doi = b.Generation }).ToList();
+                SoDoi = Int32.Parse(kq[0].Doi.ToString());
+                Mem.Memberold = Int32.Parse(MBOld);
+            }   
+            var Doi = QHe == -1? 1 : QHe == 1 ? SoDoi : SoDoi + 1;
             Mem.Generation = Doi;
             using (CGPEntities ctx = new CGPEntities())
             {

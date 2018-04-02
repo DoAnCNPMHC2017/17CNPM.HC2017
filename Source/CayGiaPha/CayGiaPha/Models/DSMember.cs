@@ -15,6 +15,7 @@ namespace CayGiaPha.Models
          public DateTime Birthday {get;set;}
          public string Fa {get;set;}
          public string Mo { get; set; }
+         public string bd { get; set; }
     }
     public class DataCreate
     {
@@ -28,5 +29,13 @@ namespace CayGiaPha.Models
         public DateTime NSinh { get; set; }
         public int NoiSinh{get;set;}
         public DateTime CDate { get; set; }
+        
+    }
+    public class Couple
+    {
+        public int ID1 { get; set; }
+        public string Sex1 { get; set; }
+        public int ID2 { get; set; }
+        public string Sex2 { get; set; }
     }
 }

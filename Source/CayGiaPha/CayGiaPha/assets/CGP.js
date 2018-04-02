@@ -1,5 +1,7 @@
 ﻿var Items = [];
 var Res = [];
+var resultOldID = {};
+var couple = {};
 $(document).ready(function () {
     CreateControl();
     ControlCreateTree();
@@ -13,10 +15,7 @@ function CreateControl() {
         serverFiltering: false,
         dataTextField: 'Name',
         dataValueField: 'ID',
-        dataSource: [
-                { ID: 0, Name: 'Con' },
-                { ID: 1, Name: 'Vợ/Chồng' },
-        ],
+        dataSource: [{ ID: 0, Name: 'Con' },{ ID: 1, Name: 'Vợ/Chồng' }],
         showSelectAll: true,
         autoClose: false,
         change: function (e) {
@@ -114,18 +113,48 @@ function LoadData(ID)
         url: '/CGP/GetControl',
         data: { ID: ID },
         success: function (result) {
+            resultOldID = result.OldID;
             //console.log(result);
+            //$('#Relasionship').data('kendoDropDownList').setDataSource([{ ID: 0, Name: 'Con' },{ ID: 1, Name: 'Vợ/Chồng' }]);
             $('#BirthPlace').data("kendoDropDownList").setDataSource(result.Bl);
             $('#Job').data("kendoDropDownList").setDataSource(result.Jo);
             $('#CauseOfDeath').data("kendoDropDownList").setDataSource(result.Cod);
             $('#BurialPlace').data("kendoDropDownList").setDataSource(result.Bp);
             $('#OldID').data("kendoDropDownList").setDataSource(result.OldID);
-            console.log(result.OldID);
+            couple = result.couple;
+            if(result.OldID.length  == 0 )
+            {
+                $('#trdOldID').hide();
+                $('#trdRelationship').hide();
+            }
+            else
+            {
+                $('#trdOldID').show();
+                $('#trdRelationship').show();
+            }
         },
         error: function () {
+            alert("Gặp Lỗi trong quá trình lấy dữ liệu");
         }
     });
-    
+}
+function RuleCouple(ID)
+{
+    for(var i=0;i<couple.length;i++)
+    {
+        if(couple[i].ID1 == ID)
+        {
+            if(couple[i].ID2 != 0)
+            {
+                return "0";
+            }
+            else
+            {
+                return couple[i].Sex1;
+            }
+        }
+    }
+    return "1";
 }
 function ControlCreateTree()
 {
@@ -149,6 +178,18 @@ function ControlCreateTree()
                 itemsPerPage: "dòng / trang",
                 display: "Hiển thị {0} - {1} / {2}",
                 empty: "Không tìm thấy dữ liệu"
+            }
+        },
+        dataSource: {
+            schema: {
+                model: {
+                    id: "Id",
+                    fields: {
+                        //CateName: { editable: false },
+                        //Title: { editable: false },
+                        Birthday: { type: "datetime" }, bd: { type: "date" }
+                    }
+                }
             }
         },
         filterable: {
@@ -179,7 +220,7 @@ function LoadDataTree()
                 , schema: {
                     model: {
                         fields: {
-                            Birthday: { nullable: false, type: "datetime" }
+                            Birthday: { type: "datetime" },
                         },
                     }
                 },
@@ -202,17 +243,25 @@ function LoadInfomationMember(ID)
         success: function (result) {
             Res = result;
             console.log(Res);
-            
+            if (Res[0].Memberold == "" || Res[0].Memberold == null) {
+                $('#trdRelationship').hide();
+                $('#trdOldID').hide();
+            }
+            else {           
+                $('#trdRelationship').show();
+                $('#trdOldID').show();
+            }
+            $('#OldID').data('kendoDropDownList').value(Res[0].Memberold);
             $('#FullName').val(Res[0].FullName);
             $('#Address').val(Res[0].AddressID);
             $('#Sex').data('kendoDropDownList').value(Res[0].Sex);
             $('#Job').data('kendoDropDownList').value(Res[0].Job);
-            $('#OldID').data('kendoDropDownList').value(Res[0].Memberold);
             //
             $('#Relasionship').data('kendoDropDownList').value(Res[0].TypeRelationship);
             $('#BirthDate').data('kendoDateTimePicker').value(Res[0].Birthday);
             $('#BirthPlace').data('kendoDropDownList').value(Res[0].BirthPlaceId);
             //
+            formatdatetime();
             if (Res[0].CauseOfDeath != null || Res[0].DateOfDeath != null || Res[0].BurialPlaceId != null)
             {
                 $('#tbCauseOfDeath').show();
@@ -258,10 +307,12 @@ function ChangeAddMember()
     $('#tbDateOfDeath').hide();
     $('#tbBurialPlace').hide();
     LoadData($('#TreeID').val());
+    formatdatetime();
 }
 function formatdatetime()
 {
     str = $('#BirthDate').val();
+    $('#BirthDate').val("");
     str = str.replace(":PM", "");
     str = str.replace(":AM", "");
     $('#BirthDate').val(str);
@@ -273,11 +324,34 @@ function AddMemberNew()
     var GTinh = $('#Sex').val();
     var VLam = $('#Job').val();
     var MBOld = $('#OldID').val();
-    //
     var QHe = $('#Relasionship').val();
+    if (resultOldID.length > 0 && MBOld == "") {
+        alert("Bạn chưa chọn thành viên củ");
+        return;
+    }
+
     var NSinh = $('#BirthDate').val();
     var NoiSinh = $('#BirthPlace').val();
     var CDate = $("#CreateDate").val();
+    //xu ly biến
+    QHe = MBOld == "" ? -1 : QHe;
+    if (QHe == 1)
+    {
+        var checkCouple = RuleCouple(MBOld);
+        if(checkCouple == "0")
+        {
+            alert("Thành viên củ đã có (vợ/chồng) không thể thêm !!!");
+            return; 
+        }
+        else if (checkCouple != "1")
+        {
+            if(GTinh == checkCouple)
+            {
+                alert("Giới tính bạn chọn không hợp lý với quan hệ vợ chồng hiện tại với thành viên củ");
+                return;
+            }
+        }
+    }
     $.ajax({
         async: false,
         type: "post",
@@ -289,6 +363,7 @@ function AddMemberNew()
             LoadData($('#TreeID').val());
             LoadDataTree();
             ChangeAddMember($('#TreeID').val());
+            formatdatetime();
         },
         error: function () {
         }
@@ -301,12 +376,9 @@ function setColumns(typeID) {
             columns = [{
                 title: "Họ Tên",
                 width: 240,
-                template: "<a style='color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#=FullName#</a>"
-            }, {
-                field: "Birthday",
-                title: "Ngày Sinh",
-                format: "{0: yyyy-MM-dd HH:mm:ss}"
-            }, {
+                template: "<a style='color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#if(data.FullName == ''){#...#}else{##=FullName##}#</a>"
+            }, { field: "bd", title: "Ngày sinh" }
+            , {
                 //field: "Generation",
                 title: "Đời",
                 template: "<strong>Đời Thứ #=Generation#</strong>"
