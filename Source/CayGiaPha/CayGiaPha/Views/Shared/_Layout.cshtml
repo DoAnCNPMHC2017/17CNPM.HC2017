@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Cây Gia Phả</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    @*<link href="~/assets/bootstrap/bootstrap.min.css" rel="stylesheet" />*@
-
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/kendo.bootstrap-v4.min.css" rel="stylesheet" />
+    <link href="~/assets/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assets/css/layout.css" rel="stylesheet" />
     @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
     @*<script src="~/assets/jquery-3.3.1.min.js"></script>*@
     @*<script src="~/assets/Library/jquery.min.js"></script>*@
+    
 </head>
 <body>
-    <div class="navbar navbar-fixed-top" style="background-color:darkred;">
+    <div class="navbar-fixed-top" style="background-color:darkred;">
         <div class="container">
             <div class="navbar-header">
                 <a href='@Url.Action("Index", "Home")'>
@@ -79,8 +80,36 @@
 
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
+                        <a href="https://www.facebook.com/groups/2067588206818932/"><i class="fa fa-facebook fa-2x"></i>Facebook</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-twitter fa-2x"></i>Twitter</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
+                        <a href="https://github.com/DoAnCNPMHC2017/17CNPM.HC2017"><i class="fa fa-github fa-2x"></i>Github</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-google-plus fa-2x"></i>Google</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="border-top:1px solid grey;">
+            </div>
         </footer>
+        <div class="copyright">
+            <div class="container">
+                <div class="row text-center">
+                    <p>Quản lý Cây gia phả Việt Nam</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" id="top" style="display: inline;">
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </a>
     </div>
 
     <script type="text/javascript">
@@ -89,7 +118,7 @@
         })
     </script>
     @RenderSection("js", false)
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     @*<script src="~/assets/CGP.js"></script>*@
 </body>
