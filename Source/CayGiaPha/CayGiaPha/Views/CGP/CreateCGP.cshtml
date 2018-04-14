@@ -5,14 +5,117 @@
 <script src="~/assets/Library/jquery.min.js"></script>
 <script src="~/assets/Library/kendo.all.min.js"></script>
 <script src="~/assets/CGP.js"></script>
-@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>*@
-@*<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>*@
+@*
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>*@
+@*
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>*@
 @*<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
-      rel="stylesheet" type="text/css" />*@
+        rel="stylesheet" type="text/css" />*@
 <link href="~/assets/css/simple-sidebar.css" rel="stylesheet" />
 <form class="form-horizontal" action="" method="post" id="Form-Add">
     <input id="TreeID" value="@ViewBag.Id" hidden />
     <div id="wrapper" class="toggled">
+
+
+            <div id="megaStore">
+                <ul id="menu">
+                    <li>
+                        Báo cáo
+                        <ul>
+                            <li>
+                                abc
+                                <ul>
+                                    <li>Tables & Chairs</li>
+                                    <li>Sofas</li>
+                                    <li>Occasional Furniture</li>
+                                    <li>Children's Furniture</li>
+                                    <li>Beds</li>
+                                </ul>
+
+
+                            </li>
+                            <li>
+                                Decor
+                                <ul>
+                                    <li>Bed Linen</li>
+                                    <li>Throws</li>
+                                    <li>Curtains & Blinds</li>
+                                    <li>Rugs</li>
+                                    <li>Carpets</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Storage
+                                <ul>
+                                    <li>Wall Shelving</li>
+                                    <li>Kids Storage</li>
+                                    <li>Baskets</li>
+                                    <li>Multimedia Storage</li>
+                                    <li>Floor Shelving</li>
+                                    <li>Toilet Roll Holders</li>
+                                    <li>Storage Jars</li>
+                                    <li>Drawers</li>
+                                    <li>Boxes</li>
+                                </ul>
+
+                            </li>
+                            <li>
+                                Lights
+                                <ul>
+                                    <li>Ceiling</li>
+                                    <li>Table</li>
+                                    <li>Floor</li>
+                                    <li>Shades</li>
+                                    <li>Wall Lights</li>
+                                    <li>Spotlights</li>
+                                    <li>Push Light</li>
+                                    <li>String Lights</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Stores
+                        <ul>
+                            <li>
+                                <div id="template" style="padding: 10px;">
+                                    <h2>Around the Globe</h2>
+                                    <ol>
+                                        <li>United States</li>
+                                        <li>Europe</li>
+                                        <li>Canada</li>
+                                        <li>Australia</li>
+                                    </ol>
+                                    <img src="../content/web/menu/map.png" alt="Stores Around the Globe" />
+                                    <button class="k-button">See full list</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Blog
+                    </li>
+                    <li>
+                        Company
+                    </li>
+                    <li>
+                        Events
+                    </li>
+                    <li disabled="disabled">
+                        News
+                    </li>
+                </ul>
+            </div>
+            
+
+
+
+
+
+
+
+
+
         <div id="sidebar-wrapper" style="background-color:#cac3c3">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
@@ -41,10 +144,10 @@
                             <input id="Relasionship" style="width: 280px" />
                         </td>
                     </tr>
-                        <tr>
+                    <tr>
                         <td class="lablename">Ngày phát sinh</td>
                         <td>
-                            <input id="CreateDate" style="width: 280px" readonly/>
+                            <input id="CreateDate" style="width: 280px" readonly />
                         </td>
                     </tr>
                     <tr>
@@ -62,14 +165,14 @@
                     <tr>
                         <td class="lablename">Ngày giờ sinh</td>
                         <td>
-                            <input id="BirthDate" name="Birthday" style="width:280px" onchange="formatdatetime()"/>
+                            <input id="BirthDate" name="Birthday" style="width:280px" onchange="formatdatetime()" />
                         </td>
                     </tr>
                     <tr>
                         <td class="lablename">Quê quán (id)</td>
                         <td>
                             <input id="BirthPlace" name="BirthPlaceId" style="width: 220px" />
-                            <button type="button" id="btnBirthPlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;" >Thêm</button>
+                            <button type="button" id="btnBirthPlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
                     <tr>
@@ -79,10 +182,10 @@
                             <button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td class="lablename">Nơi ở</td>
                         <td>
-                            <input class="k-textbox"  id="Address" name="AddressID" style="width: 220px" />
+                            <input class="k-textbox" id="Address" name="AddressID" style="width: 220px" />
                             <button type="button" id="btnAddress" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
@@ -106,8 +209,8 @@
                             <button type="button" id="btnCauseOfDeath" class="btn btn-primary center-block" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
                         </td>
                     </tr>
-                    <tr >
-                        <td ></td>
+                    <tr>
+                        <td></td>
                         <td>
                             <button type="button" id="AddMember" class="btn btn-primary" onclick="AddMemberNew()">Thêm</button>
                             <button type="button" id="UpdateMember" class="btn btn-primary" onclick="UpdateMember()" hidden>Cập Nhật</button>
@@ -124,12 +227,68 @@
             @*<div id="diagram" class="container-fluid">
                 <h1>Vẽ ở đây</h1>
             </div>*@
-            <div id="Guid" class="container-fluid">
-                    <h1>Danh Sách Thành Viên</h1>
-                <div id="GridTree">
+            
 
+
+
+
+
+
+
+
+
+
+
+
+
+            <div id="example">
+                <div class="demo-section k-content">
+                    <div id="tabstrip">
+                        <ul>
+                            <li class="k-state-active">
+                                Tab1
+                            </li>
+                            <li>
+                                Tab2
+                            </li>
+                            <li>
+                                Tab3
+                            </li>
+                        </ul>
+                        <div>
+                            <div id="Guid" class="container-fluid">
+                                <h1>Danh Sách Thành Viên</h1>
+                                <div id="GridTree">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                           Nội dung tab2
+                        </div>
+                        <div>
+                            Nội dung tab3
+                        </div>
+                    </div>
                 </div>
+
+
+                <script>
+                    $(document).ready(function () {
+                        
+                    });
+                </script>
             </div>
+
+
+
+
+
+
+
+
+
+
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -150,7 +309,8 @@
 <div id="dialogCauseOfDeath" style="display: none" align="center">
     Thêm nguyên nhân chết
 </div>
-@*<script type="text/javascript">
+@*
+<script type="text/javascript">
     $('input[name="Gender"]').change(function () {
 
         var check = $('input[name="Gender"]:checked').val();

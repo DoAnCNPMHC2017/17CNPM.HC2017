@@ -7,13 +7,15 @@ using System.Web;
 using System.Web.Mvc;
 using CayGiaPha.Models;
 using System.Globalization;
+using CayGiaPha;
+
 namespace CayGiaPha.Controllers
 {
     public class CGPController : Controller
     {
         // GET: CGP
 
-        [CheckLogin]
+        //[CheckLogin]
         public ActionResult Index()
         {
             return View();
@@ -104,6 +106,58 @@ namespace CayGiaPha.Controllers
             }
             return View();
         }
+
+        public ActionResult MemberInfo(int id)
+        {
+            ViewBag.Id = CurrentContext.GetCurrentTree();
+            CGPEntities ctx = new CGPEntities();
+            Member model = ctx.Members.Where(p => p.Id == id).FirstOrDefault();
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult MemberInfo(Member m)
+        {
+            ViewBag.Id = CurrentContext.GetCurrentTree();
+            CGPEntities ctx = new CGPEntities();
+
+            Member m2 = ctx.Members.Where(p => p.Id == m.Id).FirstOrDefault();
+
+            m2.FullName = m.FullName;
+            m2.Job = m.Job;
+            m2.AddressID = m.AddressID;
+            m2.Sex = m.Sex;
+            m2.Birthday = m.Birthday;
+            m2.BirthPlaceId = m.BirthPlaceId;
+
+            ctx.SaveChanges();
+
+            return View(m);
+        }
+        public JsonResult UpdateMemberInfo(int fid, string fname, int fjob, string faddress, string fsex, string fbirthday, int fbirthplace)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    Member m2 = ctx.Members.Where(p => p.Id == fid).FirstOrDefault();
+                    m2.FullName = fname;
+                    m2.Job = fjob;
+                    m2.AddressID = faddress;
+                    m2.Sex = fsex;
+                    m2.Birthday = DateTime.ParseExact(fbirthday, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
+                    m2.BirthPlaceId = fbirthplace;
+
+                    ctx.SaveChanges();
+                    return Json("Cập Nhật Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
         #region Ajax
         public ActionResult GetControl(int ID)
         {
@@ -115,7 +169,7 @@ namespace CayGiaPha.Controllers
                 var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == ID).ToList();
                 var OldID = dt.Members.Where(b => b.TreeID == ID && b.TypeRelationship != 1).Select(b => new { ID = b.Id, Name = b.FullName }).ToList();
                 var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from CGP..Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from CGP..Member where TreeID = " + ID + " AND TypeRelationship <> 0 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id OR ISNULL(A.Memberold,0) =B.Id ").ToList();
-                return Json(new { Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID ,couple = couple}, JsonRequestBehavior.AllowGet);
+                return Json(new { Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID, couple = couple }, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult GetMember()
@@ -141,13 +195,13 @@ namespace CayGiaPha.Controllers
                                " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
                                " UNION" +
                                " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy hh:mm') bd,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 ";
-               var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
+                var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
                 //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
                 //    .ToList();
                 return Json(kq, JsonRequestBehavior.AllowGet);
-            }        
+            }
         }
-        public ActionResult InfomationMember(string ID,string TreeID)
+        public ActionResult InfomationMember(string ID, string TreeID)
         {
             using (CGPEntities dt = new CGPEntities())
             {
@@ -178,13 +232,13 @@ namespace CayGiaPha.Controllers
                 Mem.BirthPlaceId = Int32.Parse(NoiSinh);
             int SoDoi = 1;
             //neu khong co thanh vien cu (la nguoi đứng đầu gia phả)
-            if(MBOld !="")
+            if (MBOld != "")
             {
                 var kq = db.Members.Where(b => b.TreeID == TreeID).Select(b => new { Doi = b.Generation }).ToList();
                 SoDoi = Int32.Parse(kq[0].Doi.ToString());
                 Mem.Memberold = Int32.Parse(MBOld);
-            }   
-            var Doi = QHe == -1? 1 : QHe == 1 ? SoDoi : SoDoi + 1;
+            }
+            var Doi = QHe == -1 ? 1 : QHe == 1 ? SoDoi : SoDoi + 1;
             Mem.Generation = Doi;
             using (CGPEntities ctx = new CGPEntities())
             {

@@ -46,7 +46,7 @@
                                 <th>@stt</th>
                                 <td>@cim.Name</td>
                                 <td>@cim.CreateDate.ToString()</td>
-                                <td><a href="@Url.Action("CreateCGP", "CGP", new { id = @cim.TreeID})">Chi tiết</a></td>
+                                <td><a href="/CGP/CreateCGP/?id=@cim.TreeID">Chi tiết</a></td>
                             </tr>
                             stt++;
                         }

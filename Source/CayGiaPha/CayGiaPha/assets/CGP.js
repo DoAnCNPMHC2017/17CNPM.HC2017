@@ -11,6 +11,14 @@ $(document).ready(function () {
 });
 
 function CreateControl() {
+    $("#tabstrip").kendoTabStrip({
+        animation: {
+            open: {
+                effects: "fadeIn"
+            }
+        }
+    });
+    $("#menu").kendoMenu();
     $("#Relasionship").kendoDropDownList({
         serverFiltering: false,
         dataTextField: 'Name',
@@ -385,10 +393,18 @@ function setColumns(typeID) {
             }, {
                 field: "Mo",
                 title: "Cha/Mẹ",
-                width:250,
+                width: 250,
                 template: "#if(data.Fa !=''){#<p>Cha: <strong>#=Fa #</strong></p>#}#" +
                           "#if(data.Mo !=''){#<p>Mẹ: <strong>#=Mo #</strong></p>#}#"
-            }];
+            }, {
+                //field: "Mo",
+                title: "Chi tiết",
+                width: 250,
+                //template: "  <a href='@Url.Action('Member', 'CGP', new { ID = #=ID#})'>"
+                template: "<a href='/CGP/MemberInfo/?id=#=ID#' >Cập nhật</a>"
+            }
+
+            ];
             break;
     }
     return columns;
