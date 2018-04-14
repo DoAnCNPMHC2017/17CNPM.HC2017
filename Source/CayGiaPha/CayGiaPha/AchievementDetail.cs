@@ -17,5 +17,6 @@ namespace CayGiaPha
         public int MemberID { get; set; }
         public int AchievementID { get; set; }
         public Nullable<int> TreeID { get; set; }
+        public Nullable<System.DateTime> DateIncurred { get; set; }
     }
 }

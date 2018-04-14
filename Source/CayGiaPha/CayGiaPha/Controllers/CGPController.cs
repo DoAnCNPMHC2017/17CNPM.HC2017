@@ -157,19 +157,59 @@ namespace CayGiaPha.Controllers
                 }
             }
         }
-
+        public JsonResult UpdateMemberAchievement(int fid, int fach, string fdate)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    AchievementDetail a = new AchievementDetail();
+                    a.MemberID = fid;
+                    a.AchievementID = fach;
+                    a.DateIncurred = DateTime.ParseExact(fdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    a.TreeID = CurrentContext.GetCurrentTree();
+                    ctx.AchievementDetails.Add(a);
+                    ctx.SaveChanges();
+                    return Json("Cập Nhật Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        public JsonResult UpdateMemberInfo2(int fid, string fdod, int fbp,int fcod)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    Member m = ctx.Members.Where(p => p.Id == fid).FirstOrDefault();
+                    m.DateOfDeath = DateTime.ParseExact(fdod, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    m.BurialPlaceId = fbp;
+                    m.CauseOfDeath = fcod;                    
+                    ctx.SaveChanges();
+                    return Json("Cập Nhật Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #region Ajax
         public ActionResult GetControl(int ID)
         {
             using (CGPEntities dt = new CGPEntities())
             {
+                var Ach = dt.ListAchievements.Where(b => b.TreeID == ID).ToList();
                 var Bl = dt.BirthPlaces.Where(b => b.TreeID == ID).ToList();
                 var Jo = dt.Jobs.Where(b => b.TreeID == ID).ToList();
                 var Bp = dt.BurialPlaces.Where(b => b.TreeID == ID).ToList();
                 var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == ID).ToList();
                 var OldID = dt.Members.Where(b => b.TreeID == ID && b.TypeRelationship != 1).Select(b => new { ID = b.Id, Name = b.FullName }).ToList();
                 var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from CGP..Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from CGP..Member where TreeID = " + ID + " AND TypeRelationship <> 0 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id OR ISNULL(A.Memberold,0) =B.Id ").ToList();
-                return Json(new { Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID, couple = couple }, JsonRequestBehavior.AllowGet);
+                return Json(new {Ach =Ach, Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID, couple = couple }, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult GetMember()

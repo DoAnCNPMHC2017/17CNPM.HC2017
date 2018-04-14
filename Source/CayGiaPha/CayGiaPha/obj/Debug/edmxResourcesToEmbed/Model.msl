@@ -16,6 +16,7 @@
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="AchievementID" ColumnName="AchievementID" />
           <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+          <ScalarProperty Name="DateIncurred" ColumnName="DateIncurred" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -92,6 +93,7 @@
           <ScalarProperty Name="Sex" ColumnName="Sex" />
           <ScalarProperty Name="Generation" ColumnName="Generation" />
           <ScalarProperty Name="DateTimeUpdate" ColumnName="DateTimeUpdate" />
+          <ScalarProperty Name="IsAlive" ColumnName="IsAlive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

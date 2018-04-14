@@ -21,6 +21,7 @@
           <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="AchievementID" Type="int" Nullable="false" />
           <Property Name="TreeID" Type="int" />
+          <Property Name="DateIncurred" Type="date" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -90,6 +91,7 @@
           <Property Name="Sex" Type="nvarchar" MaxLength="1" />
           <Property Name="Generation" Type="int" />
           <Property Name="DateTimeUpdate" Type="datetime" />
+          <Property Name="IsAlive" Type="int" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -141,6 +143,7 @@
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="AchievementID" Type="Int32" Nullable="false" />
           <Property Name="TreeID" Type="Int32" />
+          <Property Name="DateIncurred" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -210,6 +213,7 @@
           <Property Name="Sex" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Generation" Type="Int32" />
           <Property Name="DateTimeUpdate" Type="DateTime" Precision="3" />
+          <Property Name="IsAlive" Type="Int32" />
         </EntityType>
         <EntityType Name="Relationship">
           <Key>
@@ -261,6 +265,7 @@
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="AchievementID" ColumnName="AchievementID" />
                 <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+                <ScalarProperty Name="DateIncurred" ColumnName="DateIncurred" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -337,6 +342,7 @@
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="Generation" ColumnName="Generation" />
                 <ScalarProperty Name="DateTimeUpdate" ColumnName="DateTimeUpdate" />
+                <ScalarProperty Name="IsAlive" ColumnName="IsAlive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8327fd6a07ba4ba8b1adbaae41f83c8d" Name="Diagram1">
+      <Diagram DiagramId="c151b4c21c394544b7cf2e0d3dfda673" Name="Diagram1">
         <EntityTypeShape EntityType="CGPModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CGPModel.AchievementDetail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CGPModel.Address" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />

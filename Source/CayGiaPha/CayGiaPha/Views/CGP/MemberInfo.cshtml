@@ -17,7 +17,7 @@
 <table>
     <tr>
         <td>
-            <div id="tickets" style="width:400px; margin:0 auto; border:solid">
+            <div id="tickets" style="width:400px;height:500px ; margin:0 auto; border:solid">
                 <form class="form-horizontal" method="post" action="" style="margin-left:50px; margin-top:30px">
                     <ul id="fieldlist">
                         <li>
@@ -67,19 +67,41 @@
                             <input type="checkbox" id="chkisDeath" /> Đã mất
                         </li>
                         <li>
-                            <label for="DateOfDeath" class="required" >Ngày mất</label>
-                            <input id="DateOfDeath" disabled name="DateOfDeath" style="width:220px" />
+                            <label for="DateOfDeath" class="required">Ngày mất</label>
+                            <input id="DateOfDeath" name="DateOfDeath" style="width:220px" />
                         </li>
                         <li>
                             <label for="BurialPlace" class="required">Nơi mất</label>
-                            <input id="BurialPlace" disabled name="BurialPlaceId" style="width: 220px" />
+                            <input id="BurialPlace" name="BurialPlaceId" style="width: 220px" />
                         </li>
                         <li>
                             <label for="CauseOfDeath" class="required">Nguyên nhân mất</label>
-                            <input id="CauseOfDeath" disabled name="CauseOfDeath" style="width: 220px" />
+                            <input id="CauseOfDeath" name="CauseOfDeath" style="width: 220px" />
                         </li>
                         <li class="confirm">
-                            <button class="k-button k-primary" id="btnUpdateInfo1" >Cập nhật</button>
+                            <button class="k-button k-primary" onclick="UpdateMemberInfo2()">Cập nhật</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </td>
+        <td>
+            <div style="width:400px;height:500px ; margin:0 auto; border:solid">
+                <form class="form-horizontal" method="post" action="" style="margin-left:50px; margin-top:30px">
+                    <ul id="fieldlist">
+                        <li>
+                            Ghi Nhận Thành Tích
+                        </li>
+                        <li>
+                            <label for="Achievement" class="required">Loại thành tích</label>
+                            <input id="Achievement" name="Achievement" style="width:220px" />
+                        </li>
+                        <li>
+                            <label for="DateIncurred" class="required">Ngày phát sinh</label>
+                            <input id="DateIncurred" name="DateIncurred" style="width: 220px" />
+                        </li>
+                        <li class="confirm">
+                            <button class="k-button k-primary" onclick="UpdateMemberAchievement()">Cập nhật</button>
                         </li>
                     </ul>
                 </form>

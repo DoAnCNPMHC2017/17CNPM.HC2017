@@ -30,5 +30,6 @@ namespace CayGiaPha
         public string Sex { get; set; }
         public Nullable<int> Generation { get; set; }
         public Nullable<System.DateTime> DateTimeUpdate { get; set; }
+        public Nullable<int> IsAlive { get; set; }
     }
 }

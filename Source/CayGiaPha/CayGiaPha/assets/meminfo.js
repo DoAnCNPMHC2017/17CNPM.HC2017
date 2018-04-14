@@ -12,9 +12,9 @@ $(document).ready(function () {
         if (this.checked) {
             event.preventDefault();
             document.getElementById("test").disabled = false;
-             /*$("#DateOfDeath").prop('disabled', false);
-             $("#BurialPlace").prop('disabled', false);
-             $("#CauseOfDeath").prop('disabled', false);*/
+            /*$("#DateOfDeath").prop('disabled', false);
+            $("#BurialPlace").prop('disabled', false);
+            $("#CauseOfDeath").prop('disabled', false);*/
             alert("111111111111111");
         } else {
             // the checkbox is now no longer checked
@@ -25,7 +25,7 @@ $(document).ready(function () {
 });
 
 function CreateControl() {
-   
+
     $("#Relasionship").kendoDropDownList({
         serverFiltering: false,
         dataTextField: 'Name',
@@ -80,6 +80,11 @@ function CreateControl() {
         autoClose: true
         , optionLabel: "Chọn Thành Viên Cũ ..."
     });
+    $("#DateIncurred").kendoDatePicker({
+        value: new Date(),
+        format: "dd/MM/yyyy",
+        dateInput: true
+    });
     $("#CreateDate").kendoDatePicker({
         value: new Date(),
         format: "dd/MM/yyyy",
@@ -101,7 +106,16 @@ function CreateControl() {
         value: new Date(),
         dateInput: true
     });
-    //
+    //Achievement
+    $("#Achievement").kendoDropDownList({
+        //serverFiltering: false,
+        dataTextField: 'AchievementName',
+        dataValueField: 'IDAchievement',
+        dataSource: [],
+        //showSelectAll: true,
+        autoClose: true
+    });
+
     $("#CauseOfDeath").kendoDropDownList({
         //serverFiltering: false,
         dataTextField: 'CauseOfDeathText',
@@ -132,8 +146,9 @@ function LoadData(ID) {
             //$('#Relasionship').data('kendoDropDownList').setDataSource([{ ID: 0, Name: 'Con' },{ ID: 1, Name: 'Vợ/Chồng' }]);
             $('#BirthPlace').data("kendoDropDownList").setDataSource(result.Bl);
             $('#Job').data("kendoDropDownList").setDataSource(result.Jo);
-           // $('#CauseOfDeath').data("kendoDropDownList").setDataSource(result.Cod);
-            //$('#BurialPlace').data("kendoDropDownList").setDataSource(result.Bp);
+            $("#Achievement").data("kendoDropDownList").setDataSource(result.Ach);
+            $('#CauseOfDeath').data("kendoDropDownList").setDataSource(result.Cod);
+            $('#BurialPlace').data("kendoDropDownList").setDataSource(result.Bp);
             //$('#OldID').data("kendoDropDownList").setDataSource(result.OldID);
             couple = result.couple;
             /*if (result.OldID.length == 0) {
@@ -178,6 +193,11 @@ function LoadInfomationMember(ID) {
             $('#BirthPlace').data('kendoDropDownList').value(Res[0].BirthPlaceId);
             //
             formatdatetime();
+            if (Res[0].IsAlive == 0) {
+                $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
+                $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
+                $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
+            }
             //if (Res[0].CauseOfDeath != null || Res[0].DateOfDeath != null || Res[0].BurialPlaceId != null) {
             //    $('#tbCauseOfDeath').show();
             //    $('#tbDateOfDeath').show();
@@ -194,7 +214,7 @@ function LoadInfomationMember(ID) {
             //    $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
             //    $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
             //}
-            
+
         },
         error: function () {
         }
@@ -209,13 +229,13 @@ function UpdateMemberInfo() {
     var fjob = $('#Job').val();
     var fbirthday = $('#BirthDate').val();
     var fbirthplace = $('#BirthPlace').val();
-   
+
     $.ajax({
         async: false,
         type: "post",
         dataType: 'json',
         url: '/CGP/UpdateMemberInfo',
-        data: { fid: fid, fname: fname, fjob: fjob, faddress: faddress, fsex: fsex, fbirthday: fbirthday, fbirthplace: fbirthplace},
+        data: { fid: fid, fname: fname, fjob: fjob, faddress: faddress, fsex: fsex, fbirthday: fbirthday, fbirthplace: fbirthplace },
         success: function (result) {
             alert(result);
             LoadData($('#TreeID').val());
@@ -226,6 +246,50 @@ function UpdateMemberInfo() {
         }
     });
 }
+function UpdateMemberAchievement() {
+    var fid = $('#MemID').val();
+    var fach = $('#Achievement').val();
+    var fdate = $('#DateIncurred').val();
+
+    $.ajax({
+        async: false,
+        type: "post",
+        dataType: 'json',
+        url: '/CGP/UpdateMemberAchievement',
+        data: { fid: fid, fach: fach, fdate: fdate },
+        success: function (result) {
+            alert(result);
+            LoadData($('#TreeID').val());
+            formatdatetime();
+        },
+        error: function () {
+            alert(result);
+        }
+    });
+}
+function UpdateMemberInfo2() {
+    var fid = $('#MemID').val();
+    var fdod = $('#DateOfDeath').val();
+    var fbp = $('#BurialPlace').val();
+    var fcod = $('#CauseOfDeath').val();
+
+    $.ajax({
+        async: false,
+        type: "post",
+        dataType: 'json',
+        url: '/CGP/UpdateMemberInfo2',
+        data: { fid: fid, fdod: fdod, fbp: fbp, fcod: fcod },
+        success: function (result) {
+            alert(result);
+            LoadData($('#TreeID').val());
+            formatdatetime();
+        },
+        error: function () {
+            alert(result);
+        }
+    });
+}
+
 
 function formatdatetime() {
     str = $('#BirthDate').val();

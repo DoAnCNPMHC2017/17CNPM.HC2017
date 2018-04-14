@@ -16,6 +16,7 @@
     <Property Name="MemberID" Type="Int32" Nullable="false" />
     <Property Name="AchievementID" Type="Int32" Nullable="false" />
     <Property Name="TreeID" Type="Int32" />
+    <Property Name="DateIncurred" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="Address">
     <Key>
@@ -85,6 +86,7 @@
     <Property Name="Sex" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
     <Property Name="Generation" Type="Int32" />
     <Property Name="DateTimeUpdate" Type="DateTime" Precision="3" />
+    <Property Name="IsAlive" Type="Int32" />
   </EntityType>
   <EntityType Name="Relationship">
     <Key>
