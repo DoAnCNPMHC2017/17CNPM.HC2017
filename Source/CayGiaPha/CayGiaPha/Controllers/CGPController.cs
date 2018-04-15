@@ -106,7 +106,15 @@ namespace CayGiaPha.Controllers
             }
             return View();
         }
-
+        public ActionResult Report(int? id)
+        {
+            if (id.HasValue == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.Id = id;
+            return View();
+        }
         public ActionResult MemberInfo(int id)
         {
             ViewBag.Id = CurrentContext.GetCurrentTree();
@@ -225,7 +233,7 @@ namespace CayGiaPha.Controllers
         {
             using (CGPEntities dt = new CGPEntities())
             {
-                string Query = "Select  M1.*,Format(Birthday,'dd/MM/yyyy hh:mm') bd" +
+                string Query = "Select  M1.*,Format(Birthday,'dd/MM/yyyy hh:mm:tt') bd" +
                     ",Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
                                " From" +
                                " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 0 ) AS M1" +
@@ -241,11 +249,11 @@ namespace CayGiaPha.Controllers
                 return Json(kq, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult InfomationMember(string ID, string TreeID)
+        public ActionResult InfomationMember(string ID)
         {
             using (CGPEntities dt = new CGPEntities())
             {
-                string Query = "Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID;
+                string Query = "Select * From CGP.dbo.Member Where ID =" + ID;
                 var kq = dt.Database.SqlQuery<Member>(Query).ToList();
                 //int? memberold = kq[0].Memberold;
                 //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
@@ -266,7 +274,7 @@ namespace CayGiaPha.Controllers
             if (VLam != "")
                 Mem.Job = Int32.Parse(VLam);
             Mem.TypeRelationship = QHe;
-            Mem.Birthday = DateTime.ParseExact(NSinh, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            Mem.Birthday = DateTime.ParseExact(NSinh, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
             Mem.Date_Create = DateTime.Parse(CDate);
             if (NoiSinh != "")
                 Mem.BirthPlaceId = Int32.Parse(NoiSinh);

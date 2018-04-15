@@ -6,10 +6,12 @@ $(document).ready(function () {
     CreateControl();
     ControlCreateTree();
     LoadData($('#TreeID').val());
-    formatdatetime();
-    //createDiagram();
+    ChangeAddMember();
 });
-
+function ViewReport()
+{
+    window.location.href = '/CGP/Report?Id=' + $('#TreeID').val();
+}
 function CreateControl() {
     $("#tabstrip").kendoTabStrip({
         animation: {
@@ -269,7 +271,7 @@ function LoadInfomationMember(ID)
             $('#BirthDate').data('kendoDateTimePicker').value(Res[0].Birthday);
             $('#BirthPlace').data('kendoDropDownList').value(Res[0].BirthPlaceId);
             //
-            formatdatetime();
+            //formatdatetime();
             if (Res[0].CauseOfDeath != null || Res[0].DateOfDeath != null || Res[0].BurialPlaceId != null)
             {
                 $('#tbCauseOfDeath').show();
@@ -315,16 +317,16 @@ function ChangeAddMember()
     $('#tbDateOfDeath').hide();
     $('#tbBurialPlace').hide();
     LoadData($('#TreeID').val());
-    formatdatetime();
+    //formatdatetime();
 }
-function formatdatetime()
-{
-    str = $('#BirthDate').val();
-    $('#BirthDate').val("");
-    str = str.replace(":PM", "");
-    str = str.replace(":AM", "");
-    $('#BirthDate').val(str);
-}
+//function formatdatetime()
+//{
+//    str = $('#BirthDate').val();
+//    $('#BirthDate').val("");
+//    str = str.replace(":PM", "");
+//    str = str.replace(":AM", "");
+//    $('#BirthDate').val(str);
+//}
 function AddMemberNew()
 {
     var FName=$('#FullName').val();

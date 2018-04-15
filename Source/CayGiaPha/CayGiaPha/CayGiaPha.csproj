@@ -184,6 +184,7 @@
     <Content Include="assets\Library\jquery.min.js" />
     <Content Include="assets\Library\kendo.all.min.js" />
     <Content Include="assets\meminfo.js" />
+    <Content Include="assets\Report.js" />
     <Content Include="assets\WinDownKendoUi.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -382,6 +383,7 @@
     <Content Include="Views\Test\Edit.cshtml" />
     <Content Include="Views\Test\Create.cshtml" />
     <Content Include="Views\CGP\MemberInfo.cshtml" />
+    <Content Include="Views\CGP\Report.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -391,6 +393,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -12,7 +12,6 @@
 @*<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
         rel="stylesheet" type="text/css" />*@
 <link href="~/assets/css/simple-sidebar.css" rel="stylesheet" />
-<form class="form-horizontal" action="" method="post" id="Form-Add">
     <input id="TreeID" value="@ViewBag.Id" hidden />
     <div id="wrapper" class="toggled">
 
@@ -22,19 +21,17 @@
                     <li>
                         Báo cáo
                         <ul>
-                            <li>
-                                abc
-                                <ul>
+                            <li onclick="ViewReport()">
+                                Lập báo cáo năm
+                                @*<ul>
                                     <li>Tables & Chairs</li>
                                     <li>Sofas</li>
                                     <li>Occasional Furniture</li>
                                     <li>Children's Furniture</li>
                                     <li>Beds</li>
-                                </ul>
-
-
-                            </li>
-                            <li>
+                                </ul>*@
+                         </li>
+                            @*<li>
                                 Decor
                                 <ul>
                                     <li>Bed Linen</li>
@@ -71,11 +68,11 @@
                                     <li>Push Light</li>
                                     <li>String Lights</li>
                                 </ul>
-                            </li>
+                            </li>*@
                         </ul>
                     </li>
                     <li>
-                        Stores
+                        Thay đổi quy định
                         <ul>
                             <li>
                                 <div id="template" style="padding: 10px;">
@@ -106,16 +103,6 @@
                     </li>
                 </ul>
             </div>
-            
-
-
-
-
-
-
-
-
-
         <div id="sidebar-wrapper" style="background-color:#cac3c3">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
@@ -212,9 +199,9 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button type="button" id="AddMember" class="btn btn-primary" onclick="AddMemberNew()">Thêm</button>
-                            <button type="button" id="UpdateMember" class="btn btn-primary" onclick="UpdateMember()" hidden>Cập Nhật</button>
-                            <button hidden type="button" id="ChangeStatus" onclick="ChangeAddMember()" class="k-primary">Trở về thêm </button>
+                            <div type="button" id="AddMember" class="k-button" onclick="AddMemberNew()" style="width:100px">Thêm</div>
+                            <div type="button" id="UpdateMember" class="k-button" onclick="UpdateMember()" >Cập Nhật</div>
+                            <div type="button" id="ChangeStatus" class="k-button" onclick="ChangeAddMember()">Trở về thêm </div>
                         </td>
                     </tr>
                 </table>
@@ -293,7 +280,6 @@
         <!-- /#page-content-wrapper -->
 
     </div>
-</form>
 <div id="dialogBirthPlace" style="display: none" align="center">
     Thêm quê quán
 </div>
