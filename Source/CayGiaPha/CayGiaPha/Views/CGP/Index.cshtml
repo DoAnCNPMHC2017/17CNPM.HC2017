@@ -8,11 +8,24 @@
 <script src="~/assets/Library/jquery.min.js"></script>
 <script src="~/assets/Library/kendo.all.min.js"></script>
 <script src="~/assets/CGP.js"></script>
+<style>
+    .create-jumbotron {
+        background-repeat: no-repeat; 
+        background-position: center;
+        background-image: url(assets/imgs/dragon.png);
+        background-color: #fff5cc;
+    }
+    .list-jumbotron {
+        background-repeat: no-repeat; 
+        background-position: center;
+        background-image: url(assets/imgs/1.jpg);
+        background-color: #fffffd;
+    }
+</style>
 <form class="form-horizontal" method="post" action="" id="form_register">
     <div class="container">
-        <div class="jumbotron text-center" style="background-color:#8FBC8F">
-            <h1>Tạo cây gia tộc mới</h1>
-            <input type="text" class="text-center" id="txtName" name="Name" placeholder="Tên cây gia tộc" value="" /><br /><br />
+        <div class="jumbotron text-center create-jumbotron">
+            <input style="background-color: #FFF8DC" type="text" class="text-center" id="txtName" name="Name" placeholder="Tên cây gia tộc" value="" /><br /><br />
             <div class="center-block">
                 <button id="singlebutton" name="singlebutton" class="btn btn-primary center-block">Tạo mới</button>
                 @*<button type="submit" class="btn btn-success" name="create" id="create">
@@ -21,7 +34,7 @@
                     </button>*@
             </div>
         </div>
-        <div class="jumbotron">
+        <div class="jumbotron list-jumbotron">
             <h1 class="text-center">Danh sách gia tộc</h1>
             @{
                 var ctx = new CGPEntities();

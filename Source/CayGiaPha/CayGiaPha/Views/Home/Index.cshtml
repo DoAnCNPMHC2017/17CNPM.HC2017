@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .jumbotron {
+        border-color: red;
+        border-style: double;
+    }
+</style>
 <div class="carousel-inner">
     <div class="item active">
         <img src="~/assets/imgs/banner.jpg" />
@@ -25,11 +31,10 @@
             </div>
         </div>
     </div>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" >
         <a href="@Url.Action("Index", "CGP")" style="color:hotpink">
             <i class="fa fa-address-book-o" aria-hidden="true"></i>
-            Tạo cây
+            LẬP CÂY GIA PHẢ
         </a>
-        @Html.ActionLink("Thêm thành viên (Mới)", "Create", "Test")
     </div>
 </div>

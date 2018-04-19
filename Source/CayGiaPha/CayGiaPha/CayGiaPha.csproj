@@ -176,9 +176,13 @@
     <Content Include="assets\imgs\banner.jpg" />
     <Content Include="assets\imgs\camera-photo-128.png" />
     <Content Include="assets\imgs\cen_bn.jpg" />
+    <Content Include="assets\imgs\dm_hover.png" />
     <Content Include="assets\imgs\family.jpg" />
+    <Content Include="assets\imgs\intro_bg.jpg" />
     <Content Include="assets\imgs\la.jpg" />
     <Content Include="assets\imgs\logo.png" />
+    <Content Include="assets\imgs\tnbd.png" />
+    <Content Include="assets\imgs\topnews_bg.png" />
     <Content Include="assets\jquery-3.3.1.min.js" />
     <Content Include="assets\jquery.validate.min.js" />
     <Content Include="assets\Library\jquery.min.js" />
