@@ -205,6 +205,44 @@ namespace CayGiaPha.Controllers
                 }
             }
         }
+        public ActionResult AddJob(string jobname)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    Job j = new Job();
+                    j.JobName = jobname;
+                    j.TreeID = CurrentContext.GetCurrentTree();
+                    ctx.Jobs.Add(j);
+                    ctx.SaveChanges();
+                    return Json("Thêm Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        public ActionResult AddBirthPlace(string bpname)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    BirthPlace b= new BirthPlace();
+                    b.BirthPlaceName = bpname;
+                    b.TreeID = CurrentContext.GetCurrentTree();
+                    ctx.BirthPlaces.Add(b);
+                    ctx.SaveChanges();
+                    return Json("Thêm Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #region Ajax
         public ActionResult GetControl(int ID)
         {
