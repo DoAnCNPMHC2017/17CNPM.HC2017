@@ -243,6 +243,129 @@ namespace CayGiaPha.Controllers
                 }
             }
         }
+        public ActionResult GetJobs()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                var m = dt.Jobs.Where(b => b.TreeID == t).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult UpdateJob(int jID,string jName)
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                Job m = dt.Jobs.Where(j => j.TreeID == t && j.JobID == jID).FirstOrDefault();
+                m.JobName = jName;
+
+                dt.SaveChanges();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetBP()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                var m = dt.BirthPlaces.Where(b => b.TreeID == t).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult UpdateBP(int jID, string jName)
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                BirthPlace m = dt.BirthPlaces.Where(j => j.TreeID == t && j.BirthPlaceID == jID).FirstOrDefault();
+                m.BirthPlaceName = jName;
+
+                dt.SaveChanges();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult AddCod(string jName)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    CauseOfDeath b = new CauseOfDeath();
+                    b.CauseOfDeathText = jName;
+                    b.TreeID = CurrentContext.GetCurrentTree();
+                    ctx.CauseOfDeaths.Add(b);
+                    ctx.SaveChanges();
+                    return Json("Thêm Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        public ActionResult GetCod()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                var m = dt.CauseOfDeaths.Where(b => b.TreeID == t).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult UpdateCod(int jID, string jName)
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                CauseOfDeath m = dt.CauseOfDeaths.Where(j => j.TreeID == t && j.CauseOfDeathID == jID).FirstOrDefault();
+                m.CauseOfDeathText = jName;
+
+                dt.SaveChanges();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult AddBrP(string jName)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    BurialPlace b = new BurialPlace();
+                    b.BurialPlaceName = jName;
+                    b.TreeID = CurrentContext.GetCurrentTree();
+                    ctx.BurialPlaces.Add(b);
+                    ctx.SaveChanges();
+                    return Json("Thêm Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        public ActionResult GetBrP()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                var m = dt.BurialPlaces.Where(b => b.TreeID == t).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult UpdateBrP(int jID, string jName)
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                BurialPlace m = dt.BurialPlaces.Where(j => j.TreeID == t && j.BurialPlaceID == jID).FirstOrDefault();
+                m.BurialPlaceName = jName;
+
+                dt.SaveChanges();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
         #region Ajax
         public ActionResult GetControl(int ID)
         {

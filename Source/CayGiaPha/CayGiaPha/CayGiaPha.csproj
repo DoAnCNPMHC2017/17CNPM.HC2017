@@ -185,6 +185,7 @@
     <Content Include="assets\imgs\topnews_bg.png" />
     <Content Include="assets\jquery-3.3.1.min.js" />
     <Content Include="assets\jquery.validate.min.js" />
+    <Content Include="assets\Library\CGP_Rule.js" />
     <Content Include="assets\Library\jquery.min.js" />
     <Content Include="assets\Library\kendo.all.min.js" />
     <Content Include="assets\meminfo.js" />

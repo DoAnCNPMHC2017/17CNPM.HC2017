@@ -74,14 +74,14 @@
                     <td class="lablename">Quê quán</td>
                     <td>
                         <input id="BirthPlace" name="BirthPlaceId" style="width: 220px" />
-                        <button type="button" id="btnBirthPlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
+                        @*<button type="button" id="btnBirthPlace" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>*@
                     </td>
                 </tr>
                 <tr>
                     <td class="lablename">Nghề nghiệp</td>
                     <td>
                         <input id="Job" name="Job" style="width: 220px" />
-                        <button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>
+                        @*<button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>*@
                     </td>
                 </tr>
                
@@ -140,10 +140,32 @@
                 <li>
                     Thay đổi quy định
                     <ul>
-                        <li>Số lượng quê quán</li>
-                        <li>Số lượng nghề nghiệp</li>
-                        <li>Số lượng nghề nghiệp</li>
-                        <li>Số lượng nghề nghiệp</li>
+                        <li>Nghề nghiệp
+                        <ul>
+                            <li id="btnShowAddJob">Thêm</li>
+                            <li id="btnShowUpdateJob">Cập nhật</li>
+                        </ul>
+                        </li>
+                        <li>Quê quán
+                            <ul>
+                                <li id="btnShowAddBirthPlace">Thêm</li>
+                                <li id="btnShowUpdateBirthPlace">Cập nhật</li>
+                            </ul>
+                        </li> 
+                        <li>
+                            Nguyên nhân mất
+                            <ul>
+                                <li id="btnShowAddCoD">Thêm</li>
+                                <li id="btnShowUpdateCoD">Cập nhật</li>
+                            </ul>
+                        </li>  
+                        <li>
+                            Địa điểm mai táng
+                            <ul>
+                                <li id="btnShowAddBrP">Thêm</li>
+                                <li id="btnShowUpdateBrP">Cập nhật</li>
+                            </ul>
+                        </li>                        
                     </ul>
                 </li>
             </ul>
@@ -174,101 +196,18 @@
                     <div>
                         Nội dung tab2
                     </div>
-                    <div>
-                        Nội dung tab3
-                    </div>
                 </div>
             </div>
 
 
             <script>
                 $(document).ready(function () {
-                    $("#dialogBirthPlace").kendoDialog({
-                        width: 700,
-                        height: 200,
-                        title: "Thêm quê quán",
-                        content: divContentbirthplace,
-                        visible: false
-                    }).data("kendoDialog");
+                    
 
-                    var divContentbirthplace = $('#dialogBirthPlace').html();
 
-                    $("#dialogJob").kendoDialog({
-                        width: 700,
-                        height: 200,
-                        title: "Thêm nghề nghiệp",
-                        content: divContentjob,
-                        visible: false
-                    }).data("kendoDialog");
-
-                    var divContentjob = $('#dialogJob').html();
-                                        
-                    $("#btnBirthPlace").click(function () {
-
-                        var dialog = $("#dialogBirthPlace").data("kendoDialog");
-                        dialog.open();
-                    });
-
-                    $("#btnBirthPlace").click(function () {
-
-                        var dialog = $("#dialog1").data("kendoDialog");
-                        dialog.open();
-                    });
-
-                    $("#btnJob").click(function () {
-
-                        var dialog = $("#dialogJob").data("kendoDialog");
-                        dialog.open();
-                    });
-
-                    $("#btnAddJob").click(function () {
-
-                        $.ajax({
-                            async: false,
-                            type: "post",
-                            dataType: 'json',
-                            url: '/CGP/AddJob',
-                            data: { jobname: $('#txtjob').val() },
-                            success: function (result) {
-                                alert("Thành công");
-                                LoadData($('#TreeID').val());
-                                LoadDataTree();
-                                $("#txtjob").val("");
-                            },
-                            error: function () {
-                                alert("Thành thụ");
-                            }
-                        });
-                    });
-
-                    $("#btnAddBirthPlace").click(function () {
-                        $.ajax({
-                            async: false,
-                            type: "post",
-                            dataType: 'json',
-                            url: '/CGP/AddBirthPlace',
-                            data: { bpname: $('#txtbirthplace').val() },
-                            success: function (result) {
-                                alert("Thành công");
-                                LoadData($('#TreeID').val());
-                                LoadDataTree();
-                                $("#txtbirthplace").val("");
-                            },
-                            error: function () {
-                                alert("Thành thụ");
-                            }
-                        });
-                    });
                 });
             </script>
         </div>
-
-
-
-
-
-
-
 
 
 
@@ -309,18 +248,110 @@
     </table>
 </div>
 
-<div id="dialogRuleBP">
+<div id="dialogUjob">
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Quê quán</p></td>
-                <td style="height: auto; width: 300px;"><input id="txtbirthplace" placeholder="nhập quê quán..." style="width: 300px;font-size:20px" /></td>
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nghề nghiệp</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlJob" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuJob" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:40px" id="btnAddBirthPlace">Thêm</button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUJob">Cập nhật</button></td>
             </tr>
         </tbody>
     </table>
 </div>
 
+<div id="dialogUBirthPlace">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nơi sinh</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlBP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuBP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUBP">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div id="dialogCod">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nguyên nhân mất</p></td>
+                <td style="height: auto; width: 300px;"><input id="txtCod" placeholder="nhập nguyên nhân..." style="width: 300px;font-size:20px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:20px" id="btnAddCod">Thêm</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUCod">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nguyên nhân mất</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlCod" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuCod" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUCod">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogBrP">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Địa điểm mai táng</p></td>
+                <td style="height: auto; width: 300px;"><input id="txtBrP" placeholder="nhập địa điểm..." style="width: 300px;font-size:20px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:20px" id="btnAddBrP">Thêm</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUBrP">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Địa điểm mai táng</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlBrP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuBrP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUBrP">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="~/assets/Library/CGP_Rule.js"></script>
