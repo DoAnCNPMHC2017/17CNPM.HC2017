@@ -38,4 +38,12 @@ namespace CayGiaPha.Models
         public int ID2 { get; set; }
         public string Sex2 { get; set; }
     }
+    public class ReportTG
+    {
+        public Int64 STT { get; set; }
+        public Int32 Nam { get; set; }
+        public Int32 SlS { get; set; }
+        public Int32 SlKH { get; set; }
+        public Int32 SlMT { get; set; }
+    }	
 }

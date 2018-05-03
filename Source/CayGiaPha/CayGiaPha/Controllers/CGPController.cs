@@ -340,6 +340,31 @@ namespace CayGiaPha.Controllers
                 }
             }
         }
+        public JsonResult GetReportMember(string TreeID, string Year, string Year1)
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                string Query = "Select row_number() OVER (ORDER BY Nam) STT,Nam,Sum(S) SlS,Sum(KH) SlKH,Sum(MT) SlMT" +
+                               " FROM" +
+                               "(" +
+                                   " Select Year(Birthday) Nam,1 S,0 KH,0 MT" +
+                                   " From CGP..Member where TreeID = " + TreeID + " AND Year(Birthday) BETWEEN " + Year + " AND " + Year1 +
+                                   " UNION ALL" +
+                                   " Select Year(Date_Create) Nam,0 S,1 KH,0 MT" +
+                                   " From CGP..Member where TreeID = " + TreeID + " AND Year(Date_Create) BETWEEN " + Year + " AND " + Year1 + " AND TypeRelationship = 1" +
+                                   " UNION ALL" +
+                                   " Select ISNULL(Year(DateOfDeath),0) Nam, 0 S,0 KH,1 MT" +
+                                   " From CGP..Member where TreeID = " + TreeID + " AND ISNULL(Year(DateOfDeath),0) BETWEEN " + Year + " AND " + Year1 +
+                               " ) AS A" +
+                               " Group by Nam";
+                var kq = dt.Database.SqlQuery<ReportTG>(Query).ToList();
+                //int? memberold = kq[0].Memberold;
+                //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
+                //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
+                //    .ToList();
+                return Json(kq, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
     }
 }

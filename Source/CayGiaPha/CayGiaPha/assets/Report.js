@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-    CreateViewReport();
+    CreateGridReport();
+    CreateControl();
 });
-function CreateViewReport()
-{
+function CreateGridReport() {
     $('#GridReportNumber').kendoGrid({
         //toolbar: ["excel"],
         //excel: {
@@ -25,25 +25,7 @@ function CreateViewReport()
                 empty: "Không tìm thấy dữ liệu"
             }
         },
-        columns: [
-            { field: "", title: "STT" },
-            { field: "", title: "Năm" },
-            { field: "", title: "Số Lượng Sinh" },
-            { field: "", title: "Số Lượng Kết Hôn" },
-            { field: "", title: "Số Lượng Mất" }
-        ],
-        dataSource: {
-            schema: {
-                model: {
-                    id: "Id",
-                    fields: {
-                        //CateName: { editable: false },
-                        //Title: { editable: false },
-                        Birthday: { type: "datetime" }, bd: { type: "date" }
-                    }
-                }
-            }
-        },
+        dataSource: {},
         filterable: {
             extra: false,
             messages: { and: "và", or: "hoặc", filter: "Lọc", clear: "Hủy lọc", info: "" },
@@ -64,12 +46,12 @@ function CreateViewReport()
         selectable: true,
         scrollable: true,
         height: 500,
-        columns:[
+        columns: [
             { field: "", title: "STT" },
             { field: "", title: "Loại Thành tích" },
             { field: "", title: "Số lượng Thành tích" },
-                   
-            ],
+
+        ],
         pageable: {
             pageSizes: true,
             refresh: true,
@@ -104,4 +86,67 @@ function CreateViewReport()
             }
         },
     });
+}
+function CreateControl() {
+    $("#FromDate").kendoDatePicker({
+        value: new Date(),
+        start: "year",
+        format: "yyyy",
+        dateInput: true
+    });
+    $("#ToDate").kendoDatePicker({
+        value: new Date(),
+        start: "year",
+        format: "yyyy",
+        dateInput: true
+    });
+}
+function XemBaoCao() {
+    var NBD = $("#FromDate").val();
+    var NKT = $("#ToDate").val();
+    var grid = $('#GridReportNumber').data("kendoGrid");
+    var options = grid.options;
+    options.columns = setColumns('0');
+    $.ajax({
+        async: false,
+        dataType: 'json',
+        url: '/CGP/GetReportMember',
+        data: { TreeID: $('#TreeID').val(), Year: NBD, Year1: NKT },
+        success: function (result) {
+            var dataSource = new kendo.data.DataSource({
+                data: result,
+                pageSize: 100,
+            });
+            options.dataSource = dataSource;
+        },
+        error: function () {
+        }
+    });
+    $('#GridReportNumber').empty().kendoGrid(options);
+}
+function setColumns(typeID) {
+    var columns = null;
+    switch (typeID) {
+        case '0':
+            columns = [
+                        { field: "STT", title: "STT", width: 145 },
+                        { field: "Nam", title: "Năm", width: 145 },
+                        { field: "SlS", title: "Số Lượng Sinh", width: 145 },
+                        { field: "SlKH", title: "Số Lượng Kết Hôn", width: 145 },
+                        { field: "SlMT", title: "Số Lượng Mất", width: 145 }];
+            break;
+        case '1':
+            columns = [{
+                title: "Thành tích các thành viên",
+                columns: [
+                        { title: "STT", width: 240 },
+                        { title: "Loại Thành Tích", width: 240 },
+                        { title: "Số Lượng ", width: 240 },
+                        { title: "Số Lượng Kết Hôn", width: 240 },
+                        { title: "Số Lượng Mất", width: 240 }]
+            }
+            ];
+            break;
+    }
+    return columns;
 }
