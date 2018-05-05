@@ -236,26 +236,6 @@
 
 
 
-    <!-- About -->
-    <section class="blurb">
-        <h2>About</h2>
-        <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
-        <ul class="actions">
-            <li><a href="#" class="button">Learn More</a></li>
-        </ul>
-    </section>
-
-    <!-- Footer -->
-    <section id="footer">
-        <ul class="icons">
-            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
-            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
-    </section>
 
 </section>
 
@@ -264,64 +244,64 @@
         <tbody>
             <tr style="height: auto;">
                 <td style="height: auto; width: auto;">Nghề nghiệp</td>
-                <td style="height: auto; width: 300px;"><input id="txtjob" placeholder= "Nhập nghề nghiệp..." style="width: 300px;font-size:20px" /></td>
+                <td style="height: auto; width: 300px;"><input id="txtjob" class="k-textbox" placeholder= "Nhập nghề nghiệp..." style="width: 300px" /></td>
             </tr>
             <tr>
-                <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" id="btnAddJob" style="height: 40px; text-transform: capitalize">Thêm</button></td>
+                <td style="height: auto; width: 100px;"></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" id="btnAddJob" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px">Thêm</button></td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div id="dialogBirthPlace">
+<div id="dialogBirthPlace" >
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Quê quán</p></td>
-                <td style="height: auto; width: 300px;"><input id="txtbirthplace" placeholder="nhập quê quán..." style="width: 300px;font-size:20px" /></td>
+                <td style="height: auto; width: auto;">Quê quán</td>
+                <td style="height: auto; width: 300px;"><input id="txtbirthplace"class="k-textbox" placeholder="Nhập quê quán..." style="width: 300px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:40px" id="btnAddBirthPlace">Thêm</button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnAddBirthPlace">Thêm</button></td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div id="dialogUjob">
+<div id="dialogUjob" style="letter-spacing: 0px;">
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Nghề nghiệp</p></td>
-                <td style="height: auto; width: 300px;"><input id="ddlJob" style="width: 300px;font-size:15px" /></td>
+                <td style="height: auto; width: auto;">Nghề nghiệp</td>
+                <td style="height: auto; width: 300px;"><input id="ddlJob" style="width: 300px" /></td>
             </tr>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
-                <td style="height: auto; width: 300px;"><input id="txtuJob" style="width: 300px;font-size:15px" /></td>
+                <td style="height: auto; width: auto;">Thay đổi </td>
+                <td style="height: auto; width: 300px;"><input id="txtuJob"class="k-textbox" style="width: 300px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUJob">Cập nhật</button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnUJob">Cập nhật</button></td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div id="dialogUBirthPlace">
+<div id="dialogUBirthPlace" style="letter-spacing: 0px;">
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Nơi sinh</p></td>
-                <td style="height: auto; width: 300px;"><input id="ddlBP" style="width: 300px;font-size:15px" /></td>
+                <td style="height: auto; width: auto;">Nơi sinh</td>
+                <td style="height: auto; width: 300px;"><input id="ddlBP" style="width: 300px" /></td>
             </tr>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
-                <td style="height: auto; width: 300px;"><input id="txtuBP" style="width: 300px;font-size:15px" /></td>
+                <td style="height: auto; width: auto;">Thay đổi</td>
+                <td style="height: auto; width: 300px;"><input id="txtuBP"class="k-textbox" style="width: 300px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUBP">Cập nhật</button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnUBP">Cập nhật</button></td>
             </tr>
         </tbody>
     </table>
@@ -331,12 +311,12 @@
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Nguyên nhân mất</p></td>
-                <td style="height: auto; width: 300px;"><input id="txtCod" placeholder="nhập nguyên nhân..." style="width: 300px;font-size:20px" /></td>
+                <td style="height: auto; width: auto;">Nguyên nhân mất</td>
+                <td style="height: auto; width: 300px;"><input id="txtCod"class="k-textbox" placeholder="Nhập nguyên nhân..." style="width: 300px;font-size:20px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:20px" id="btnAddCod">Thêm</button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnAddCod">Thêm</button></td>
             </tr>
         </tbody>
     </table>
@@ -346,16 +326,16 @@
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Nguyên nhân mất</p></td>
+                <td style="height: auto; width: auto;">Nguyên nhân mất</td>
                 <td style="height: auto; width: 300px;"><input id="ddlCod" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
-                <td style="height: auto; width: 300px;"><input id="txtuCod" style="width: 300px;font-size:15px" /></td>
+                <td style="height: auto; width: auto;">Thay đổi </td>
+                <td style="height: auto; width: 300px;"><input id="txtuCod"class="k-textbox" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUCod">Cập nhật</button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnUCod">Cập nhật</button></td>
             </tr>
         </tbody>
     </table>
@@ -365,12 +345,12 @@
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Địa điểm mai táng</p></td>
-                <td style="height: auto; width: 300px;"><input id="txtBrP" placeholder="nhập địa điểm..." style="width: 300px;font-size:20px" /></td>
+                <td style="height: auto; width: auto;">Địa điểm mai táng</td>
+                <td style="height: auto; width: 300px;"><input id="txtBrP" class="k-textbox" placeholder="Nhập địa điểm..." style="width: 300px;font-size:20px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:20px" id="btnAddBrP">Thêm</button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnAddBrP">Thêm</button></td>
             </tr>
         </tbody>
     </table>
@@ -380,7 +360,7 @@
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: auto;"><p style="font-size:15px">Địa điểm mai táng</p></td>
+                <td style="height: auto; width: auto;">Địa điểm mai táng</td>
                 <td style="height: auto; width: 300px;"><input id="ddlBrP" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr style="height: auto;">
@@ -388,8 +368,8 @@
                 <td style="height: auto; width: 300px;"><input id="txtuBrP" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr>
-                <td style="height: auto; width: 100px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUBrP">Cập nhật</button></td>
+                <td style="height: auto; width: auto;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnUBrP">Cập nhật</button></td>
             </tr>
         </tbody>
     </table>
@@ -399,20 +379,20 @@
     <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
         <tbody>
             <tr style="height: auto;">
-                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành viên</p></td>
+                <td style="height: auto; width: 150px;">Thành viên</td>
                 <td style="height: auto; width: 300px;"><input id="ddlM" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr style="height: auto;">
-                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành tích</p></td>
+                <td style="height: auto; width: 150px;">Thành tích</td>
                 <td style="height: auto; width: 300px;"><input id="ddlA" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr style="height: auto;">
-                <td style="height: auto; width: 150px;"><p style="font-size:15px">Ngày phát sinh</p></td>
+                <td style="height: auto; width: 150px;">Ngày phát sinh</td>
                 <td style="height: auto; width: 300px;"><input id="dateA" style="width: 300px;font-size:15px" /></td>
             </tr>
             <tr>
                 <td style="height: auto; width: 150px;">&nbsp;</td>
-                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUA"><p style="font-size:15px">Cập nhật</p></button></td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnUA"><p style="font-size:15px">Cập nhật</p></button></td>
             </tr>
         </tbody>
     </table>

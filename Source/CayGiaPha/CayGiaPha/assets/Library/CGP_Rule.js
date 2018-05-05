@@ -51,7 +51,7 @@
 
     $("#dialogBirthPlace").kendoDialog({
         width: 600,
-        height: 255,
+        height: 300,
         title: "Thêm quê quán",
         content: divContentbirthplace,
         visible: false
@@ -61,7 +61,7 @@
 
     $("#dialogJob").kendoDialog({
         width: 600,
-        height: 255,
+        height: 300,
         title: "Thêm nghề nghiệp",
         content: divContentjob,
         visible: false
@@ -72,7 +72,7 @@
     var divContentUjob = $('#dialogUjob').html();
     $("#dialogUjob").kendoDialog({
         width: 600,
-        height: 255,
+        height: 350,
         title: "Cập nhật nghề nghiệp",
         content: divContentUjob,
         visible: false
@@ -82,7 +82,7 @@
     var divContentUBP = $('#dialogUBirthPlace').html();
     $("#dialogUBirthPlace").kendoDialog({
         width: 600,
-        height: 255,
+        height: 350,
         title: "Cập nhật quê quán",
         content: divContentUBP,
         visible: false
@@ -259,8 +259,8 @@
     });
 
     $("#dialogCod").kendoDialog({
-        width: 500,
-        height: 255,
+        width: 600,
+        height: 300,
         title: "Thêm nguyên nhân mất",
         content: divContentCod,
         visible: false
@@ -277,7 +277,7 @@
     var divContentUCod = $('#dialogUCod').html();
     $("#dialogUCod").kendoDialog({
         width: 600,
-        height: 255,
+        height: 350,
         title: "Cập nhật nguyên nhân mất",
         content: divContentUCod,
         visible: false
@@ -352,8 +352,8 @@
 
 
     $("#dialogBrP").kendoDialog({
-        width: 500,
-        height: 255,
+        width: 600,
+        height: 300,
         title: "Thêm địa điểm mai táng",
         content: divContentBrP,
         visible: false
@@ -370,7 +370,7 @@
     var divContentUBrP = $('#dialogUBrP').html();
     $("#dialogUBrP").kendoDialog({
         width: 600,
-        height: 255,
+        height: 350,
         title: "Cập nhật nguyên nhân mất",
         content: divContentUBrP,
         visible: false
@@ -445,7 +445,7 @@
     var divContentUA = $('#dialogUA').html();
     $("#dialogUA").kendoDialog({
         width: 600,
-        height: 255,
+        height: 400,
         title: "Ghi nhận thành tích",
         content: divContentUA,
         visible: false
@@ -516,7 +516,7 @@
     var divContentUD = $('#dialogUD').html();
     $("#dialogUD").kendoDialog({
         width: 600,
-        height: 255,
+        height: 550,
         title: "Ghi nhận kết thúc",
         content: divContentUD,
         visible: false
