@@ -17,5 +17,6 @@ namespace CayGiaPha
         public int TreeID { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> AccountID { get; set; }
     }
 }
