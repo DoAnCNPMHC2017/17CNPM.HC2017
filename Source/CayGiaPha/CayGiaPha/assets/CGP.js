@@ -319,14 +319,10 @@ function ChangeAddMember()
     LoadData($('#TreeID').val());
     //formatdatetime();
 }
-//function formatdatetime()
-//{
-//    str = $('#BirthDate').val();
-//    $('#BirthDate').val("");
-//    str = str.replace(":PM", "");
-//    str = str.replace(":AM", "");
-//    $('#BirthDate').val(str);
-//}
+function BaoCaoNam(TreeID, type) {
+    if (type == 1)
+        window.location.href = '/CGP/Report?id=' + TreeID;
+}
 function AddMemberNew()
 {
     var FName=$('#FullName').val();

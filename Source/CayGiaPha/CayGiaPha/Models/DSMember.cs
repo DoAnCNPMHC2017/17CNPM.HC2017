@@ -45,5 +45,11 @@ namespace CayGiaPha.Models
         public Int32 SlS { get; set; }
         public Int32 SlKH { get; set; }
         public Int32 SlMT { get; set; }
-    }	
+    }
+    public class ReportTC
+    {
+        public Int64 STT { get; set; }
+        public string TenTT { get; set; }
+        public Int32 Sl { get; set; }
+    }
 }

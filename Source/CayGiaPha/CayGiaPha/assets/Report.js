@@ -37,21 +37,10 @@ function CreateGridReport() {
         },
     });
     $('#GridReportTT').kendoGrid({
-        //toolbar: ["excel"],
-        //excel: {
-        //    allPages: true,
-        //    fileName: "ListStreet.xlsx"
-        //},
         resizable: true,
         selectable: true,
         scrollable: true,
         height: 500,
-        columns: [
-            { field: "", title: "STT" },
-            { field: "", title: "Loại Thành tích" },
-            { field: "", title: "Số lượng Thành tích" },
-
-        ],
         pageable: {
             pageSizes: true,
             refresh: true,
@@ -100,28 +89,46 @@ function CreateControl() {
         format: "yyyy",
         dateInput: true
     });
+    $("#Type").kendoDropDownList({
+        serverFiltering: false,
+        dataTextField: 'Name',
+        dataValueField: 'ID',
+        dataSource: [{ ID: 0, Name: 'Báo cáo Tăng Giảm' }, { ID: 1, Name: 'Báo Cáo Thành Tích' }],
+        showSelectAll: true,
+        autoClose: false,
+        change: function (e) {
+        }
+        , optionLabel: "Chọn Loại Báo Cáo ..."
+    });
 }
 function XemBaoCao() {
     var NBD = $("#FromDate").val();
     var NKT = $("#ToDate").val();
+    var TypeBC = $("#Type").val();
+    if (TypeBC == "")
+    {
+        alert("Bạn vui lòng chọn Loại báo cáo");
+        return;
+    }
+    $('#lable').html(TypeBC == "" ? "" : TypeBC == 0 ? "Báo Cáo Tăng Giảm Thành Viên" : "Báo Cáo Thành Tích Thành Viên");
     var grid = $('#GridReportNumber').data("kendoGrid");
     var options = grid.options;
-    options.columns = setColumns('0');
-    $.ajax({
-        async: false,
-        dataType: 'json',
-        url: '/CGP/GetReportMember',
-        data: { TreeID: $('#TreeID').val(), Year: NBD, Year1: NKT },
-        success: function (result) {
-            var dataSource = new kendo.data.DataSource({
-                data: result,
-                pageSize: 100,
-            });
-            options.dataSource = dataSource;
-        },
-        error: function () {
-        }
-    });
+    options.columns = setColumns(TypeBC);
+        $.ajax({
+            async: false,
+            dataType: 'json',
+            url: '/CGP/GetReportMember',
+            data: { TreeID: $('#TreeID').val(), Year: NBD, Year1: NKT, Type: TypeBC },
+            success: function (result) {
+                var dataSource = new kendo.data.DataSource({
+                    data: result,
+                    pageSize: 100,
+                });
+                options.dataSource = dataSource;
+            },
+            error: function () {
+            }
+        });
     $('#GridReportNumber').empty().kendoGrid(options);
 }
 function setColumns(typeID) {
@@ -136,16 +143,11 @@ function setColumns(typeID) {
                         { field: "SlMT", title: "Số Lượng Mất", width: 145 }];
             break;
         case '1':
-            columns = [{
-                title: "Thành tích các thành viên",
-                columns: [
-                        { title: "STT", width: 240 },
-                        { title: "Loại Thành Tích", width: 240 },
-                        { title: "Số Lượng ", width: 240 },
-                        { title: "Số Lượng Kết Hôn", width: 240 },
-                        { title: "Số Lượng Mất", width: 240 }]
-            }
-            ];
+            columns = [
+                         { field: "STT", title: "STT" },
+                         { field: "TenTT", title: "Loại Thành tích" },
+                         { field: "Sl", title: "Số lượng Thành tích" }
+                      ];
             break;
     }
     return columns;

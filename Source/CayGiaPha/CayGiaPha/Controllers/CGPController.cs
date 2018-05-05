@@ -514,30 +514,47 @@ namespace CayGiaPha.Controllers
                 }
             }
         }
-        public JsonResult GetReportMember(string TreeID, string Year, string Year1)
+        public JsonResult GetReportMember(string TreeID, string Year, string Year1, int Type)
         {
-            using (CGPEntities dt = new CGPEntities())
-            {
-                string Query = "Select row_number() OVER (ORDER BY Nam) STT,Nam,Sum(S) SlS,Sum(KH) SlKH,Sum(MT) SlMT" +
-                               " FROM" +
-                               "(" +
-                                   " Select Year(Birthday) Nam,1 S,0 KH,0 MT" +
-                                   " From CGP..Member where TreeID = " + TreeID + " AND Year(Birthday) BETWEEN " + Year + " AND " + Year1 +
-                                   " UNION ALL" +
-                                   " Select Year(Date_Create) Nam,0 S,1 KH,0 MT" +
-                                   " From CGP..Member where TreeID = " + TreeID + " AND Year(Date_Create) BETWEEN " + Year + " AND " + Year1 + " AND TypeRelationship = 1" +
-                                   " UNION ALL" +
-                                   " Select ISNULL(Year(DateOfDeath),0) Nam, 0 S,0 KH,1 MT" +
-                                   " From CGP..Member where TreeID = " + TreeID + " AND ISNULL(Year(DateOfDeath),0) BETWEEN " + Year + " AND " + Year1 +
-                               " ) AS A" +
-                               " Group by Nam";
-                var kq = dt.Database.SqlQuery<ReportTG>(Query).ToList();
-                //int? memberold = kq[0].Memberold;
-                //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
-                //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
-                //    .ToList();
-                return Json(kq, JsonRequestBehavior.AllowGet);
-            }
+                using (CGPEntities dt = new CGPEntities())
+                {
+                    if( Type == 0)
+                    { 
+                        string Query = "Select row_number() OVER (ORDER BY Nam) STT,Nam,Sum(S) SlS,Sum(KH) SlKH,Sum(MT) SlMT" +
+                                       " FROM" +
+                                       "(" +
+                                           " Select Year(Birthday) Nam,1 S,0 KH,0 MT" +
+                                           " From CGP..Member where TreeID = " + TreeID + " AND Year(Birthday) BETWEEN " + Year + " AND " + Year1 +
+                                           " UNION ALL" +
+                                           " Select Year(Date_Create) Nam,0 S,1 KH,0 MT" +
+                                           " From CGP..Member where TreeID = " + TreeID + " AND Year(Date_Create) BETWEEN " + Year + " AND " + Year1 + " AND TypeRelationship = 1" +
+                                           " UNION ALL" +
+                                           " Select ISNULL(Year(DateOfDeath),0) Nam, 0 S,0 KH,1 MT" +
+                                           " From CGP..Member where TreeID = " + TreeID + " AND ISNULL(Year(DateOfDeath),0) BETWEEN " + Year + " AND " + Year1 +
+                                       " ) AS A" +
+                                       " Group by Nam";
+                        var kq = dt.Database.SqlQuery<ReportTG>(Query).ToList();
+                        //int? memberold = kq[0].Memberold;
+                        //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
+                        //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
+                        //    .ToList();
+                        return Json(kq, JsonRequestBehavior.AllowGet);
+                    }
+                    else if(Type == 1)
+                    {
+                        string Query = "Select row_number() OVER (ORDER BY A.AchievementID) STT,B.AchievementName TenTT,count(*) Sl" +
+                                       " From CGP.dbo.AchievementDetail A ,CGP.dbo.ListAchievement B" +
+                                       " Where A.AchievementID = B.IDAchievement AND Year(DateIncurred) BETWEEN " + Year + " AND " + Year1 + " AND A.TreeID = " + TreeID +
+                                       "Group BY A.AchievementID,B.AchievementName";
+                        var kq = dt.Database.SqlQuery<ReportTC>(Query).ToList();
+                        //int? memberold = kq[0].Memberold;
+                        //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
+                        //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
+                        //    .ToList();
+                        return Json(kq, JsonRequestBehavior.AllowGet);
+                    }
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                }          
         }
         #endregion
     }

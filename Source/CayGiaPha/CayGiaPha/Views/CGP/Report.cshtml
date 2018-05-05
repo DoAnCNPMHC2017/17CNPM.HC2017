@@ -7,14 +7,15 @@
 <script src="~/assets/Library/kendo.all.min.js"></script>
 <script src="~/assets/Report.js"></script>
 <input id="TreeID" value="@ViewBag.Id" hidden />
-<h5 style="text-align:center">Báo Cáo Tăng Giảm Thành Viên</h5>
-<table style="margin-left:35%">
+<table style="margin-left:25%">
     <tr>
-        <td>Từ <input id="FromDate" /> Đến </td>
+        <td>Từ <input id="FromDate" /> đến </td>
         <td><input id="ToDate" /></td>
-        <td><input type="button" onclick="XemBaoCao()" value="Xem Báo Cáo" /></td>
+        <td><input id="Type" style="width:190px" /></td>
+        <td><input type="button" class="k-button" onclick="XemBaoCao()" value="Xem Báo Cáo" /></td>
     </tr>
 </table>
+<h3 style="text-align:center" id="lable"></h3>
 <table>
     <tr>
         <td id="tdGridReportNumber">
