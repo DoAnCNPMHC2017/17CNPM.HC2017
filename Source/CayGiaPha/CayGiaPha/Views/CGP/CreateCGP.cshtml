@@ -84,7 +84,7 @@
                         @*<button type="button" id="btnJob" class="btn btn-primary" style="float:right;height:25px;width:50px;padding: 0px 0px;">Thêm</button>*@
                     </td>
                 </tr>
-               
+
                 <tr id="tbDateOfDeath" hidden>
                     <td class="lablename">Ngày giờ mất</td>
                     <td>
@@ -140,32 +140,45 @@
                 <li>
                     Thay đổi quy định
                     <ul>
-                        <li>Nghề nghiệp
-                        <ul>
-                            <li id="btnShowAddJob">Thêm</li>
-                            <li id="btnShowUpdateJob">Cập nhật</li>
-                        </ul>
+                        <li>
+                            Nghề nghiệp
+                            <ul>
+                                <li id="btnShowAddJob">Thêm</li>
+                                <li id="btnShowUpdateJob">Cập nhật</li>
+                            </ul>
                         </li>
-                        <li>Quê quán
+                        <li>
+                            Quê quán
                             <ul>
                                 <li id="btnShowAddBirthPlace">Thêm</li>
                                 <li id="btnShowUpdateBirthPlace">Cập nhật</li>
                             </ul>
-                        </li> 
+                        </li>
                         <li>
                             Nguyên nhân mất
                             <ul>
                                 <li id="btnShowAddCoD">Thêm</li>
                                 <li id="btnShowUpdateCoD">Cập nhật</li>
                             </ul>
-                        </li>  
+                        </li>
                         <li>
                             Địa điểm mai táng
                             <ul>
                                 <li id="btnShowAddBrP">Thêm</li>
                                 <li id="btnShowUpdateBrP">Cập nhật</li>
                             </ul>
-                        </li>                        
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Ghi nhận
+                    <ul>
+                        <li id="btnShowUA">
+                            Ghi nhận thành tích
+                        </li>
+                        <li id="btnShowUD">
+                            Ghi nhận kết thúc
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -203,6 +216,10 @@
             <script>
                 $(document).ready(function () {
                     
+
+
+
+
 
 
                 });
@@ -350,6 +367,56 @@
             <tr>
                 <td style="height: auto; width: 100px;">&nbsp;</td>
                 <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUBrP">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUA">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành viên</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlM" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành tích</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlA" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Ngày phát sinh</p></td>
+                <td style="height: auto; width: 300px;"><input id="dateA" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 150px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUA"><p style="font-size:15px">Cập nhật</p></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUD">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành viên</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlM1" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Nguyên nhân</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlCD" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Ngày giờ mất</p></td>
+                <td style="height: auto; width: 300px;"><input id="dateD" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Địa điểm mai táng</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlBrP1" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 150px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:5px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUD">Cập nhật</button></td>
             </tr>
         </tbody>
     </table>

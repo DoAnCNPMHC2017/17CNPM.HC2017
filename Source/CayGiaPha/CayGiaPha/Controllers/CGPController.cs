@@ -186,7 +186,7 @@ namespace CayGiaPha.Controllers
                 }
             }
         }
-        public JsonResult UpdateMemberInfo2(int fid, string fdod, int fbp,int fcod)
+        public JsonResult UpdateMemberInfo2(int fid, string fdod, int fbp, int fcod)
         {
             using (CGPEntities ctx = new CGPEntities())
             {
@@ -195,7 +195,7 @@ namespace CayGiaPha.Controllers
                     Member m = ctx.Members.Where(p => p.Id == fid).FirstOrDefault();
                     m.DateOfDeath = DateTime.ParseExact(fdod, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     m.BurialPlaceId = fbp;
-                    m.CauseOfDeath = fcod;                    
+                    m.CauseOfDeath = fcod;
                     ctx.SaveChanges();
                     return Json("Cập Nhật Thành Công !", JsonRequestBehavior.AllowGet);
                 }
@@ -230,7 +230,7 @@ namespace CayGiaPha.Controllers
             {
                 try
                 {
-                    BirthPlace b= new BirthPlace();
+                    BirthPlace b = new BirthPlace();
                     b.BirthPlaceName = bpname;
                     b.TreeID = CurrentContext.GetCurrentTree();
                     ctx.BirthPlaces.Add(b);
@@ -252,7 +252,7 @@ namespace CayGiaPha.Controllers
                 return Json(m, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult UpdateJob(int jID,string jName)
+        public ActionResult UpdateJob(int jID, string jName)
         {
             using (CGPEntities dt = new CGPEntities())
             {
@@ -378,15 +378,57 @@ namespace CayGiaPha.Controllers
                 var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == ID).ToList();
                 var OldID = dt.Members.Where(b => b.TreeID == ID && b.TypeRelationship != 1).Select(b => new { ID = b.Id, Name = b.FullName }).ToList();
                 var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from CGP..Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from CGP..Member where TreeID = " + ID + " AND TypeRelationship <> 0 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id OR ISNULL(A.Memberold,0) =B.Id ").ToList();
-                return Json(new {Ach =Ach, Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID, couple = couple }, JsonRequestBehavior.AllowGet);
+                return Json(new { Ach = Ach, Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID, couple = couple }, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult GetMember()
         {
             using (CGPEntities dt = new CGPEntities())
             {
-                var m = dt.Members.Where(b => b.TreeID == 1).ToList();
+                int t = CurrentContext.GetCurrentTree();
+                var m = dt.Members.Where(b => b.TreeID == t).ToList();
                 return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetAchievement()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                var m = dt.ListAchievements.Where(b => b.TreeID == t).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetBurialPlace()
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                int t = CurrentContext.GetCurrentTree();
+                var m = dt.BurialPlaces.Where(b => b.TreeID == t).ToList();
+                return Json(m, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult UpdateMemberEnd(int fid,string fdod, int fbp, int fcod)
+        //public JsonResult UpdateMemberEnd(), DateTime fdod
+        {
+            //int fid=1, fbp=1, fcod=1;
+            //DateTime fdod = new DateTime();
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    Member m = ctx.Members.Where(p => p.Id == fid).FirstOrDefault();
+                    m.DateOfDeath = DateTime.ParseExact(fdod, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
+                    //m.DateOfDeath = fdod;
+                    m.BurialPlaceId = fbp;
+                    m.CauseOfDeath = fcod;
+                    ctx.SaveChanges();
+                    return Json("Cập Nhật Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
             }
         }
         //cho nay
@@ -413,14 +455,23 @@ namespace CayGiaPha.Controllers
         public ActionResult InfomationMember(string ID)
         {
             using (CGPEntities dt = new CGPEntities())
-            {
-                string Query = "Select * From CGP.dbo.Member Where ID =" + ID;
-                var kq = dt.Database.SqlQuery<Member>(Query).ToList();
-                //int? memberold = kq[0].Memberold;
-                //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
-                //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
-                //    .ToList();
-                return Json(kq, JsonRequestBehavior.AllowGet);
+            {                
+                try
+                {
+                    string Query = "Select * From CGP.dbo.Member Where ID =" + ID;
+                    var kq = dt.Database.SqlQuery<Member>(Query).ToList();
+                    //int? memberold = kq[0].Memberold;
+                    //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
+                    //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
+                    //    .ToList();
+                    return Json(kq, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception)
+                {
+                    
+                }
+                
+                return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
         [HttpPost]

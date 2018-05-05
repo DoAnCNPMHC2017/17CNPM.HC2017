@@ -50,8 +50,8 @@
     }
 
     $("#dialogBirthPlace").kendoDialog({
-        width: 700,
-        height: 200,
+        width: 600,
+        height: 255,
         title: "Thêm quê quán",
         content: divContentbirthplace,
         visible: false
@@ -60,8 +60,8 @@
     var divContentbirthplace = $('#dialogBirthPlace').html();
 
     $("#dialogJob").kendoDialog({
-        width: 700,
-        height: 200,
+        width: 600,
+        height: 255,
         title: "Thêm nghề nghiệp",
         content: divContentjob,
         visible: false
@@ -71,8 +71,8 @@
 
     var divContentUjob = $('#dialogUjob').html();
     $("#dialogUjob").kendoDialog({
-        width: 700,
-        height: 250,
+        width: 600,
+        height: 255,
         title: "Cập nhật nghề nghiệp",
         content: divContentUjob,
         visible: false
@@ -81,8 +81,8 @@
 
     var divContentUBP = $('#dialogUBirthPlace').html();
     $("#dialogUBirthPlace").kendoDialog({
-        width: 700,
-        height: 250,
+        width: 600,
+        height: 255,
         title: "Cập nhật quê quán",
         content: divContentUBP,
         visible: false
@@ -260,7 +260,7 @@
 
     $("#dialogCod").kendoDialog({
         width: 500,
-        height: 200,
+        height: 255,
         title: "Thêm nguyên nhân mất",
         content: divContentCod,
         visible: false
@@ -276,8 +276,8 @@
 
     var divContentUCod = $('#dialogUCod').html();
     $("#dialogUCod").kendoDialog({
-        width: 700,
-        height: 250,
+        width: 600,
+        height: 255,
         title: "Cập nhật nguyên nhân mất",
         content: divContentUCod,
         visible: false
@@ -353,7 +353,7 @@
 
     $("#dialogBrP").kendoDialog({
         width: 500,
-        height: 200,
+        height: 255,
         title: "Thêm địa điểm mai táng",
         content: divContentBrP,
         visible: false
@@ -369,8 +369,8 @@
 
     var divContentUBrP = $('#dialogUBrP').html();
     $("#dialogUBrP").kendoDialog({
-        width: 700,
-        height: 250,
+        width: 600,
+        height: 255,
         title: "Cập nhật nguyên nhân mất",
         content: divContentUBrP,
         visible: false
@@ -442,6 +442,205 @@
         }
         ///, optionLabel: "Chọn nghề nghiệp ..."
     });
+    var divContentUA = $('#dialogUA').html();
+    $("#dialogUA").kendoDialog({
+        width: 600,
+        height: 255,
+        title: "Ghi nhận thành tích",
+        content: divContentUA,
+        visible: false
+    }).data("kendoDialog");
 
+    $("#btnShowUA").click(function () {
+        var dialog = $("#dialogUA").data("kendoDialog");
+        dialog.open();
+    });
+
+    $("#ddlM").kendoDropDownList({
+        dataTextField: 'FullName',
+        dataValueField: 'Id',
+        dataSource: {
+            transport: {
+                read: {
+                    //dataType: "jsonp",
+                    url: "/CGP/GetMember",
+                }
+            }
+        },
+        autoClose: true
+    });
+
+    $("#ddlA").kendoDropDownList({
+        dataTextField: 'AchievementName',
+        dataValueField: 'IDAchievement',
+        dataSource: {
+            transport: {
+                read: {
+                    //dataType: "jsonp",
+                    url: "/CGP/GetAchievement",
+                }
+            }
+        },
+        autoClose: true
+    });
+
+    $("#dateA").kendoDatePicker({
+        value: new Date(),
+        format: "dd/MM/yyyy",
+        dateInput: true
+    });
+
+    $("#btnUA").click(function () {
+        var fid = $('#ddlM').val();
+        var fach = $('#ddlA').val();
+        var fdate = $('#dateA').val();
+
+        $.ajax({
+            async: false,
+            type: "post",
+            dataType: 'json',
+            url: '/CGP/UpdateMemberAchievement',
+            data: { fid: fid, fach: fach, fdate: fdate },
+            success: function (result) {
+                alert("Thành công");
+                LoadData($('#TreeID').val());
+                LoadDataTree();
+                ReloadWindow();
+            },
+            error: function () {
+                alert(result);
+            }
+        });
+    });
+
+    var divContentUD = $('#dialogUD').html();
+    $("#dialogUD").kendoDialog({
+        width: 600,
+        height: 255,
+        title: "Ghi nhận kết thúc",
+        content: divContentUD,
+        visible: false
+    }).data("kendoDialog");
+
+    $("#btnShowUD").click(function () {
+        var dialog = $("#dialogUD").data("kendoDialog");
+        //ReloadWindow();
+        dialog.open();
+    });
+
+    $("#ddlM1").kendoDropDownList({
+        dataTextField: 'FullName',
+        dataValueField: 'Id',
+        dataSource: {
+            transport: {
+                read: {
+                    //dataType: "jsonp",
+                    url: "/CGP/GetMember",
+                }
+            }
+        },
+        filter: "contains",
+        change: LoadInfo,
+        autoClose: true
+        , optionLabel: "Chọn thành viên ..."
+    });
+
+    $("#ddlCD").kendoDropDownList({
+        dataTextField: 'CauseOfDeathText',
+        dataValueField: 'CauseOfDeathID',
+        dataSource: {
+            transport: {
+                read: {
+                    //dataType: "jsonp",
+                    url: "/CGP/GetCod",
+                    cache: false,
+                }
+            }
+        },
+        autoClose: true
+
+        , optionLabel: "Chọn nguyên nhân ..."
+    });
+
+    $("#ddlBrP1").kendoDropDownList({
+        dataTextField: 'BurialPlaceName',
+        dataValueField: 'BurialPlaceID',
+        dataSource: {
+            transport: {
+                read: {
+                    //dataType: "jsonp",
+                    url: "/CGP/GetBurialPlace",
+                }
+            }
+        },
+        autoClose: true
+        , optionLabel: "Chọn địa điểm mai táng ..."
+    });
+
+    $("#dateD").kendoDateTimePicker({
+        format: "dd/MM/yyyy HH:mm:tt",
+        //parseFormats: ["MMMM yyyy", "HH:mm:tt"],
+        value: new Date(),
+        dateInput: true
+    });
+
+    $("#btnUD").click(function () {
+        var fid = $('#ddlM1').val();
+        var fbp = $('#ddlBrP1').val();
+        var fdod = $('#dateD').val();
+        var fcod = $('#ddlCD').val();
+        if (fid == "" || fbp == "" || fdod == "" || fcod == "") {
+            alert("Chưa chọn đầy đủ thông tin!!!");
+            return
+        }
+
+        $.ajax({
+            async: false,
+            type: "post",
+            dataType: 'json',
+            url: '/CGP/UpdateMemberEnd',
+            data: { fid: fid, fdod: fdod, fbp: fbp, fcod: fcod },
+            //data: { fid: fid, fbp: fbp, fcod: fcod },
+            success: function (result) {
+                alert("Thành công");
+                LoadData($('#TreeID').val());
+                LoadDataTree();
+                //ReloadWindow();
+            },
+            error: function () {
+                alert("Thông tin chưa hợp lệ");
+            }
+        });
+
+    });
+
+    function LoadInfo() {
+        var fid = $('#ddlM1').val();
+        $.ajax({
+            async: false,
+            dataType: 'json',
+            url: '/CGP/InfomationMember',
+            data: { ID: fid },
+            success: function (result) {
+                Res = result;
+                console.log(Res);
+
+                if (Res[0].CauseOfDeath != null || Res[0].DateOfDeath != null || Res[0].BurialPlaceId != null) {
+
+                    $('#ddlCD').data('kendoDropDownList').value(Res[0].CauseOfDeath);
+                    $('#dateD').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
+                    $('#ddlBrP1').data('kendoDropDownList').value(Res[0].BurialPlaceId);
+                }
+                else {
+
+                    $('#ddlCD').data('kendoDropDownList').value(0);
+                    $('#dateD').data('kendoDateTimePicker').value(0);
+                    $('#ddlBrP1').data('kendoDropDownList').value(0);
+                }
+            },
+            error: function () {
+            }
+        });
+    }
 
 });
