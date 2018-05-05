@@ -1,4 +1,5 @@
-﻿@model Tree
+﻿@using CayGiaPha.Models
+@model List<Tree>
 @{
     ViewBag.Title = "Index";
 }
@@ -37,8 +38,6 @@
         <div class="jumbotron list-jumbotron">
             <h1 class="text-center">Danh sách gia tộc</h1>
             @{
-                var ctx = new CGPEntities();
-                var mytree = ctx.Trees;
                 int stt = 1;
             }
             <div class="card-content table-responsive">
@@ -53,7 +52,7 @@
                     </thead>
                     <tbody>
                         
-                        @foreach (var cim in mytree)
+                        @foreach (var cim in Model)
                         {                    
                             <tr>
                                 <th>@stt</th>

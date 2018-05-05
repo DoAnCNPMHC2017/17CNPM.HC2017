@@ -15,13 +15,20 @@ namespace CayGiaPha.Controllers
     {
         // GET: CGP
 
-        //[CheckLogin]
+        [CheckLogin]
         public ActionResult Index()
         {
-            return View();
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                int id = 0;
+                id = int.Parse(Session["IdUser"].ToString());
+                List<Tree> List = ctx.Trees.Where(p =>p.AccountID == id).ToList();
+                return View(List);
+            }            
         }
         //POST: CGP
         [HttpPost]
+        [CheckLogin]
         public ActionResult Index(Tree model)
         {
             using (CGPEntities ctx = new CGPEntities())
@@ -31,6 +38,7 @@ namespace CayGiaPha.Controllers
                 {
                     string t = model.Name;
                     string t2 = model.TreeID.ToString();
+                    model.AccountID = Int32.Parse(Session["IdUser"].ToString());
                     model.CreateDate = DateTime.Now;
                     ctx.Trees.Add(model);
                     ctx.SaveChanges();

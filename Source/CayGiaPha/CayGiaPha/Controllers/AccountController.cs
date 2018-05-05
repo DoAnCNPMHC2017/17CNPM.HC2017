@@ -42,6 +42,7 @@ namespace CayGiaPha.Controllers
                     //}
                     Session["isLogin"] = 1;
                     Session["user"] = us;
+                    Session["IdUser"] = us.ID;
                     Session["username"] = us.Username;
 
                     //Response.Write("<script LANGUAGE='JavaScript' >alert('Đăng nhập thành công.')</script>");
