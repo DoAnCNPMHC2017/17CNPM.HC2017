@@ -34,7 +34,15 @@
     <div class="jumbotron text-center" >
         <a href="@Url.Action("Index", "CGP")" style="color:hotpink">
             <i class="fa fa-address-book-o" aria-hidden="true"></i>
-            LẬP CÂY GIA PHẢ
+                @if (Session["isLogin"] != null && Session["isLogin"].ToString() == "1" )
+                {
+                    <span>Xem danh sách cây gia phả</span>
+                }
+                else
+                {
+                    <span> Lập cây gia phả </span>
+                }
+                  
         </a>
     </div>
 </div>
