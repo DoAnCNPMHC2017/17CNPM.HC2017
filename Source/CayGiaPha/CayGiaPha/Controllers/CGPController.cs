@@ -68,6 +68,22 @@ namespace CayGiaPha.Controllers
                 return View();
             }
         }
+        public ActionResult FamilyTree(int? id)
+        {
+            if (id.HasValue == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.Id = id;
+            using (var ctx = new CGPEntities())
+            {
+                int idt = int.Parse(id.ToString());
+                CurrentContext.SetCurrentTree(idt);
+                var model = ctx.Trees.Where(p => p.TreeID == id).FirstOrDefault();
+                return View();
+            }
+        }
+
         [HttpPost]
         public ActionResult CreateCGP(Member model)
         {

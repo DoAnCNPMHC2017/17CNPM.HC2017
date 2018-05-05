@@ -1,0 +1,449 @@
+﻿
+@{
+    ViewBag.Title = "FamilyTree";
+    Layout = "~/Views/Shared/_Layout_2.cshtml";
+}
+
+
+<input id="TreeID" value="@ViewBag.Id" hidden />
+<!-- Main -->
+<div id="main">
+
+    <!-- Post -->
+    <article class="post">
+        <header>
+            <div id="example">
+                <div id="megaStore">
+                    <ul id="menu1X">
+                        <li>
+                            Báo cáo
+                            <ul>
+                                <li class="clickMe" onclick="BaoCaoNam(@ViewBag.Id,1)">
+                                    Lập báo cáo năm
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Thay đổi quy định
+                            <ul>
+                                <li>
+                                    Nghề nghiệp
+                                    <ul>
+                                        <li id="btnShowAddJob">Thêm</li>
+                                        <li id="btnShowUpdateJob">Cập nhật</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Quê quán
+                                    <ul>
+                                        <li id="btnShowAddBirthPlace">Thêm</li>
+                                        <li id="btnShowUpdateBirthPlace">Cập nhật</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Nguyên nhân mất
+                                    <ul>
+                                        <li id="btnShowAddCoD">Thêm</li>
+                                        <li id="btnShowUpdateCoD">Cập nhật</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Địa điểm mai táng
+                                    <ul>
+                                        <li id="btnShowAddBrP">Thêm</li>
+                                        <li id="btnShowUpdateBrP">Cập nhật</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Ghi nhận
+                            <ul>
+                                <li id="btnShowUA">
+                                    Ghi nhận thành tích
+                                </li>
+                                <li id="btnShowUD">
+                                    Ghi nhận kết thúc
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <style>
+                    #megaStore {
+                        max-width: 600px;
+                        margin: 3px auto;
+                        background: url('../content/web/menu/header.jpg') no-repeat center 0;
+                    }
+
+                    #menu1X h2 {
+                        font-size: 1em;
+                        text-transform: uppercase;
+                        padding: 5px 10px;
+                    }
+
+                    #template img {
+                        margin: 5px 20px 0 0;
+                        float: left;
+                    }
+
+                    #template {
+                        width: 380px;
+                    }
+
+                        #template ol {
+                            float: left;
+                            margin: 0 0 0 30px;
+                            padding: 10px 10px 0 10px;
+                        }
+
+                        #template:after {
+                            content: ".";
+                            display: block;
+                            height: 0;
+                            clear: both;
+                            visibility: hidden;
+                        }
+
+                        #template .k-button {
+                            float: left;
+                            clear: left;
+                            margin: 5px 0 5px 12px;
+                        }
+                </style>
+                <script>
+                                $(document).ready(function () {
+                                    $("#menu1X").kendoMenu();
+                                });
+                </script>
+            </div>
+        </header>
+        <div id="tabstrip">
+            <ul>
+                <li class="k-state-active">
+                    Tab 1
+                </li>
+                <li>
+                    New York
+                </li>
+            </ul>
+            <div>
+                <div id="Guid" class="container-fluid">
+                    <h1>Danh Sách Thành Viên</h1>
+                    <div id="GridTree">
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                abv
+            </div>
+        </div>
+    </article>
+
+
+
+</div>
+
+<!-- Sidebar -->
+<section id="sidebar">
+
+    <!-- Mini Posts -->
+    <section>
+        <div class="mini-posts">
+
+            <!-- Mini Post -->
+            <article class="mini-post">
+                <table style="width: 404px;" border="0">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">Thông tin thành viên</td>
+                        </tr>
+                        <tr id="trdOldID" hidden>
+                            <td style="width: auto;">Thành viên củ</td>
+                            <td style="width: auto;"><input id="OldID" class="" style="width: 255px" /></td>
+                        </tr>
+                        <tr id="trdRelationship" hidden>
+                            <td style="width: auto;">Loại quan hệ </td>
+                            <td style="width: auto;"> <input id="Relasionship" style="width: 255px" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: auto;">Ngày phát sinh </td>
+                            <td style="width: auto;"> <input id="CreateDate" style="width: 255px" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: auto;">Họ và tên </td>
+                            <td style="width: auto;"> <input class="k-textbox" id="FullName" name="FullName" style="width: 255px" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: auto;"> Giới tính</td>
+                            <td style="width: auto;"> <input id="Sex" name="" style="width: 255px" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: auto;">Ngày giờ sinh </td>
+                            <td style="width: auto;"> <input id="BirthDate" name="Birthday" style="width:255px" onchange="formatdatetime()" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: auto;"> Nơi ở</td>
+                            <td style="width: auto;"><input class="k-textbox" id="Address" name="AddressID" style="width: 255px" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: auto;"> Quê quán</td>
+                            <td style="width: auto;"> <input id="BirthPlace" name="BirthPlaceId" style="width: 255px" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: auto;"> Nghề nghiệp</td>
+                            <td style="width: auto;"> <input id="Job" name="Job" style="width: 255px" /></td>
+                        </tr>
+
+                        <tr id="tbDateOfDeath" hidden>
+                            <td class="lablename">Ngày giờ mất</td>
+                            <td>
+                                <input id="DateOfDeath" name="DateOfDeath" style="width:255px" />
+                            </td>
+                        </tr>
+                        <tr id="tbBurialPlace" hidden>
+                            <td class="lablename">Địa điểm mai táng</td>
+                            <td>
+                                <input id="BurialPlace" name="BurialPlaceId" style="width: 255px" />
+                            </td>
+                        </tr>
+                        <tr id="tbCauseOfDeath" hidden>
+                            <td class="lablename">Nguyên nhân mất</td>
+                            <td>
+                                <input id="CauseOfDeath" name="CauseOfDeath" style="width: 255px" />
+                             </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <div type="button" id="AddMember" class="k-button" onclick="AddMemberNew()" style="width:100px">Thêm</div>
+                                <div type="button" id="UpdateMember" class="k-button" onclick="UpdateMember()">Cập Nhật</div>
+                                <div type="button" id="ChangeStatus" class="k-button" onclick="ChangeAddMember()">Trở về thêm </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+            </article>
+
+
+        </div>
+    </section>
+
+
+
+    <!-- About -->
+    <section class="blurb">
+        <h2>About</h2>
+        <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
+        <ul class="actions">
+            <li><a href="#" class="button">Learn More</a></li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+    </section>
+
+</section>
+
+<div id="dialogJob">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;">Nghề nghiệp</td>
+                <td style="height: auto; width: 300px;"><input id="txtjob" placeholder= "Nhập nghề nghiệp..." style="width: 300px;font-size:20px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" id="btnAddJob" style="height: 40px; text-transform: capitalize">Thêm</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogBirthPlace">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Quê quán</p></td>
+                <td style="height: auto; width: 300px;"><input id="txtbirthplace" placeholder="nhập quê quán..." style="width: 300px;font-size:20px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:40px" id="btnAddBirthPlace">Thêm</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUjob">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nghề nghiệp</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlJob" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuJob" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUJob">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUBirthPlace">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nơi sinh</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlBP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuBP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUBP">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogCod">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nguyên nhân mất</p></td>
+                <td style="height: auto; width: 300px;"><input id="txtCod" placeholder="nhập nguyên nhân..." style="width: 300px;font-size:20px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:20px" id="btnAddCod">Thêm</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUCod">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Nguyên nhân mất</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlCod" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuCod" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUCod">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogBrP">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Địa điểm mai táng</p></td>
+                <td style="height: auto; width: 300px;"><input id="txtBrP" placeholder="nhập địa điểm..." style="width: 300px;font-size:20px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:20px" id="btnAddBrP">Thêm</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUBrP">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Địa điểm mai táng</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlBrP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: auto;"><p style="font-size:15px">Thay đổi </p></td>
+                <td style="height: auto; width: 300px;"><input id="txtuBrP" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 100px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUBrP">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUA">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành viên</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlM" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành tích</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlA" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Ngày phát sinh</p></td>
+                <td style="height: auto; width: 300px;"><input id="dateA" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 150px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:20px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUA"><p style="font-size:15px">Cập nhật</p></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="dialogUD">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Thành viên</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlM1" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Nguyên nhân</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlCD" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Ngày giờ mất</p></td>
+                <td style="height: auto; width: 300px;"><input id="dateD" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Địa điểm mai táng</p></td>
+                <td style="height: auto; width: 300px;"><input id="ddlBrP1" style="width: 300px;font-size:15px" /></td>
+            </tr>
+            <tr>
+                <td style="height: auto; width: 150px;">&nbsp;</td>
+                <td style="height: auto; width: 300px; padding-top:5px"> <button class="k-button btnAction" style="width: 100px;height:30px" id="btnUD">Cập nhật</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="~/assets/CGP.js"></script>
+
+<script src="~/assets/Library/CGP_Rule.js"></script>

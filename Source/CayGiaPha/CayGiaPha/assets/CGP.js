@@ -117,6 +117,7 @@ function CreateControl() {
 }
 function LoadData(ID)
 {
+    var t = ID;
     $.ajax({
         async:false,
         dataType: 'json',
@@ -144,7 +145,7 @@ function LoadData(ID)
             }
         },
         error: function () {
-            alert("Gặp Lỗi trong quá trình lấy dữ liệu");
+            alert("Gặp Lỗi trong quá trình lấy dữ liệu 147");
         }
     });
 }
@@ -239,6 +240,7 @@ function LoadDataTree()
             options.dataSource = dataSource;
         },
         error: function () {
+            alert("Lỗi 243")
         }
     });
     $('#GridTree').empty().kendoGrid(options);

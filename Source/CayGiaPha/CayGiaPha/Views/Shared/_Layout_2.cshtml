@@ -1,0 +1,149 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Future Imperfect by HTML5 UP
+    html5up.net | ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Future Imperfect by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/assets/newlayout/css/main.css" rel="stylesheet" />
+    <link href="~/assets/newlayout/css/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/assets/newlayout/css/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/assets/newlayout/css/kendo.default.mobile.min.css" rel="stylesheet" />
+    @*<script src="~/assets/newlayout/css/jquery.min.js"></script>
+        <script src="~/assets/newlayout/css/kendo.all.min.js"></script>*@
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
+    @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" />*@
+    @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />*@
+
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
+</head>
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="#">Future Imperfect</a></h1>
+
+            <nav class="main">
+                <ul>
+                    <li class="search">
+                        <a class="fa-search" href="#search">Search</a>
+                        <form id="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </li>
+                    <li class="menu">
+                        <a class="fa-bars" href="#menu">Menu</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <section id="menu">
+
+            <!-- Search -->
+            <section>
+                <form class="search" method="get" action="#">
+                    <input type="text" name="query" placeholder="Search" />
+                </form>
+            </section>
+
+
+        </section>
+
+        <!-- 12312321-->
+        @RenderBody()
+    </div>
+    <style>
+        .sunny, .cloudy, .rainy {
+            display: block;
+            margin: 30px auto 10px;
+            width: 128px;
+            height: 128px;
+            background: url('../content/web/tabstrip/weather.png') transparent no-repeat 0 0;
+        }
+
+        .cloudy {
+            background-position: -128px 0;
+        }
+
+        .rainy {
+            background-position: -256px 0;
+        }
+
+        .weather {
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        #tabstrip h2 {
+            font-weight: lighter;
+            font-size: 5em;
+            line-height: 1;
+            padding: 0 0 0 30px;
+            margin: 0;
+        }
+
+            #tabstrip h2 span {
+                background: none;
+                padding-left: 5px;
+                font-size: .3em;
+                vertical-align: top;
+            }
+
+        #tabstrip p {
+            margin: 0;
+            padding: 0;
+        }
+
+        #cap {
+            width: 242px;
+            height: 225px;
+            margin: 20px auto;
+            background-image: url('../content/web/dropdownlist/cap.png');
+            background-repeat: no-repeat;
+            background-color: transparent;
+        }
+
+        .black-cap {
+            background-position: 0 0;
+        }
+
+        .grey-cap {
+            background-position: 0 -225px;
+        }
+
+        .orange-cap {
+            background-position: 0 -450px;
+        }
+    </style>
+    <script>
+                $(document).ready(function() {
+				$(document).ready(function() {
+                    $("#tabstrip").kendoTabStrip({
+                        animation:  {
+                            open: {
+                                effects: "fadeIn"
+                            }
+                        }
+                    });
+                });
+
+
+                    // create DropDownList from select HTML element
+
+                });
+    </script>
+    <!-- Scripts -->
+
+</body>
+</html>

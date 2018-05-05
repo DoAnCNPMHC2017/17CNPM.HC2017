@@ -8,7 +8,7 @@
                 $('#ddlBP').data("kendoDropDownList").setDataSource(result);
             },
             error: function () {
-                alert("Gặp Lỗi trong quá trình lấy dữ liệu");
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu 11");
             }
         });
 
@@ -20,7 +20,7 @@
                 $('#ddlJob').data("kendoDropDownList").setDataSource(result);
             },
             error: function () {
-                alert("Gặp Lỗi trong quá trình lấy dữ liệu");
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu 23");
             }
         });
 
@@ -32,7 +32,7 @@
                 $('#ddlCod').data("kendoDropDownList").setDataSource(result);
             },
             error: function () {
-                alert("Gặp Lỗi trong quá trình lấy dữ liệu");
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu 35");
             }
         }); 
 
@@ -44,7 +44,7 @@
                 $('#ddlBrP').data("kendoDropDownList").setDataSource(result);
             },
             error: function () {
-                alert("Gặp Lỗi trong quá trình lấy dữ liệu");
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu 47");
             }
         });
     }

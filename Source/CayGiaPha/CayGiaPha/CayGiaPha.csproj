@@ -189,6 +189,22 @@
     <Content Include="assets\Library\jquery.min.js" />
     <Content Include="assets\Library\kendo.all.min.js" />
     <Content Include="assets\meminfo.js" />
+    <Content Include="assets\newlayout\css\font-awesome.min.css" />
+    <Content Include="assets\newlayout\css\ie8.css" />
+    <Content Include="assets\newlayout\css\ie9.css" />
+    <Content Include="assets\newlayout\css\jquery.min.js" />
+    <Content Include="assets\newlayout\css\kendo.all.min.js" />
+    <Content Include="assets\newlayout\css\kendo.common.min.css" />
+    <Content Include="assets\newlayout\css\kendo.default.min.css" />
+    <Content Include="assets\newlayout\css\kendo.default.mobile.min.css" />
+    <Content Include="assets\newlayout\css\main.css" />
+    <Content Include="assets\newlayout\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\newlayout\js\ie\html5shiv.js" />
+    <Content Include="assets\newlayout\js\ie\respond.min.js" />
+    <Content Include="assets\newlayout\js\jquery.min.js" />
+    <Content Include="assets\newlayout\js\main.js" />
+    <Content Include="assets\newlayout\js\skel.min.js" />
+    <Content Include="assets\newlayout\js\util.js" />
     <Content Include="assets\Report.js" />
     <Content Include="assets\WinDownKendoUi.js" />
     <Content Include="Content\bootstrap.css" />
@@ -290,6 +306,39 @@
     <Content Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\newlayout\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\newlayout\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\newlayout\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\newlayout\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\newlayout\fonts\FontAwesome.otf" />
+    <Content Include="assets\newlayout\sass\base\_page.scss" />
+    <Content Include="assets\newlayout\sass\base\_typography.scss" />
+    <Content Include="assets\newlayout\sass\components\_author.scss" />
+    <Content Include="assets\newlayout\sass\components\_blurb.scss" />
+    <Content Include="assets\newlayout\sass\components\_box.scss" />
+    <Content Include="assets\newlayout\sass\components\_button.scss" />
+    <Content Include="assets\newlayout\sass\components\_form.scss" />
+    <Content Include="assets\newlayout\sass\components\_icon.scss" />
+    <Content Include="assets\newlayout\sass\components\_image.scss" />
+    <Content Include="assets\newlayout\sass\components\_list.scss" />
+    <Content Include="assets\newlayout\sass\components\_mini-post.scss" />
+    <Content Include="assets\newlayout\sass\components\_post.scss" />
+    <Content Include="assets\newlayout\sass\components\_section.scss" />
+    <Content Include="assets\newlayout\sass\components\_table.scss" />
+    <Content Include="assets\newlayout\sass\ie8.scss" />
+    <Content Include="assets\newlayout\sass\ie9.scss" />
+    <Content Include="assets\newlayout\sass\layout\_footer.scss" />
+    <Content Include="assets\newlayout\sass\layout\_header.scss" />
+    <Content Include="assets\newlayout\sass\layout\_intro.scss" />
+    <Content Include="assets\newlayout\sass\layout\_main.scss" />
+    <Content Include="assets\newlayout\sass\layout\_menu.scss" />
+    <Content Include="assets\newlayout\sass\layout\_sidebar.scss" />
+    <Content Include="assets\newlayout\sass\layout\_wrapper.scss" />
+    <Content Include="assets\newlayout\sass\libs\_functions.scss" />
+    <Content Include="assets\newlayout\sass\libs\_mixins.scss" />
+    <Content Include="assets\newlayout\sass\libs\_skel.scss" />
+    <Content Include="assets\newlayout\sass\libs\_vars.scss" />
+    <Content Include="assets\newlayout\sass\main.scss" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -389,6 +438,8 @@
     <Content Include="Views\Test\Create.cshtml" />
     <Content Include="Views\CGP\MemberInfo.cshtml" />
     <Content Include="Views\CGP\Report.cshtml" />
+    <Content Include="Views\Shared\_Layout_2.cshtml" />
+    <Content Include="Views\CGP\FamilyTree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -398,6 +449,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\NewFolder1\" />
     <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>

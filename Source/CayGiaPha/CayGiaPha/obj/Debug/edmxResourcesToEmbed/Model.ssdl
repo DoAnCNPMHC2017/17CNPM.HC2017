@@ -103,6 +103,7 @@
     <Property Name="TreeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="200" />
     <Property Name="CreateDate" Type="datetime" />
+    <Property Name="AccountID" Type="int" />
   </EntityType>
   <EntityContainer Name="CGPModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
