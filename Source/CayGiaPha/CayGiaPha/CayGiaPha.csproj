@@ -209,6 +209,18 @@
     <Content Include="assets\newlayout\kendo\jquery.min.js" />
     <Content Include="assets\newlayout\kendo\kendo.all.min.js" />
     <Content Include="assets\newlayout\kendo\kendo.common-material.min.css" />
+    <Content Include="assets\newlayout\table\animate.css" />
+    <Content Include="assets\newlayout\table\bootstrap.min.css" />
+    <Content Include="assets\newlayout\table\bootstrap.min.js" />
+    <Content Include="assets\newlayout\table\jquery-3.2.1.min.js" />
+    <Content Include="assets\newlayout\table\main.css" />
+    <Content Include="assets\newlayout\table\main.js" />
+    <Content Include="assets\newlayout\table\perfect-scrollbar.css" />
+    <Content Include="assets\newlayout\table\perfect-scrollbar.min.js" />
+    <Content Include="assets\newlayout\table\popper.js" />
+    <Content Include="assets\newlayout\table\select2.min.css" />
+    <Content Include="assets\newlayout\table\select2.min.js" />
+    <Content Include="assets\newlayout\table\util.css" />
     <Content Include="assets\Report.js" />
     <Content Include="assets\WinDownKendoUi.js" />
     <Content Include="Content\bootstrap.css" />
@@ -426,7 +438,6 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -442,10 +453,14 @@
     <Content Include="Views\Test\Edit.cshtml" />
     <Content Include="Views\Test\Create.cshtml" />
     <Content Include="Views\CGP\MemberInfo.cshtml" />
-    <Content Include="Views\CGP\Report.cshtml" />
     <Content Include="Views\Shared\_Layout_2.cshtml" />
     <Content Include="Views\CGP\FamilyTree.cshtml" />
     <Content Include="Views\Account\Register2.cshtml" />
+    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\CGP\Report21.cshtml" />
+    <Content Include="Views\CGP\Report.cshtml" />
+    <Content Include="Views\CGP\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

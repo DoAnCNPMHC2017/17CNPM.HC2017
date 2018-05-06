@@ -21,6 +21,7 @@ namespace CayGiaPha.Controllers
             }
             Account model = new Account();
             model.Username = "";
+            ViewBag.Mes = 3;
             return View(model);
         }
         [HttpPost]
@@ -28,9 +29,9 @@ namespace CayGiaPha.Controllers
         {
             using (CGPEntities dt = new CGPEntities())
             {
-                //string pass = StringUtils.MD5(model.PassWord);
+                string pass = StringUtils.MD5(model.Password);
                 Account us = dt.Accounts
-                    .Where(p => p.Username == model.Username && p.Password == model.Password)
+                    .Where(p => p.Username == model.Username && p.Password == pass)
                     .FirstOrDefault();
                 if (us != null)
                 {
@@ -44,10 +45,11 @@ namespace CayGiaPha.Controllers
                     Session["user"] = us;
                     Session["IdUser"] = us.ID;
                     Session["username"] = us.Username;
-
+                    ViewBag.Mes = 1;
                     //Response.Write("<script LANGUAGE='JavaScript' >alert('Đăng nhập thành công.')</script>");
                     return RedirectToAction("Index", "Home");
                 }
+                ViewBag.Mes = 2;
                 //Response.Write("<script LANGUAGE='JavaScript' >alert('Tên đăng nhập hoặc mật khẩu không đúng')</script>");
                 return View(model);
             }
@@ -63,6 +65,7 @@ namespace CayGiaPha.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            ViewBag.Mes = 3;
             return View();
         }
         [HttpPost]
@@ -70,45 +73,52 @@ namespace CayGiaPha.Controllers
         {
             using (CGPEntities ctx = new CGPEntities())
             {
-                // Check exists Email
+                //Check exists account
                 //Account us = ctx.Accounts.Where(p => p.Email == model.Email.ToString()).FirstOrDefault();
-                //if (us != null)
-                //{
-                //    Response.Write("<script LANGUAGE='JavaScript' >alert('Email đã tồn tại.')</script>");
-                //}
-                //else
-                //{
-
-                //Account u = new Account();
-                //u.Username = model.Username;
-
-                //Mã hóa password
-                //u.Password = StringUtils.MD5(model.Password);
-
-                //u.Email = model.Email;
-
-                try
+                Account us = ctx.Accounts.Where(p => p.Username == model.Username.ToString()).FirstOrDefault();
+                if (us != null)
                 {
-                    ctx.Accounts.Add(model);
-                    ctx.SaveChanges();
 
-                    @ViewBag.Error = false;
-
-
-                    Login(model);
-
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('Đăng ký thành công. Đang chuyển về trang chủ')</script>");
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.Mes = 2;
+                    return View(model);
                 }
-                catch (Exception ex)
+                else
                 {
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('Lỗi.')</script>" + ex.ToString());
+
+                    Account u = new Account();
+                    u.Username = model.Username;
+                    //u.Password = model.Password;
+                    //Mã hóa password
+                    u.Password = StringUtils.MD5(model.Password);
+
+                    //u.Email = model.Email;
+
+                    try
+                    {
+                        ctx.Accounts.Add(u);
+                        ctx.SaveChanges();
+
+                        @ViewBag.Error = false;
+
+
+                        //Login(model);
+                        ViewBag.Mes = 1;
+
+                        // Response.Write("<script LANGUAGE='JavaScript' >alert('Đăng ký thành công. Đang chuyển về trang chủ')</script>");
+                        //return RedirectToAction("Index", "Home");
+                        return View();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("<script LANGUAGE='JavaScript' >alert('Lỗi.')</script>" + ex.ToString());
+                    }
+
+
                 }
 
-
+                ViewBag.Mes = 2;
+                return View(model);
             }
-
-            return View(model);
         }
 
         public ActionResult Profile()
