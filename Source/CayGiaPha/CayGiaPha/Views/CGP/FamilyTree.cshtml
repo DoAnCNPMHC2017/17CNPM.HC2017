@@ -16,6 +16,14 @@
                 <div id="megaStore">
                     <ul id="menu1X">
                         <li>
+                            Tra cứu
+                            <ul>
+                                <li id="btnShowSearch">
+                                    Tra cứu thành viên
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             Báo cáo
                             <ul>
                                 <li class="clickMe" onclick="BaoCaoNam(@ViewBag.Id,1)">
@@ -128,6 +136,9 @@
                 <li id="tSecond" onclick="tab2()">
                    Hồ sơ thành viên
                 </li>
+                <li id="tSecond11" onclick="tab3()">
+                    Cây Gia Phả
+                </li>
             </ul>
             <div  >
                 <div id="Guid" class="container-fluid">
@@ -232,6 +243,9 @@
 
                     </tbody>
                 </table>
+            </div>
+            <div>
+                <div id="diagram"></div>
             </div>
         </div>
     </article>
@@ -447,6 +461,31 @@
                 <td style="height: auto; width: 300px; padding-top:5px"> <button class="k-button" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnUD">Cập nhật</button></td>
             </tr>
         </tbody>
+    </table>
+</div>
+<div id="dialogSearch">
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr style="height: auto;">
+                <td style="height: auto; width: 150px;"><p style="font-size:15px">Họ Tên: </p></td>
+                <td style="height: auto; width: 300px;"><input id="HTSearch" class="k-textbox" style="width: 300px;font-size:15px" /></td>
+            </tr>
+           
+        </tbody>
+    </table>
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tr style="height: auto;">
+            <td style="height: auto; width: 150px;"><p style="font-size:15px">Năm Sinh: </p></td>
+            <td style="height: auto; width: 138px;"><input id="FromDates" style="width: 138px;font-size:15px" /></td>
+            <td style="height: auto; width: 20px;"><p style="font-size:15px">đến: </p></td>
+            <td style="height: auto; width: 138px;"><input id="ToDates" style="width: 138px;font-size:15px" /></td>
+        </tr>
+    </table>
+    <table style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
+        <tr>
+            <td style="height: auto; width: 150px;">&nbsp;</td>
+            <td style="height: auto; width: 300px; padding-top:5px"> <button class="k-button" style="height: 40px;width:120px; text-transform: capitalize;letter-spacing: 0px" id="btnSearch">Tìm Kiếm</button></td>
+        </tr>
     </table>
 </div>
 <script src="~/assets/CGP.js"></script>

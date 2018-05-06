@@ -44,7 +44,7 @@ namespace CayGiaPha.Controllers
                     ctx.SaveChanges();
 
                     //@ViewBag.Error = false;
-
+                    //Auto create
 
                     Response.Write("<script LANGUAGE='JavaScript' >alert('Tạo  cây thành công')</script>");
                     return RedirectToAction("Index", "CGP");
@@ -456,20 +456,25 @@ namespace CayGiaPha.Controllers
             }
         }
         //cho nay
-        public ActionResult getListMember(int TreeID)
+        public ActionResult getListMember(int TreeID,int Tcuu, string Ten,string FDate,string TDate)
         {
+            string Where = "";
+                if(Tcuu == 1)
+                {
+                    Where = "AND FullName Like '%" + Ten + "%' AND Year(Birthday) BETWEEN " + FDate + " AND " + TDate;
+                }
             using (CGPEntities dt = new CGPEntities())
             {
                 string Query = "Select  M1.*,Format(Birthday,'dd/MM/yyyy hh:mm:tt') bd" +
                     ",Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
                                " From" +
-                               " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 0 ) AS M1" +
+                               " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 0 " + Where + ") AS M1" +
                                " INNER JOIN" +
                                " (Select ID,Memberold,FullName,Sex from CGP..Member where TreeID = " + TreeID + ") AS M2 ON M1.Memberold = M2.Id" +
                                " LEFT JOIN" +
                                " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
                                " UNION" +
-                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy hh:mm') bd,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 ";
+                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy hh:mm') bd,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 " + Where ;
                 var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
                 //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
                 //    .ToList();

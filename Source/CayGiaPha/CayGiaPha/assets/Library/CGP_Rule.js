@@ -626,7 +626,6 @@
         autoClose: true
         , optionLabel: "Chọn thành viên ..."
     });
-
     $("#ddlCD").kendoDropDownList({
         dataTextField: 'CauseOfDeathText',
         dataValueField: 'CauseOfDeathID',
@@ -644,7 +643,7 @@
 
         , optionLabel: "Chọn nguyên nhân ..."
     });
-
+   
     $("#ddlBrP1").kendoDropDownList({
         dataTextField: 'BurialPlaceName',
         dataValueField: 'BurialPlaceID',
