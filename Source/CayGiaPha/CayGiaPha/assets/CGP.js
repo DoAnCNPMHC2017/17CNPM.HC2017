@@ -2,11 +2,23 @@
 var Res = [];
 var resultOldID = {};
 var couple = {};
+var Tcuu = 0;
 $(document).ready(function () {
     CreateControl();
     ControlCreateTree();
     LoadData($('#TreeID').val());
     ChangeAddMember();
+    $("#btnShowSearch").click(function () {
+
+        var dialog = $("#dialogSearch").data("kendoDialog");
+        dialog.open();
+    });
+    $("#btnSearch").click(function () {
+        var dialog = $("#dialogSearch").data("kendoDialog");
+        Tcuu = 1;
+        dialog.close();
+        LoadDataTree();      
+    });
     createDiagram();
 });
 function ViewReport()
@@ -31,6 +43,27 @@ function CreateControl() {
         autoClose: false,
         change: function (e) {
         }
+    });
+    var divContentSearch = $('#dialogSearch').html();
+    $("#dialogSearch").kendoDialog({
+        width: 600,
+        height: 280,
+        title: "Tra cứu thành viên",
+        content: divContentSearch,
+        visible: false
+    }).data("kendoDialog");
+
+    $("#FromDates").kendoDatePicker({
+        value: new Date(),
+        start: "year",
+        format: "yyyy",
+        dateInput: true
+    });
+    $("#ToDates").kendoDatePicker({
+        value: new Date(),
+        start: "year",
+        format: "yyyy",
+        dateInput: true
     });
     //noi sinh
     $("#BirthPlace").kendoDropDownList({
@@ -254,7 +287,7 @@ function LoadDataTree()
         async: false,
         dataType: 'json',
         url: '/CGP/getListMember',
-        data: { TreeID: $('#TreeID').val() },
+        data: { TreeID: $('#TreeID').val(), Tcuu: Tcuu, Ten: $('#HTSearch').val(), FDate: $('#FromDates').val(), TDate: $('#ToDates').val() },
         success: function (result) {
             //add Stt
             for (var i = 0; i < result.length;i++)
@@ -280,7 +313,6 @@ function LoadDataTree()
     });
     $('#GridTree').empty().kendoGrid(options);
 
-    createDiagram();
 }
 function LoadInfomationMember(ID)
 {
@@ -424,7 +456,7 @@ function AddMemberNew()
             LoadData($('#TreeID').val());
             LoadDataTree();
             ChangeAddMember($('#TreeID').val());
-            formatdatetime();
+            createDiagram();
         },
         error: function () {
             alert("Thông tin chưa hợp lệ");
@@ -476,6 +508,7 @@ function UpdateMemberNew() {
             alert(result);
             LoadData($('#TreeID').val());
             LoadDataTree();
+            createDiagram();
             //ChangeAddMember($('#TreeID').val());
         },
         error: function () {
