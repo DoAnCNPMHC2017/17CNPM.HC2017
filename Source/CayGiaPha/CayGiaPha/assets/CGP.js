@@ -156,23 +156,33 @@ function LoadData(ID)
         }
     });
 }
-function RuleCouple(ID)
-{
-    for(var i=0;i<couple.length;i++)
-    {
-        if(couple[i].ID1 == ID)
-        {
-            if(couple[i].ID2 != 0)
-            {
-                return "0";
-            }
-            else
-            {
-                return couple[i].Sex1;
+function RuleCouple(ID, Type) {
+    if (Type == 0) {
+        for (var i = 0; i < couple.length; i++) {
+            if (couple[i].ID1 == ID) {
+                if (couple[i].ID2 != 0) {
+                    return "0";
+                }
+                else {
+                    return couple[i].Sex1;
+                }
             }
         }
+        return "1";
     }
-    return "1";
+    else if (Type == 1) {
+        for (var i = 0; i < couple.length; i++) {
+            if (couple[i].ID1 == ID) {
+                if (Res[0].Id != couple[i].ID2 && couple[i].ID2 != 0) {
+                    return "0";
+                }
+                else if ($('#Sex').val() == couple[i].Sex1) {
+                    return "-1";
+                }
+            }
+        }
+        return "1";
+    }
 }
 function ControlCreateTree()
 {
@@ -274,14 +284,14 @@ function LoadInfomationMember(ID)
         success: function (result) {
             Res = result;
             console.log(Res);
-            //if (Res[0].Memberold == "" || Res[0].Memberold == null) {
-            //    $('#trdRelationship').hide();
-            //    $('#trdOldID').hide();
-            //}
-            //else {           
+            if (Res[0].Memberold == "" || Res[0].Memberold == null) {
+                $('#trdRelationship').hide();
+                $('#trdOldID').hide();
+            }
+            else {           
                 $('#trdRelationship').show();
                 $('#trdOldID').show();
-            //}
+            }
             $('#OldID').data('kendoDropDownList').value(Res[0].Memberold);
             $('#FullName').val(Res[0].FullName);
             $('#Address').val(Res[0].AddressID);
@@ -293,24 +303,24 @@ function LoadInfomationMember(ID)
             $('#BirthPlace').data('kendoDropDownList').value(Res[0].BirthPlaceId);
             //
             //formatdatetime();
-            //if (Res[0].CauseOfDeath != null || Res[0].DateOfDeath != null || Res[0].BurialPlaceId != null)
-            //{
-            //    $('#tbCauseOfDeath').show();
-            //    $('#tbDateOfDeath').show();
-            //    $('#tbBurialPlace').show();
-            //    $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
-            //    $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
-            //    $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
-            //}
-            //else {
-            //    $('#tbCauseOfDeath').hide();
-            //    $('#tbDateOfDeath').hide();
-            //    $('#tbBurialPlace').hide();
-            //    $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
-            //    $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
-            //    $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
-            //}
-            //
+            if (Res[0].CauseOfDeath != null || Res[0].DateOfDeath != null || Res[0].BurialPlaceId != null)
+            {
+                $('#tbCauseOfDeath').show();
+                $('#tbDateOfDeath').show();
+                $('#tbBurialPlace').show();
+                $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
+                $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
+                $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
+            }
+            else {
+                $('#tbCauseOfDeath').hide();
+                $('#tbDateOfDeath').hide();
+                $('#tbBurialPlace').hide();
+                $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
+                $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
+                $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
+            }
+            
             $('#UpdateMember').show();
             //$('#ChangeStatus').show();
             $('#AddMember').hide();
@@ -374,7 +384,7 @@ function AddMemberNew()
     QHe = MBOld == "" ? -1 : QHe;
     if (QHe == 1)
     {
-        var checkCouple = RuleCouple(MBOld);
+        var checkCouple = RuleCouple(MBOld,0);
         if(checkCouple == "0")
         {
             alert("Thành viên củ đã có (vợ/chồng) không thể thêm !!!");
@@ -404,6 +414,57 @@ function AddMemberNew()
         },
         error: function () {
             alert("Thông tin chưa hợp lệ");
+        }
+    });
+}
+function UpdateMemberNew() {
+    var FName = $('#FullName').val();
+    if (FName == "") {
+        alert("Vui lòng nhập họ tên");
+        return;
+    }
+    var DChi = $('#Address').val();
+    var GTinh = $('#Sex').val();
+    var VLam = $('#Job').val();
+    var MBOld = $('#OldID').val();
+    var QHe = $('#Relasionship').val();
+    if (QHe != "" && MBOld == "") {
+        alert("Bạn chưa chọn thành viên củ");
+        return;
+    }
+
+    var NSinh = $('#BirthDate').val();
+    var NoiSinh = $('#BirthPlace').val();
+    var CDate = $("#CreateDate").val();
+    var NgayMat = $("#DateOfDeath").val();
+    var NoiMat = $("#BurialPlace").val();
+    var NNMat = $("#CauseOfDeath").val();
+    //xu ly biến
+    QHe = MBOld == "" ? -1 : QHe;
+    if (QHe == 1) {
+        var checkCouple = RuleCouple(MBOld, 1);
+        if (checkCouple == "0") {
+            alert("Thành viên củ đã có (vợ/chồng) không thể thêm !!!");
+            return;
+        }
+        else if (checkCouple == "-1") {
+            alert("Giới tính bạn chọn không hợp lý với quan hệ vợ chồng hiện tại với thành viên củ");
+            return;
+        }
+    }
+    $.ajax({
+        async: false,
+        type: "post",
+        dataType: 'json',
+        url: '/CGP/UpdateMemberNew',
+        data: { ID: Res[0].Id, TreeID: $('#TreeID').val(), FName: FName, DChi: DChi, GTinh: GTinh, VLam: VLam, MBOld: MBOld, QHe: QHe, NSinh: NSinh, NoiSinh: NoiSinh, CDate: CDate, NgayMat: NgayMat, NoiMat: NoiMat, NNMat: NNMat },
+        success: function (result) {
+            alert(result);
+            LoadData($('#TreeID').val());
+            LoadDataTree();
+            //ChangeAddMember($('#TreeID').val());
+        },
+        error: function () {
         }
     });
 }

@@ -518,7 +518,8 @@ namespace CayGiaPha.Controllers
             //neu khong co thanh vien cu (la nguoi đứng đầu gia phả)
             if (MBOld != "")
             {
-                var kq = db.Members.Where(b => b.TreeID == TreeID).Select(b => new { Doi = b.Generation }).ToList();
+                int tempID =Int32.Parse(MBOld);
+                var kq = db.Members.Where(b => b.TreeID == TreeID && b.Id == tempID).Select(b => new { Doi = b.Generation }).ToList();
                 SoDoi = Int32.Parse(kq[0].Doi.ToString());
                 Mem.Memberold = Int32.Parse(MBOld);
             }
@@ -531,6 +532,50 @@ namespace CayGiaPha.Controllers
                     ctx.Members.Add(Mem);
                     ctx.SaveChanges();
                     return Json("Thêm Thành Công !", JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [HttpPost]
+        public JsonResult UpdateMemberNew(int ID, int TreeID, string FName, string DChi, string GTinh, string VLam, string MBOld, int QHe, string NSinh, string NoiSinh, string CDate, string NgayMat, string NoiMat, string NNMat)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                try
+                {
+                    var Mem = ctx.Members.Where(p => p.Id == ID).FirstOrDefault();
+                    //Mem.TreeID = TreeID;
+                    Mem.FullName = FName;
+                    Mem.AddressID = DChi;
+                    Mem.Sex = GTinh;
+                    if (VLam != "")
+                        Mem.Job = Int32.Parse(VLam);
+                    else
+                        Mem.Job = null;
+                    Mem.TypeRelationship = QHe;
+                    Mem.Birthday = DateTime.ParseExact(NSinh, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
+                    Mem.Date_Create = DateTime.Parse(CDate);
+                    if (NoiSinh != "")
+                        Mem.BirthPlaceId = Int32.Parse(NoiSinh);
+                    else
+                        Mem.BirthPlaceId = null;
+                    if (NgayMat != "")
+                        Mem.DateOfDeath = DateTime.ParseExact(NgayMat, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
+                    else
+                        Mem.DateOfDeath = null;
+                    if (NoiMat != "")
+                        Mem.BurialPlaceId = Int32.Parse(NoiMat);
+                    else
+                        Mem.BurialPlaceId = null;
+                    if (NNMat != "")
+                        Mem.CauseOfDeath = Int32.Parse(NNMat);
+                    else
+                        Mem.CauseOfDeath = null;
+                    ctx.SaveChanges();
+                    return Json("Cập nhật thành công !", JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
