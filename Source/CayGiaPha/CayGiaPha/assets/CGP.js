@@ -274,8 +274,8 @@ function LoadInfomationMember(ID)
 {
     var tabStrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
     tabStrip.select(1);
-
-
+    var dropdownlist = $("#OldID").data("kendoDropDownList");
+    dropdownlist.enable(false);
     $.ajax({
         async: false,
         dataType: 'json',
@@ -331,6 +331,8 @@ function LoadInfomationMember(ID)
 }
 function ChangeAddMember()
 {
+    var dropdownlist = $("#OldID").data("kendoDropDownList");
+    dropdownlist.enable(true);
     $('#UpdateMember').hide();
     //$('#ChangeStatus').hide();
     $('#AddMember').show();
