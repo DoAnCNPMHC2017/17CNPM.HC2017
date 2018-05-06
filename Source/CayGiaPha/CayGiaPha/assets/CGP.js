@@ -7,6 +7,7 @@ $(document).ready(function () {
     ControlCreateTree();
     LoadData($('#TreeID').val());
     ChangeAddMember();
+    createDiagram();
 });
 function ViewReport()
 {
@@ -240,6 +241,10 @@ function tab1() {
     var tabStrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
     tabStrip.select(0);
 }
+function tab3() {
+    var tabStrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
+    tabStrip.select(2);
+}
 function LoadDataTree()
 {
     var grid = $('#GridTree').data("kendoGrid");
@@ -251,6 +256,11 @@ function LoadDataTree()
         url: '/CGP/getListMember',
         data: { TreeID: $('#TreeID').val() },
         success: function (result) {
+            //add Stt
+            for (var i = 0; i < result.length;i++)
+            {
+                result[i].STT = i + 1;
+            }
             var dataSource = new kendo.data.DataSource({
                 data: result
                 , schema: {
@@ -269,6 +279,8 @@ function LoadDataTree()
         }
     });
     $('#GridTree').empty().kendoGrid(options);
+
+    createDiagram();
 }
 function LoadInfomationMember(ID)
 {
@@ -474,28 +486,36 @@ function setColumns(typeID) {
     var columns = null;
     switch (typeID) {
         case '0':
-            columns = [{
-                title: "Họ Tên",
-                width: 240,
-                template: "<a style='color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#if(data.FullName == ''){#...#}else{##=FullName##}#</a>"
-            }, { field: "bd", title: "Ngày sinh" }
-            , {
-                //field: "Generation",
-                title: "Đời",
-                template: "<strong>Đời Thứ #=Generation#</strong>"
-            }, {
-                field: "Mo",
-                title: "Cha/Mẹ",
-                width: 250,
-                template: "#if(data.Fa !=''){#<p>Cha: <strong>#=Fa #</strong></p>#}#" +
-                          "#if(data.Mo !=''){#<p>Mẹ: <strong>#=Mo #</strong></p>#}#"
-            }, {
-                //field: "Mo",
-                title: "Chi tiết",
-                width: 250,
-                //template: "  <a href='@Url.Action('Member', 'CGP', new { ID = #=ID#})'>"
-                template: "<a href='/CGP/MemberInfo/?id=#=ID#' >Cập nhật</a>"
-            }
+            columns = [
+                {
+                    field: "STT",
+                    title: "STT",
+                    width: 50
+                },
+                {
+                    title: "Họ Tên",
+                    width: 150,
+                    template: "<a style='color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#if(data.FullName == ''){#...#}else{##=FullName##}#</a>"
+                }, { field: "bd", title: "Ngày sinh", width: 120 }
+                , {
+                    //field: "Generation",
+                    title: "Đời",
+                    width: 90,
+                    template: "<strong>Đời Thứ #=Generation#</strong>"
+                }, {
+                    field: "Mo",
+                    title: "Cha/Mẹ",
+                    width: 220,
+                    template: "#if(data.Fa !=''){#<p>Cha: <strong>#=Fa #</strong></p>#}#" +
+                              "#if(data.Mo !=''){#<p>Mẹ: <strong>#=Mo #</strong></p>#}#"
+                }
+            //{
+            //    //field: "Mo",
+            //    title: "Chi tiết",
+            //    width: 250,
+            //    //template: "  <a href='@Url.Action('Member', 'CGP', new { ID = #=ID#})'>"
+            //    template: "<a href='/CGP/MemberInfo/?id=#=ID#' >Cập nhật</a>"
+            //}
 
             ];
             break;
@@ -504,149 +524,160 @@ function setColumns(typeID) {
 }
 
 /////////////////////START Tao cay\\\\\\\\\\\\\\\\\\\\\\
-//function visualTemplate(options) {
-//    var dataviz = kendo.dataviz;
-//    var g = new dataviz.diagram.Group();
-//    var dataItem = options.dataItem;
+function visualTemplate(options) {
+    var dataviz = kendo.dataviz;
+    var g = new dataviz.diagram.Group();
+    var dataItem = options.dataItem;
 
-//    g.append(new dataviz.diagram.Rectangle({
-//        width: 380,
-//        height: 75,
-//        stroke: {
-//            width: 0
-//        },
-//        fill: {
-//            gradient: {
-//                type: "linear",
-//                stops: [{
-//                    color: dataItem.colorScheme,
-//                    offset: 0,
-//                    opacity: 0.5
-//                }, {
-//                    color: dataItem.colorScheme,
-//                    offset: 1,
-//                    opacity: 1
-//                }]
-//            }
-//        }
-//    }));
+    g.append(new dataviz.diagram.Rectangle({
+        width: 300,
+        height: 75,
+        stroke: {
+            width: 0
+        },
+        fill: {
+            gradient: {
+                type: "linear",
+                stops: [{
+                    color: dataItem.colorScheme,
+                    offset: 0,
+                    opacity: 0.5
+                }, {
+                    color: dataItem.colorScheme,
+                    offset: 1,
+                    opacity: 1
+                }]
+            }
+        }
+    }));
 
-//    g.append(new dataviz.diagram.TextBlock({
-//        text: dataItem.Name,
-//        x: 85,
-//        y: 20,
-//        fill: "#fff"
-//    }));
+    g.append(new dataviz.diagram.TextBlock({
+        text: dataItem.Name,
+        x: 10,
+        y: 20,
+        fill: "#fff"
+    }));
 
-//    g.append(new dataviz.diagram.TextBlock({
-//        text: dataItem.title,
-//        x: 85,
-//        y: 40,
-//        fill: "#fff"
-//    }));
+    g.append(new dataviz.diagram.TextBlock({
+        text: dataItem.title,
+        x: 10,
+        y: 40,
+        fill: "#fff"
+    }));
 
-//    g.append(new dataviz.diagram.Image({
-//        source: "../content/dataviz/diagram/people/" + dataItem.image,
-//        x: 3,
-//        y: 3,
-//        width: 68,
-//        height: 68
-//    }));
+    //g.append(new dataviz.diagram.Image({
+    //    source: "../content/dataviz/diagram/people/" + dataItem.image,
+    //    x: 3,
+    //    y: 3,
+    //    width: 18,
+    //    height: 18
+    //}));
 
-//    return g;
-//}
-//function TimVoChong(Mbold)
-//{
-//    for (var i = 0; i < Items.length; i++) {
-//        if (Items[i].Memberold == Mbold  && Items[i].TypeRelationship == 1) {
-//            //luu
-//            var ItemsTemp = Items[i];
-//            //xóa
-//            Items.splice(i, 1);
-//            //tra ve tên     
-//            return ItemsTemp.FullName;
-//        }
-//    }
-//    return "";
-//}
-//function Tree(Mbold)
-//{
-//    var Itemnew = [];
-//    for(var i=0;i<Items.length;i++)
-//    {
-//        if(Items[i].Memberold == Mbold)
-//        {
-//            //luu
-//            var ItemsTemp = Items[i];
-//            //xóa
-//            Items.splice(i, 1);
-//            //xu ly
-//            var BanDoi2='     Vợ: ';
-//            var BanDoi1 ='Chồng: '; 
-//            if (ItemsTemp.Sex == 'M')//chồng
-//            {
-//                BanDoi1 +=ItemsTemp.FullName;
-//                BanDoi2 +=TimVoChong(ItemsTemp.Id);
-//            }
-//            else //vợ
-//            {
-//                BanDoi2 +=ItemsTemp.FullName;
-//                BanDoi1 +=TimVoChong(ItemsTemp.Id);
-//            }
-//            Itemnew.push({
-//                ID: ItemsTemp.Id,
-//                Sex: ItemsTemp.Sex,
-//                Memberold: ItemsTemp.Memberold,
-//                Name: BanDoi1,
-//                //image: "antonio.jpg",
-//                title: BanDoi2,
-//                colorScheme: "#00ff2b",
-//                items: Tree(ItemsTemp.Id)
-//            });
-//            i--;
-//        }
-//    }
-//    return Itemnew;
-//}
-//function createDiagram() {
-//    $.ajax({
-//        async:false,
-//        dataType: 'json',
-//        url: '/CGP/GetMember',
-//        //data: { ID: ID },
-//        success: function (result) {
-//            console.log(result);
-//            Items = result;
-//        },
-//        error: function () {
-//        }
-//    });
-//    var Itemnew = Tree(null);
-//    console.log(Itemnew);
-//    $("#diagram").kendoDiagram({
-//        dataSource: new kendo.data.HierarchicalDataSource({
-//            data: Itemnew,
-//            schema: {
-//                model: {
-//                    children: "items"
-//                }
-//            }
-//        }),
-//        layout: {
-//            type: "layered"
-//        },
-//        shapeDefaults: {
-//            visual: visualTemplate
-//        },
-//        connectionDefaults: {
-//            stroke: {
-//                color: "#979797",
-//                width: 2
-//            }
-//        }
-//    });
+    return g;
+}
+function TimVoChong(Mbold)
+{
+    for (var i = 0; i < Items.length; i++) {
+        if (Items[i].Memberold == Mbold  && Items[i].TypeRelationship == 1) {
+            //luu
+            var ItemsTemp = Items[i];
+            //xóa
+            Items.splice(i, 1);
+            //tra ve tên     
+            return ItemsTemp.FullName;
+        }
+    }
+    return "";
+}
+function Tree(Mbold)
+{
+    var Itemnew = [];
+    for(var i=0;i<Items.length;i++)
+    {
+        if(Items[i].Memberold == Mbold)
+        {
+            //luu
+            var ItemsTemp = Items[i];
+            //xóa
+            Items.splice(i, 1);
+            //xu ly
+            var BanDoi2='';
+            var BanDoi1 =''; 
+            if (ItemsTemp.Sex == 'M')//chồng
+            {
+                BanDoi2 = TimVoChong(ItemsTemp.Id);
+                if(BanDoi2 != '')
+                {
+                    BanDoi1 = 'Cha: ' + ItemsTemp.FullName;
+                    BanDoi2 = ' Mẹ: ' + BanDoi2;
+                }
+                else
+                    BanDoi1 = ItemsTemp.FullName;
+            }
+            else if (ItemsTemp.Sex == 'F') //vợ
+            {                
+                BanDoi1 = TimVoChong(ItemsTemp.Id);
+                if (BanDoi1 != '') {
+                    BanDoi1 = 'Cha: ' + BanDoi1;
+                    BanDoi2 = ' Mẹ: ' + ItemsTemp.FullName;
+                }
+                else
+                    BanDoi2 = ItemsTemp.FullName;
+            }
+            Itemnew.push({
+                ID: ItemsTemp.Id,
+                Sex: ItemsTemp.Sex,
+                Memberold: ItemsTemp.Memberold,
+                Name: BanDoi1,
+                //image: "antonio.jpg",
+                title: BanDoi2,
+                colorScheme: "#1696d3",
+                items: Tree(ItemsTemp.Id)
+            });
+            i--;
+        }
+    }
+    return Itemnew;
+}
+function createDiagram() {
+    $.ajax({
+        async:false,
+        dataType: 'json',
+        url: '/CGP/GetMember',
+        //data: { ID: ID },
+        success: function (result) {
+            console.log(result);
+            Items = result;
+        },
+        error: function () {
+        }
+    });
+    var Itemnew = Tree(null);
+    //console.log(Itemnew);
+    $("#diagram").kendoDiagram({
+        dataSource: new kendo.data.HierarchicalDataSource({
+            data: Itemnew,
+            schema: {
+                model: {
+                    children: "items"
+                }
+            }
+        }),
+        layout: {
+            type: "layered"
+        },
+        shapeDefaults: {
+            visual: visualTemplate
+        },
+        connectionDefaults: {
+            stroke: {
+                color: "#979797",
+                width: 2
+            }
+        }
+    });
 
-//    var diagram = $("#diagram").getKendoDiagram();
-//    diagram.bringIntoView(diagram.shapes);
-//}
+    var diagram = $("#diagram").getKendoDiagram();
+    diagram.bringIntoView(diagram.shapes);
+}
 /////////////////////END Tao cay\\\\\\\\\\\\\\\\\\\\\\
