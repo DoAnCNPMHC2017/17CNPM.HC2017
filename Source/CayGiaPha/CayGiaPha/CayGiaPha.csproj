@@ -188,6 +188,7 @@
     <Content Include="assets\Library\CGP_Rule.js" />
     <Content Include="assets\Library\jquery.min.js" />
     <Content Include="assets\Library\kendo.all.min.js" />
+    <Content Include="assets\Library\Miami.jpg" />
     <Content Include="assets\meminfo.js" />
     <Content Include="assets\newlayout\css\font-awesome.min.css" />
     <Content Include="assets\newlayout\css\ie8.css" />
@@ -205,11 +206,15 @@
     <Content Include="assets\newlayout\js\main.js" />
     <Content Include="assets\newlayout\js\skel.min.js" />
     <Content Include="assets\newlayout\js\util.js" />
+    <Content Include="assets\newlayout\kendo\jquery.min.js" />
+    <Content Include="assets\newlayout\kendo\kendo.all.min.js" />
+    <Content Include="assets\newlayout\kendo\kendo.common-material.min.css" />
     <Content Include="assets\Report.js" />
     <Content Include="assets\WinDownKendoUi.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\kendo.bootstrap-v4.min.css" />
+    <Content Include="Content\popper.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -440,6 +445,7 @@
     <Content Include="Views\CGP\Report.cshtml" />
     <Content Include="Views\Shared\_Layout_2.cshtml" />
     <Content Include="Views\CGP\FamilyTree.cshtml" />
+    <Content Include="Views\Account\Register2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

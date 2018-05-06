@@ -7,7 +7,7 @@
 -->
 <html>
 <head>
-    <title>Future Imperfect by HTML5 UP</title>
+    <title>Quản Lý Gia Phả</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="~/assets/newlayout/css/main.css" rel="stylesheet" />
@@ -17,106 +17,137 @@
     @*<script src="~/assets/newlayout/css/jquery.min.js"></script>
         <script src="~/assets/newlayout/css/kendo.all.min.js"></script>*@
 
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
+    <link href="~/assets/newlayout/kendo/kendo.common-material.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />*@
     @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" />*@
     @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />*@
-
-    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
+    @*<img src="~/assets/Library/Miami Dolphins.jpg" />*@
+    @*<script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>*@
+    <script src="~/assets/newlayout/kendo/jquery.min.js"></script>
+        <script src="~/assets/newlayout/kendo/kendo.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-
+@*<body style="background-image: url('../../assets/Library/Miami.jpg');text-align:left">*@
+<body style="text-align:left">
     <!-- Wrapper -->
     <div id="wrapper">
 
         <!-- Header -->
-        <header id="header">
-            <h1><a href='@Url.Action("Index", "Home")'>Trang Chủ</a></h1>
-
+        <header id="header" style='background-color:darkred;height:50px'>
+            @*<h1><a href='@Url.Action("Index", "Home")' style="background-color:wheat;font-family: 'Times New Roman', Times, serif;">Trang Chủ</a></h1>*@
+            <a href="/">
+                <img src="/assets/imgs/cen_bn.jpg" style="height:50px;">
+            </a>
             <nav class="main">
-                <div id="example2">
+                <div id="example2" style="margin-top:-1.9em">
                     @if (CurrentContext.IsLogged() == true)
                     {
-                        <div class="dropdown">
-                            <button onclick="myFunction()" class="dropbtn">@CurrentContext.GetCurUser().Username </button>
+                        @*<div class="dropdown">
+                            <button onclick="myFunction()" style="background-color:white;margin-top:8px;font-family: 'Times New Roman', Times, serif;" class="dropbtn">@CurrentContext.GetCurUser().Username </button>
                             <div id="myDropdown" class="dropdown-content">
                                 <a id="logoutID" href="javascript:;">
                                     Đăng xuất
                                 </a>
                             </div>
+                        </div>*@
+                        <div class="dropdown">
+                            <a class="dropbtn" onclick="myFunction()" style="height:4.4em">
+                                @CurrentContext.GetCurUser().Username
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-content" id="myDropdown" style="margin-top: 0;">
+                                <a  id="logoutID" href="javascript:;">Đăng xuất</a>
+                            </div>
                         </div>
                     }
                     else
                     {
-                        <div class="dropdown">
-                            <button onclick="window.location.href='@Url.Action("Login","Account")'" class="actions">Đăng nhập </button>
-                            <button onclick="window.location.href='@Url.Action("Login","Register")'" class="actions">Đăng ký </button>
+                        <div class="dropdown" style="display:inline;padding-top:1.5em">
+                            @*<a class="dropbtn" onclick="myFunction()" style="height:4.4em">
+                               123
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <a class="dropbtn" onclick="myFunction()" style="height:4.4em">
+                                123
+                                <i class="fa fa-caret-down"></i>
+                            </a>*@
+                            <p class="dropbtn" style="display:inline" >
+                            <a href='@Url.Action("Login","Account")'>Đăng nhập ||</a> 
+                            <a href='@Url.Action("Register","Account")'>Đăng ký</a>
+                            </p>
                         </div>
+
                     }
+
+
+
+
                     <style>
-                        .dropbtn {
-                            /*background-color: #3498DB;*/
-                            color: white;
-                            padding: 5px;
-                            width: 150px;
-                            border: none;
-                            cursor: pointer;
-                            font-family: "Times New Roman", Times, serif;
+                        .dropdown {
+                            float: left;
+                            overflow: hidden;
+                            background-color: #ddd;
                         }
 
-                            .dropbtn:hover, .dropbtn:focus {
-                                background-color: cornflowerblue;
+                            .dropdown .dropbtn {
+                                cursor: pointer;
+                                font-size: 16px;
+                                border: none;
+                                outline: none;
+                                color: black;
+                                padding: 14px 16px;
+                                background-color: inherit;
+                                font-family: inherit;
+                                margin: 0;
+                                height: 2em;
+                                display: block;
+                                margin-top: 10px;
                             }
 
-                        .dropdown {
-                            position: relative;
-                            display: inline-block;
-                        }
+                            a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+                                background-color: #ddd;
+                            }
 
                         .dropdown-content {
                             display: none;
-                            /*position: absolute;*/
-                            background-color: #f1f1f1;
-                            /*min-width: 160px;*/
-                            overflow: auto;
+                            position: absolute;
+                            background-color: #f9f9f9;
+                            min-width: 160px;
                             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                             z-index: 1;
                         }
 
                             .dropdown-content a {
+                                float: none;
                                 color: black;
                                 padding: 12px 16px;
                                 text-decoration: none;
                                 display: block;
+                                text-align: left;
                             }
 
-                        .dropdown a:hover {
-                            background-color: #ddd;
-                        }
+                                .dropdown-content a:hover {
+                                    background-color: #ddd;
+                                }
 
                         .show {
                             display: block;
                         }
                     </style>
                     <script>
-
                         /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
+                        toggle between hiding and showing the dropdown content */
                         function myFunction() {
                             document.getElementById("myDropdown").classList.toggle("show");
                         }
 
                         // Close the dropdown if the user clicks outside of it
-                        window.onclick = function (event) {
-                            if (!event.target.matches('.dropbtn')) {
-
-                                var dropdowns = document.getElementsByClassName("dropdown-content");
-                                var i;
-                                for (i = 0; i < dropdowns.length; i++) {
-                                    var openDropdown = dropdowns[i];
-                                    if (openDropdown.classList.contains('show')) {
-                                        openDropdown.classList.remove('show');
-                                    }
+                        window.onclick = function (e) {
+                            if (!e.target.matches('.dropbtn')) {
+                                var myDropdown = document.getElementById("myDropdown");
+                                if (myDropdown.classList.contains('show')) {
+                                    myDropdown.classList.remove('show');
                                 }
                             }
                         }
@@ -127,7 +158,8 @@ toggle between hiding and showing the dropdown content */
         </header>
         <form id="frmLogout" method="post" action="@Url.Action("Logout","Account")"></form>
         <!-- Menu -->
-        
+
+
         <script type="text/javascript">
             $(document).ready(function () {
                 //$("#menu2X").kendoMenu();
@@ -145,13 +177,9 @@ toggle between hiding and showing the dropdown content */
         @RenderBody()
     </div>
 
-    <!-- About -->
-    <section class="blurb" style="border-top:solid">
-        <h2 style="text-align:center; padding-top:20px">Quản lý cây gia phả</h2>
-        <p style="text-align:center">Nhóm 17</p>
-    </section>
 
-   
+
+
     <style>
         #tabstrip h2 {
             font-weight: lighter;
@@ -214,4 +242,10 @@ toggle between hiding and showing the dropdown content */
     <!-- Scripts -->
 
 </body>
+<!-- About -->
+
+<section class="blurb" style="border-top:solid;height: 130px;background-color:darkred">
+    <h2 style="text-align:center;color:white; padding-top:20px">QUẢN LÝ CÂY GIA PHẢ</h2>
+    <p style="text-align:center;color:white">NHÓM 17</p>
+</section>
 </html>

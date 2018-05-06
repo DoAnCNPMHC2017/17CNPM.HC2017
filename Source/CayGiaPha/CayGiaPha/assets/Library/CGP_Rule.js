@@ -44,14 +44,74 @@
                 $('#ddlBrP').data("kendoDropDownList").setDataSource(result);
             },
             error: function () {
-                alert("Gặp Lỗi trong quá trình lấy dữ liệu 47");
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu ");
+            }
+        });
+
+        $.ajax({
+            async: false,
+            dataType: 'json',
+            url: '/CGP/GetMember',
+            success: function (result) {
+                $('#ddlM').data("kendoDropDownList").setDataSource(result);
+            },
+            error: function () {
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu ");
+            }
+        });
+
+        $.ajax({
+            async: false,
+            dataType: 'json',
+            url: '/CGP/GetAchievement',
+            success: function (result) {
+                $('#ddlA').data("kendoDropDownList").setDataSource(result);
+            },
+            error: function () {
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu ");
+            }
+        });
+
+        $.ajax({
+            async: false,
+            dataType: 'json',
+            url: '/CGP/GetMember',
+            success: function (result) {
+                $('#ddlM1').data("kendoDropDownList").setDataSource(result);
+            },
+            error: function () {
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu ");
+            }
+        });
+
+        $.ajax({
+            async: false,
+            dataType: 'json',
+            url: '/CGP/GetCod',
+            success: function (result) {
+                $('#ddlCD').data("kendoDropDownList").setDataSource(result);
+            },
+            error: function () {
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu ");
+            }
+        });
+
+        $.ajax({
+            async: false,
+            dataType: 'json',
+            url: '/CGP/GetBurialPlace',
+            success: function (result) {
+                $('#ddlBrP1').data("kendoDropDownList").setDataSource(result);
+            },
+            error: function () {
+                alert("Gặp Lỗi trong quá trình lấy dữ liệu ");
             }
         });
     }
 
     $("#dialogBirthPlace").kendoDialog({
         width: 600,
-        height: 300,
+        height: 250,
         title: "Thêm quê quán",
         content: divContentbirthplace,
         visible: false
@@ -61,7 +121,7 @@
 
     $("#dialogJob").kendoDialog({
         width: 600,
-        height: 300,
+        height: 250,
         title: "Thêm nghề nghiệp",
         content: divContentjob,
         visible: false
@@ -72,7 +132,7 @@
     var divContentUjob = $('#dialogUjob').html();
     $("#dialogUjob").kendoDialog({
         width: 600,
-        height: 350,
+        height: 280,
         title: "Cập nhật nghề nghiệp",
         content: divContentUjob,
         visible: false
@@ -82,7 +142,7 @@
     var divContentUBP = $('#dialogUBirthPlace').html();
     $("#dialogUBirthPlace").kendoDialog({
         width: 600,
-        height: 350,
+        height: 280,
         title: "Cập nhật quê quán",
         content: divContentUBP,
         visible: false
@@ -118,6 +178,10 @@
         dialog.open();
     });
     $("#btnAddJob").click(function () {
+        if ($('#txtjob').val() == "") {
+            alert("Thông tin không hợp lệ!!!");
+            return;
+        }
 
         $.ajax({
             async: false,
@@ -126,19 +190,23 @@
             url: '/CGP/AddJob',
             data: { jobname: $('#txtjob').val() },
             success: function (result) {
-                alert("Thành công");
+                alert("Thêm thành công");
                 LoadData($('#TreeID').val());
                 LoadDataTree();
                 $("#txtjob").val("");
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi khi thêm");
             }
         });
     });
 
     $("#btnAddBirthPlace").click(function () {
+        if ($('#txtbirthplace').val() == "") {
+            alert("Thông tin không hợp lệ!!!");
+            return;
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -146,37 +214,18 @@
             url: '/CGP/AddBirthPlace',
             data: { bpname: $('#txtbirthplace').val() },
             success: function (result) {
-                alert("Thành công");
+                alert("Thêm thành công");
                 LoadData($('#TreeID').val());
                 LoadDataTree();
                 $("#txtbirthplace").val("");
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi");
             }
         });
     });
-    $("#btnUJob").click(function () {
-        var jName = $("#txtuJob").val();
-        var jID = $("#ddlJob").data("kendoDropDownList").value();
-        $.ajax({
-            async: false,
-            type: "post",
-            dataType: 'json',
-            url: '/CGP/UpdateJob',
-            data: { jID: jID, jName: jName },
-            success: function (result) {
-                alert("Thành công");
-                LoadData($('#TreeID').val());
-                LoadDataTree();
-                ReloadWindow();
-            },
-            error: function () {
-                alert("Thành thụ");
-            }
-        });
-    });
+    
 
     $("#ddlJob").kendoDropDownList({
         dataTextField: 'JobName',
@@ -189,17 +238,22 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true,
         change: function (e) {
             var t = $("#ddlJob").data("kendoDropDownList").text();
             $("#txtuJob").val(t);
         }
-        ///, optionLabel: "Chọn nghề nghiệp ..."
+        , optionLabel: "Chọn nghề nghiệp ..."
     });
 
     $("#btnUJob").click(function () {
         var jName = $("#txtuJob").val();
         var jID = $("#ddlJob").data("kendoDropDownList").value();
+        if (jName == "" || jID < 1) {
+            alert("Thông tin không hợp lệ!!");
+            return
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -213,7 +267,7 @@
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi");
             }
         });
     });
@@ -229,17 +283,22 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true,
         change: function (e) {
             var t = $("#ddlBP").data("kendoDropDownList").text();
             $("#txtuBP").val(t);
         }
-        ///, optionLabel: "Chọn nghề nghiệp ..."
+        , optionLabel: "Chọn nơi sinh ..."
     });
 
     $("#btnUBP").click(function () {
         var jName = $("#txtuBP").val();
         var jID = $("#ddlBP").data("kendoDropDownList").value();
+        if (jName == "" || jID < 1) {
+            alert("Thông tin không hợp lệ!!");
+            return
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -253,14 +312,14 @@
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi");
             }
         });
     });
 
     $("#dialogCod").kendoDialog({
         width: 600,
-        height: 300,
+        height: 250,
         title: "Thêm nguyên nhân mất",
         content: divContentCod,
         visible: false
@@ -277,7 +336,7 @@
     var divContentUCod = $('#dialogUCod').html();
     $("#dialogUCod").kendoDialog({
         width: 600,
-        height: 350,
+        height: 280,
         title: "Cập nhật nguyên nhân mất",
         content: divContentUCod,
         visible: false
@@ -290,7 +349,10 @@
     });
 
     $("#btnAddCod").click(function () {
-
+        if ($('#txtCod').val()=="") {
+            alert("Thông tin không hợp lệ!!");
+        return;
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -298,14 +360,14 @@
             url: '/CGP/AddCod',
             data: { jName: $('#txtCod').val() },
             success: function (result) {
-                alert("Thành công");
+                alert("Thêm thành công");
                 LoadData($('#TreeID').val());
                 LoadDataTree();
                 $("#txtCod").val("");
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi");
             }
         });
     });
@@ -313,6 +375,10 @@
     $("#btnUCod").click(function () {
         var jName = $("#txtuCod").val();
         var jID = $("#ddlCod").data("kendoDropDownList").value();
+        if (jName == "" || jID < 1) {
+            alert("Thông tin không hợp lệ!!");
+            return
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -326,7 +392,7 @@
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi");
             }
         });
     });
@@ -342,18 +408,19 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true,
         change: function (e) {
             var t = $("#ddlCod").data("kendoDropDownList").text();
             $("#txtuCod").val(t);
         }
-        ///, optionLabel: "Chọn nghề nghiệp ..."
+        , optionLabel: "Chọn nguyên nhân ..."
     });
 
 
     $("#dialogBrP").kendoDialog({
         width: 600,
-        height: 300,
+        height: 250,
         title: "Thêm địa điểm mai táng",
         content: divContentBrP,
         visible: false
@@ -370,7 +437,7 @@
     var divContentUBrP = $('#dialogUBrP').html();
     $("#dialogUBrP").kendoDialog({
         width: 600,
-        height: 350,
+        height: 280,
         title: "Cập nhật nguyên nhân mất",
         content: divContentUBrP,
         visible: false
@@ -383,7 +450,10 @@
     });
 
     $("#btnAddBrP").click(function () {
-
+        if ($('#txtBrP').val() == "") {
+            alert("Thông tin không hợp lệ!!");
+            return;
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -398,7 +468,7 @@
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi");
             }
         });
     });
@@ -406,6 +476,10 @@
     $("#btnUBrP").click(function () {
         var jName = $("#txtuBrP").val();
         var jID = $("#ddlBrP").data("kendoDropDownList").value();
+        if (jName == "" || jID < 1) {
+            alert("Thông tin không hợp lệ!!");
+            return
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -419,7 +493,7 @@
                 ReloadWindow();
             },
             error: function () {
-                alert("Thành thụ");
+                alert("Lỗi");
             }
         });
     });
@@ -435,17 +509,18 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true,
         change: function (e) {
             var t = $("#ddlBrP").data("kendoDropDownList").text();
             $("#txtuBrP").val(t);
         }
-        ///, optionLabel: "Chọn nghề nghiệp ..."
+        , optionLabel: "Chọn nơi an táng ..."
     });
     var divContentUA = $('#dialogUA').html();
     $("#dialogUA").kendoDialog({
         width: 600,
-        height: 400,
+        height: 300,
         title: "Ghi nhận thành tích",
         content: divContentUA,
         visible: false
@@ -467,7 +542,9 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true
+        , optionLabel: "Chọn thành viên ..."
     });
 
     $("#ddlA").kendoDropDownList({
@@ -481,7 +558,9 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true
+        , optionLabel: "Chọn thành tích ..."
     });
 
     $("#dateA").kendoDatePicker({
@@ -494,7 +573,10 @@
         var fid = $('#ddlM').val();
         var fach = $('#ddlA').val();
         var fdate = $('#dateA').val();
-
+        if (fid <1 || fach < 1||fdate=="") {
+            alert("Thông tin không hợp lệ!!");
+            return
+        }
         $.ajax({
             async: false,
             type: "post",
@@ -508,7 +590,7 @@
                 ReloadWindow();
             },
             error: function () {
-                alert(result);
+                alert("Thông tin chưa hợp lệ");
             }
         });
     });
@@ -516,7 +598,7 @@
     var divContentUD = $('#dialogUD').html();
     $("#dialogUD").kendoDialog({
         width: 600,
-        height: 550,
+        height: 400,
         title: "Ghi nhận kết thúc",
         content: divContentUD,
         visible: false
@@ -524,7 +606,7 @@
 
     $("#btnShowUD").click(function () {
         var dialog = $("#dialogUD").data("kendoDialog");
-        //ReloadWindow();
+        ReloadWindow();
         dialog.open();
     });
 
@@ -557,6 +639,7 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true
 
         , optionLabel: "Chọn nguyên nhân ..."
@@ -573,6 +656,7 @@
                 }
             }
         },
+        filter: "contains",
         autoClose: true
         , optionLabel: "Chọn địa điểm mai táng ..."
     });
@@ -605,7 +689,7 @@
                 alert("Thành công");
                 LoadData($('#TreeID').val());
                 LoadDataTree();
-                //ReloadWindow();
+                ReloadWindow();
             },
             error: function () {
                 alert("Thông tin chưa hợp lệ");
