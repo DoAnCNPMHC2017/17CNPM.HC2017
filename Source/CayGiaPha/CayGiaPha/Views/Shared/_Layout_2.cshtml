@@ -34,7 +34,7 @@
     <div id="wrapper">
 
         <!-- Header -->
-        <header id="header" style='background-color:darkred;height:50px'>
+        <header id="header" style='background: linear-gradient(to right, #ffa17f, #00223e); height:50px'>
             @*<h1><a href='@Url.Action("Index", "Home")' style="background-color:wheat;font-family: 'Times New Roman', Times, serif;">Trang Chủ</a></h1>*@
             <a href="/">
                 <img src="/assets/imgs/cen_bn.jpg" style="height:50px;">
@@ -51,13 +51,14 @@
                                 </a>
                             </div>
                         </div>*@
-                        <div class="dropdown">
+                        <div class="dropdown" style="width: 6em;">
                             <a class="dropbtn" onclick="myFunction()" style="height:4.4em">
                                 @CurrentContext.GetCurUser().Username
                                 <i class="fa fa-caret-down"></i>
                             </a>
                             <div class="dropdown-content" id="myDropdown" style="margin-top: 0;">
                                 <a  id="logoutID" href="javascript:;">Đăng xuất</a>
+                                <a href="@Url.Action("Index", "CGP")">Gia phả</a>
                             </div>
                         </div>
                     }
@@ -244,7 +245,7 @@
 </body>
 <!-- About -->
 
-<section class="blurb" style="border-top:solid;height: 130px;background-color:darkred">
+<section class="blurb" style="height: 130px;background: linear-gradient(to right, #ffa17f, #00223e); ">
     <h2 style="text-align:center;color:white; padding-top:20px">QUẢN LÝ CÂY GIA PHẢ</h2>
     <p style="text-align:center;color:white">NHÓM 17</p>
 </section>
