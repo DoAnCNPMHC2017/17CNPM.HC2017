@@ -16,7 +16,6 @@ namespace CayGiaPha.Helper
                 filterContext.Result = new RedirectResult("~/Account/Login");
                 return;
             }
-
             base.OnActionExecuting(filterContext);
         }
     }
