@@ -173,6 +173,7 @@
     <Content Include="assets\css\simple-sidebar.css" />
     <Content Include="assets\imgs\asq.jpg" />
     <Content Include="assets\imgs\avatar.png" />
+    <Content Include="assets\imgs\backspace_black_96x96.png" />
     <Content Include="assets\imgs\banner.jpg" />
     <Content Include="assets\imgs\camera-photo-128.png" />
     <Content Include="assets\imgs\cen_bn.jpg" />

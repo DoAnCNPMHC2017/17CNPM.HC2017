@@ -528,7 +528,7 @@ function setColumns(typeID) {
                 {
                     title: "Họ Tên",
                     width: 150,
-                    template: "<a style='color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#if(data.FullName == ''){#...#}else{##=FullName##}#</a>"
+                    template: "<a class='tooltip' style='text-decoration: none;color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#if(data.FullName == ''){#...#}else{##=FullName##}# <span class='tooltiptext'>cập nhật thành viên</span></a>"
                 }, { field: "bd", title: "Ngày sinh", width: 120 }
                 , {
                     //field: "Generation",

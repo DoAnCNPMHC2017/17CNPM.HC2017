@@ -2,6 +2,10 @@
     CreateGridReport();
     CreateControl();
 });
+function BackCGP()
+{
+    window.location.href = '/CGP/FamilyTree?id=' + $('#TreeID').val();
+}
 function CreateGridReport() {
     $('#GridReportNumber').kendoGrid({
         //toolbar: ["excel"],
