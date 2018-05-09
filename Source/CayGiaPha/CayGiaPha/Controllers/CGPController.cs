@@ -18,6 +18,11 @@ namespace CayGiaPha.Controllers
         [CheckLogin]
         public ActionResult Index()
         {
+            ViewBag.Tit = "Quản lý Gia Tộc";
+            ViewBag.Show = 1;
+            ViewBag.Link = "CGP";
+            ViewBag.Name = "CGP";
+            ViewBag.Name2 = "Index";
             using (CGPEntities ctx = new CGPEntities())
             {
                 int id = 0;
@@ -132,6 +137,11 @@ namespace CayGiaPha.Controllers
         }
         public ActionResult FamilyTree(int? id)
         {
+            ViewBag.Tit = "Quản lý thành viên";
+            ViewBag.Show = 1;
+            ViewBag.Name = "CGP";
+            ViewBag.Link = "../";
+            ViewBag.Name2 = "FamilyTree";
             if (id.HasValue == false)
             {
                 return RedirectToAction("Index", "Home");
@@ -186,6 +196,11 @@ namespace CayGiaPha.Controllers
         }
         public ActionResult Report(int? id)
         {
+            ViewBag.Tit = "Lập báo cáo";
+            ViewBag.Show = 1;
+            ViewBag.Name = "CGP";
+            ViewBag.Link = "../";
+            ViewBag.Name2 = "Report";
             if (id.HasValue == false)
             {
                 return RedirectToAction("Index", "Home");

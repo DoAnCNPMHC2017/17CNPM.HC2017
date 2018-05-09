@@ -12,7 +12,13 @@ namespace CayGiaPha.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.Mes = 3;
+            string s = Request.Url.AbsolutePath;
+            if (s == "/Home/Index" || s == "/" || s == "/Home/")
+                ViewBag.Show = 0;
+            else
+            {
+                ViewBag.Show = 1;
+            }
             return View();
         }
 
