@@ -42,62 +42,66 @@ namespace CayGiaPha.Controllers
                     model.CreateDate = DateTime.Now;
                     ctx.Trees.Add(model);
                     ctx.SaveChanges();
+                    string Query1 = "Select TreeID From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
+                    Session["ListTree"] = ctx.Database.SqlQuery<int>(Query1).ToList();
 
+                    string Query = "Select Max(TreeID) From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
+                    var kq = ctx.Database.SqlQuery<int>(Query).ToList();
                     //@ViewBag.Error = false;
                     //Auto create
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Thể Thao", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Văn Học", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Toán Học", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Kinh Tế", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Địa Phương", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Quốc Gia", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Đỗ Tú Tài", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Đỗ Thi Hương", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Đỗ Trạng Nguyên", TreeID = model.AccountID });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành Tích Khác", TreeID = model.AccountID });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Giải Thể Thao", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Giải Văn Học", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Giải Toán Học", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Doanh Nhân Giỏi", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành tích Địa Phương", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đặt giải Quốc Gia", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đỗ Tú Tài", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đỗ Thi Hương", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đỗ Trạng Nguyên", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Khác", TreeID = kq[0] });
                     ctx.SaveChanges();
                     //
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
-                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "", TreeID = model.AccountID });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Tai Nạn Nghê Nghiệp", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Bệnh Già", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Bệnh Dịch", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Tai Nạn Giao Thông", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Lũ Lụt", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Nạn Đói", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Chiến tranh", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Động đất", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Sóng Thần", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Sạt Lở", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Bão", TreeID = kq[0] });
+                    ctx.CauseOfDeaths.Add(new CauseOfDeath { CauseOfDeathText = "Núi Lửa Phun Trào", TreeID = kq[0] });
                     ctx.SaveChanges();
                     //
                     var T = new BirthPlace();
-                    ctx.BurialPlaces.Add(new BurialPlace { BurialPlaceName = "", TreeID = model.AccountID });
-                    ctx.BurialPlaces.Add(new BurialPlace { BurialPlaceName = "", TreeID = model.AccountID });
-                    ctx.BurialPlaces.Add(new BurialPlace { BurialPlaceName = "", TreeID = model.AccountID });
+                    ctx.BurialPlaces.Add(new BurialPlace { BurialPlaceName = "Nơi Mất 1", TreeID = kq[0] });
+                    ctx.BurialPlaces.Add(new BurialPlace { BurialPlaceName = "Nơi Mất 2", TreeID = kq[0] });
+                    ctx.BurialPlaces.Add(new BurialPlace { BurialPlaceName = "Nơi Mất 3", TreeID = kq[0] });
                     ctx.SaveChanges();
                     // Nghề nghiệp
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
-                    ctx.Jobs.Add(new Job {JobName="",TreeID = model.AccountID});
+                    ctx.Jobs.Add(new Job { JobName = "Giáo Viên", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Bác Sĩ", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Kỹ Sư", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Kinh Doanh", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Công Nhân", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Nghề Nông", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Đánh Bắt Hải Sản ", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Công An", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Y Tá", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Nội Trợ", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Thợ Mộc", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Thợ Bạc", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Thợ Điên", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Lập Trình Viên", TreeID = kq[0] });
+                    ctx.Jobs.Add(new Job { JobName = "Kiến Trúc Sư", TreeID = kq[0] });
                     ctx.SaveChanges();
                     //Quê quán
-                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "", TreeID = model.AccountID });
-                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "", TreeID = model.AccountID });
-                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "", TreeID = model.AccountID });
-                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "", TreeID = model.AccountID });
+                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "TP.HCM", TreeID = kq[0] });
+                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "Hà Nội", TreeID = kq[0] });
+                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "Đà Nẳng", TreeID = kq[0] });
+                    ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "Long An", TreeID = kq[0] });
                     ctx.SaveChanges();
                     //
                     Response.Write("<script LANGUAGE='JavaScript' >alert('Tạo  cây thành công')</script>");
@@ -444,6 +448,18 @@ namespace CayGiaPha.Controllers
                 return Json(m, JsonRequestBehavior.AllowGet);
             }
         }
+        #region function
+        public static int CheckTreeOld(string TreeID, List<int> List)
+        {
+            int Tree = TreeID == "" ? 0 : Int32.Parse(TreeID);
+            for (int i = 0; i < List.Count(); i++)
+            {
+                if (List[i] == Tree)
+                    return 0;
+            }
+            return 1;
+        }
+        #endregion
         #region Ajax
         public ActionResult GetControl(int ID)
         {
