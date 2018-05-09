@@ -131,10 +131,9 @@ function CreateControl() {
         //value: new Date(),
         //dateInput: true,
         //footer: "Hôm nay - #: kendo.toString(data, 'dd/MM/yyyy') #"
-        format: "dd/MM/yyyy HH:mm:tt",
-        parseFormats: ["MMMM yyyy", "HH:mm:tt"],
         value: new Date(),
         dateInput: true
+        , filter: "contains"
     });
     //
     $("#CauseOfDeath").kendoDropDownList({
@@ -175,21 +174,16 @@ function LoadData(ID)
             $('#BurialPlace').data("kendoDropDownList").setDataSource(result.Bp);
             $('#OldID').data("kendoDropDownList").setDataSource(result.OldID);
             couple = result.couple;
-            if(result.OldID.length  == 0 )
-            {
-                var dropdownlist = $("#OldID").data("kendoDropDownList");
-                dropdownlist.enable(false);
-                var dropdownlist = $("#Relasionship").data("kendoDropDownList");
-                dropdownlist.enable(false);
-                $('#Relasionship').data('kendoDropDownList').value("");
-            }
-            else
-            {
-                var dropdownlist = $("#OldID").data("kendoDropDownList");
-                dropdownlist.enable(true);
-                var dropdownlist = $("#Relasionship").data("kendoDropDownList");
-                dropdownlist.enable(true);
-            }
+            //if(result.OldID.length  == 0 )
+            //{
+            //    $('#trdOldID').hide();
+            //    $('#trdRelationship').hide();
+            //}
+            //else
+            //{
+                $('#trdOldID').show();
+                $('#trdRelationship').show();
+            //}
         },
         error: function () {
             alert("Gặp Lỗi trong quá trình lấy dữ liệu 147");
@@ -335,20 +329,12 @@ function LoadInfomationMember(ID)
             Res = result;
             console.log(Res);
             if (Res[0].Memberold == "" || Res[0].Memberold == null) {
-                var dropdownlist = $("#OldID").data("kendoDropDownList");
-                dropdownlist.enable(false);
-                var dropdownlist = $("#Relasionship").data("kendoDropDownList");
-                dropdownlist.enable(false);
-                //$('#trdRelationship').hide();
-                //$('#trdOldID').hide();
+                $('#trdRelationship').hide();
+                $('#trdOldID').hide();
             }
-            else {
-                var dropdownlist = $("#OldID").data("kendoDropDownList");
-                dropdownlist.enable(true);
-                var dropdownlist = $("#Relasionship").data("kendoDropDownList");
-                dropdownlist.enable(true);
-                //$('#trdRelationship').show();
-                //$('#trdOldID').show();
+            else {           
+                $('#trdRelationship').show();
+                $('#trdOldID').show();
             }
             $('#OldID').data('kendoDropDownList').value(Res[0].Memberold);
             $('#FullName').val(Res[0].FullName);
@@ -366,7 +352,6 @@ function LoadInfomationMember(ID)
                 $('#tbCauseOfDeath').show();
                 $('#tbDateOfDeath').show();
                 $('#tbBurialPlace').show();
-
                 $('#CauseOfDeath').data('kendoDropDownList').value(Res[0].CauseOfDeath);
                 $('#DateOfDeath').data('kendoDateTimePicker').value(Res[0].DateOfDeath);
                 $('#BurialPlace').data('kendoDropDownList').value(Res[0].BurialPlaceId);
@@ -431,10 +416,10 @@ function AddMemberNew()
         alert("Bạn chưa nhập tên");
         return;
     }
-    //if (DChi == "") {
-    //    alert("Bạn chưa nhập địa chỉ");
-    //    return;
-    //}
+    if (DChi == "") {
+        alert("Bạn chưa nhập địa chỉ");
+        return;
+    }
 
 
 

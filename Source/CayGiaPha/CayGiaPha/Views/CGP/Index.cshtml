@@ -1,5 +1,4 @@
 ﻿@using CayGiaPha.Models
-
 @model List<Tree>
 @{
     ViewBag.Title = "Index";
@@ -7,7 +6,6 @@
 }
 
 <link href="~/assets/newlayout/table/main.css" rel="stylesheet" />
-<<<<<<< HEAD
 
 <section id="content">
     <div class="container">
@@ -59,66 +57,6 @@
 
 
 
-=======
-<div id="main">
-    <!-- Post -->
-    <article class="post" style="background: linear-gradient(to bottom, #4ca1af, #c4e0e5); ">
-        <p style="color:white;font-size:20px;text-align:center">Danh sách Gia Tộc</p>
-        @{
-            int stt = 1;
-            //var count = Model.Count();
-        }
-        <form class="form-horizontal" method="post" action="" id="form_register">
-            <table>
-                <tr>
-                    <td style="width:300px"></td>
-                    <td style="width:500px">
-                        <input type="text" style="width:300px;background: antiquewhite; " class="k-textbox" id="txtName" name="Name" placeholder="Tên Gia Tộc" value="" />
-                        @*<div class="center-block">*@
-                        <button id="singlebutton" style="margin-left: 10em;margin-top: 3em;background: white;width:100px" name="singlebutton" class="btn btn-primary">Tạo mới</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <br /><br />
-        <table>
-            <tr>
-                <td style="width:auto">
-                    <div class="table100 ver1 m-b-110">
-                        <div class="table100-head">
-                            <table>
-                                <thead>
-                                    <tr class="row100 head">
-                                        <th class="cell100 column2" style="padding-left: 3em;">STT</th>
-                                        <th class="cell100 column1">Gia Phả</th>
-                                        <th class="cell100 column3" style="padding-left: 3em;">Ngày tạo</th>
-                                        <th class="cell100 column4" style="padding-left: 3em;">Chi tiết</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-
-                        <div class="table100-body js-pscroll">
-                            <table>
-                                <tbody>
-                                    @foreach (var cim in Model)
-                                    {
-                                        <tr class="row100 body">
-                                            <td class="cell100 column2" style="padding-left: 3em;font-size: 20px;">@stt</td>
-                                            <td class="cell100 column1" style="font-size: 20px;">@cim.Name</td>
-                                            <td class="cell100 column3" style="padding-left: 3em;font-size: 20px;">@cim.CreateDate.ToString()</td>
-                                            <td class="cell100 column4" style="padding-left: 4em;"><a style="text-decoration: none;color:cornflowerblue;font-size: 20px;" href="/CGP/FamilyTree/?id=@cim.TreeID">Xem</a></td>
-                                        </tr>
-                                        stt++;
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
->>>>>>> e8820923e23086021fe520b24ab949e884d01ad8
 
 
                     </tbody>

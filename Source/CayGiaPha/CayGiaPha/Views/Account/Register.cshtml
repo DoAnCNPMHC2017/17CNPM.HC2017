@@ -51,7 +51,7 @@
 <section class="login-block">
     <div class="container123">
         <div class="row">
-            <div class="col-md-4 login-sec">
+            <div class="col-md-3 login-sec">
                 <h2 class="text-center" style="letter-spacing:0px;text-align:center">Tạo tài khoản</h2>
                 @if (@ViewBag.Mes == 2)
                 {
@@ -67,20 +67,20 @@
                 </div>
                 }
                 <form class="login-form" id="form_register" method="post" action="">
-                    <div class="form-group" style="padding-top:  1em; padding-left:  3em;">
+                    <div class="form-group">
                         <label for="txtUserName" class="text-uppercase" style="margin-bottom: -0.5px;"> Tên đăng nhập</label>
-                        <input type="text" required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây!')"  class="form-control" style="height: 2.5em;width: 20em;" id="txtUserName" name="UserName" placeholder="Nhập tên đăng nhập" value="">
+                        <input type="text" required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây!')"  class="form-control" style="height: 2.5em;width: 17em;" id="txtUserName" name="UserName" placeholder="Nhập tên đăng nhập" value="">
                     </div>
-                    <div class="form-group" style="padding-top: 1em; padding-left:  3em;">
+                    <div class="form-group" style="padding-top: 1em;">
                         <label for="txtPassword" class="text-uppercase" style="margin-bottom: -0.5px;"> Mật khẩu</label>
-                        <input type="password" oninput="this.setCustomValidity('')" required  oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây!')" class="form-control" style="height: 2.5em;width: 20em;" id="txtPassword" name="PassWord" placeholder="Nhập mật khẩu">
+                        <input type="password" oninput="this.setCustomValidity('')" required  oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây!')" class="form-control" style="height: 2.5em;width: 17em;" id="txtPassword" name="PassWord" placeholder="Nhập mật khẩu">
                     </div>
-                    <div class="form-group" style="padding-top: 1em; padding-left:  3em;">
+                    <div class="form-group" style="padding-top: 1em;">
                         <label for="txtCPassWord" class="text-uppercase" style="margin-bottom: -0.5px;">Nhập lại mật khẩu</label>
-                        <input type="password" oninput="check(this)" required oninvalid="this.setCustomValidity('Nhập lại mật khẩu ở đây!')"  class="form-control" style="height: 2.5em;width: 20em;" id="txtCPassWord" name="txtCPassWord" placeholder="Nhập lại mật khẩu">
+                        <input type="password" oninput="check(this)" required oninvalid="this.setCustomValidity('Nhập lại mật khẩu ở đây!')"  class="form-control" style="height: 2.5em;width: 17em;" id="txtCPassWord" name="txtCPassWord" placeholder="Nhập lại mật khẩu">
                     </div>
 
-                    <div class="form-check" style="padding-top: 1em; padding-left:  3em;">
+                    <div class="form-check" style="padding-top: 1em;">
                         @*<button type="submit"  style="margin-left: 20px;height: 2.5em;width: 5em;" class="btn btn-login float-right" name="register" id="register">*@
                         <button type="submit" style="background-color:white;height:50px" class="btn btn-login float-left" name="register" id="register">
 

@@ -45,9 +45,6 @@ namespace CayGiaPha.Controllers
                     Session["user"] = us;
                     Session["IdUser"] = us.ID;
                     Session["username"] = us.Username;
-                    CGPEntities ctx = new CGPEntities();
-                    string Query1 = "Select TreeID From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
-                    Session["ListTree"] = ctx.Database.SqlQuery<int>(Query1).ToList();
                     ViewBag.Mes = 1;
                     //Response.Write("<script LANGUAGE='JavaScript' >alert('Đăng nhập thành công.')</script>");
                     return RedirectToAction("Index", "Home");
