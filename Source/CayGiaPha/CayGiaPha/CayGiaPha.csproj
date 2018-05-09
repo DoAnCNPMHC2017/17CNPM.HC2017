@@ -340,6 +340,9 @@
     <Content Include="assets\updatelayout\js\portfolio\setting.js" />
     <Content Include="assets\updatelayout\js\quicksand\jquery.quicksand.js" />
     <Content Include="assets\updatelayout\js\quicksand\setting.js" />
+    <Content Include="assets\updatelayout\kendo\kendo.common-material.min.css" />
+    <Content Include="assets\updatelayout\kendo\kendo.material.min.css" />
+    <Content Include="assets\updatelayout\kendo\kendo.material.mobile.min.css" />
     <Content Include="assets\updatelayout\skins\blue.css" />
     <Content Include="assets\updatelayout\skins\default.css" />
     <Content Include="assets\updatelayout\skins\green.css" />

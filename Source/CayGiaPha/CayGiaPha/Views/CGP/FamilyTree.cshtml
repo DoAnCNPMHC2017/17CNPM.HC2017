@@ -4,31 +4,33 @@
     Layout = "~/Views/Shared/_Layout_2.cshtml";
 }
 
-@*<style>
-    .tooltip {
-    /*position: relative;*/
-    display: inline-block;
-    /*border-bottom: 1px dotted black;*/
-}
+<style>
+        .tooltip {
+            opacity: 1;
+            font-size: 14px;
+            /*position: relative;*/
+            display: inline-block;
+            /*border-bottom: 1px dotted black;*/
+        }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 170px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 2px 0;
+        /*.tooltip .tooltiptext {
+        visibility: hidden;
+        width: 170px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 2px 0;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
+         Position the tooltip
+        position: absolute;
+        z-index: 1;
+    }*/
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-</style>*@
+        /*.tooltip:hover .tooltiptext {
+        visibility: visible;
+    }*/
+</style>
 <input id="TreeID" value="@ViewBag.Id" hidden />
 <section id="content">
     <div class="container">
@@ -114,20 +116,15 @@
                                                     <style>
                                                         #megaStore {
                                                             max-width: 600px;
-                                                            margin: 3px auto;
-                                                            background: url('../content/web/menu/header.jpg') no-repeat center 0;
+                                                            margin: 1px auto;
                                                         }
 
                                                         #menu1X h2 {
                                                             font-size: 1em;
                                                             text-transform: uppercase;
-                                                            padding: 5px 10px;
+                                                            /*padding: 5px 10px;*/
                                                         }
 
-                                                        #template img {
-                                                            margin: 5px 20px 0 0;
-                                                            float: left;
-                                                        }
 
                                                         #template {
                                                             width: 380px;
@@ -135,8 +132,8 @@
 
                                                             #template ol {
                                                                 float: left;
-                                                                margin: 0 0 0 30px;
-                                                                padding: 10px 10px 0 10px;
+                                                                /*margin: 0 0 0 30px;*/
+                                                                /*padding: 10px 10px 0 10px;*/
                                                             }
 
                                                             #template:after {
@@ -150,15 +147,15 @@
                                                             #template .k-button {
                                                                 float: left;
                                                                 clear: left;
-                                                                margin: 5px 0 5px 12px;
+                                                                /*margin: 5px 0 5px 12px;*/
                                                             }
                                                     </style>
                                                     <script>
-                                $(document).ready(function () {
-                                    $("#menu1X").kendoMenu();
+                                                        $(document).ready(function () {
+                                                            $("#menu1X").kendoMenu();
 
 
-                                });
+                                                        });
                                                     </script>
                                                 </div>
                                             </header>
@@ -186,8 +183,8 @@
                                                     <table style="width: 1100px;text-align:left; " align="center" border="0">
                                                         <tbody>
                                                             @*<tr>
-                                    <td colspan="2" style="text-align:center"><b style="font-size:20px">Thông tin thành viên</b></td>
-                                </tr>*@
+                                                                    <td colspan="2" style="text-align:center"><b style="font-size:20px">Thông tin thành viên</b></td>
+                                                                </tr>*@
                                                             <tr id="trdOldID" hidden>
                                                                 <td style="width: auto;">Thành viên của</td>
                                                                 <td style="width: auto;"><input id="OldID" class="" style="width: 255px" /></td>
@@ -490,6 +487,6 @@
         </table>
     </div>
 </div>
-    <script src="~/assets/CGP.js"></script>
+<script src="~/assets/CGP.js"></script>
 
-    <script src="~/assets/Library/CGP_Rule.js"></script>
+<script src="~/assets/Library/CGP_Rule.js"></script>

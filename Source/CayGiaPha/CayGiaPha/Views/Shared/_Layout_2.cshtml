@@ -31,6 +31,11 @@
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" />
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />
 
+    @*<link href="~/assets/updatelayout/kendo/kendo.common-material.min.css" rel="stylesheet" />
+    <link href="~/assets/updatelayout/kendo/kendo.material.min.css" rel="stylesheet" />
+    <link href="~/assets/updatelayout/kendo/kendo.material.mobile.min.css" rel="stylesheet" />*@
+
+
     <script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
 
@@ -259,7 +264,7 @@
                 <div class="row">
                     <div class="span4">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href='@Url.Action("Index", "Home")'>
                                 <img src="~/assets/updatelayout/img/logo.png" alt="" class="logo" />
                             </a>
                             <h1>Quản lý Gia phả Trực tuyến</h1>
@@ -315,38 +320,7 @@
 
 
 
-        <section id="content">
-            <div class="container">
-                <div class="row marginbot30">
-                    <div class="span12">
-                        <div class="row">
-                            <div class="span12" style="width: 1300px;margin-left: -35px;">
-                                <div class="wrapper">
-                                    <div class="testimonial">
-                                        <p class="text">
-
-                                            123
-                                        </p>
-                                        <div class="author">
-                                            <img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="" />
-                                            <p class="name">
-                                                Tom Shaun Dealova
-                                                456
-                                            </p>
-                                            <span class="info">MBC Entertainment, <a href="#">www.sitename.com</a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
+        
 
         <section id="bottom">
             <div class="container">
@@ -368,31 +342,26 @@
                 <div class="row">
                     <div class="span3">
                         <div class="widget">
-                            <h5 class="widgetheading">Browse pages</h5>
+                            <h5 class="widgetheading">Sinh viên thực hiện</h5>
                             <ul class="link-list">
-                                <li><a href="#">About our company</a></li>
-                                <li><a href="#">Our services</a></li>
-                                <li><a href="#">Meet our team</a></li>
-                                <li><a href="#">Explore our portfolio</a></li>
-                                <li><a href="#">Get in touch with us</a></li>
+                                <li><a href="#">1742013 Nguyễn Ngọc Bình Dương</a></li>
+                                <li><a href="#">Nguyễn Đình Vương</a></li>
+                                <li><a href="#">Trịnh Văn Thịnh</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="span3">
                         <div class="widget">
-                            <h5 class="widgetheading">Important stuff</h5>
+                            <h5 class="widgetheading">Nhập môn công nghệ phần mềm</h5>
                             <ul class="link-list">
-                                <li><a href="#">Press release</a></li>
-                                <li><a href="#">Terms and conditions</a></li>
-                                <li><a href="#">Privacy policy</a></li>
-                                <li><a href="#">Career center</a></li>
-                                <li><a href="#">Flattern forum</a></li>
+                                <li><a href="#">Giáo viên - Ngô Ngọc Đăng Khoa</a></li>
+                                <li><a href="#">Đề tài - Quản lý gia phả</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="span3">
                         <div class="widget">
-                            <h5 class="widgetheading">Flickr photostream</h5>
+                            <h5 class="widgetheading">FIT HCMUS</h5>
                             <div class="flickr_badge">
                                 <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=34178660@N03"></script>
                             </div>
@@ -402,7 +371,7 @@
                     </div>
                     <div class="span3">
                         <div class="widget">
-                            <h5 class="widgetheading">Get in touch with us</h5>
+                            <h5 class="widgetheading">www.hcmus.edu.vn</h5>
                             <address>
                                 <strong>Flattern studio, Pte Ltd</strong><br>
                                 Springville center X264, Park Ave S.01<br>

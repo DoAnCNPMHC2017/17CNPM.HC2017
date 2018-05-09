@@ -5,103 +5,102 @@
     Layout = "~/Views/Shared/_Layout_2.cshtml";
 }
 
-<link href="~/assets/newlayout/table/main.css" rel="stylesheet" />
-
-<section id="content">
+<section id="content" style="background:#fff1e4 ">
     <div class="container">
-
-        <div class="row">
+        <div class="row marginbot30">
             <div class="span12">
-                <h4>Danh Sách Gia Tộc</h4>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Gia tộc
-                            </th>
-                            <th>
-                                Ngày tạo
-                            </th>
-                            <th>
-                                Chi tiết
-                            </th>
-                        </tr>
-                    </thead>
-                    @{
-                        int stt = 1;
-                    }
-                    <tbody>
+                <h4 class="heading"><strong>Danh sách Gia Tộc</strong></h4>
+                <div class="row">
+                    <div class="span12" style="margin-left: 10px;">
+                        <div class="wrapper">
+                            <div class="testimonial">
+                                <table class="table">
+                                    <thead>
+                                        <tr style="background:#ff9248">
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Gia tộc
+                                            </th>
+                                            <th>
+                                                Ngày tạo
+                                            </th>
+                                            <th>
+                                                Chi tiết
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    @{
+                                        int stt = 1;
+                                    }
+                                    <tbody>
 
-                        @foreach (var cim in Model)
-                        {
-                            @*<tr class="success">*@
-                            <tr class="info">
-                                <td>
-                                    @stt
-                                </td>
-                                <td>
-                                    @cim.Name
-                                </td>
-                                <td>
-                                    @cim.CreateDate.ToString()
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none;color:#ff6700;font-size: 20px;" href="/CGP/FamilyTree/?id=@cim.TreeID">Xem</a>
-                                </td>
-                            </tr>
-                            stt++;
-                        }
+                                        @foreach (var cim in Model)
+                                        {
+                                            @*<tr class="success">*@
+                                            <tr class="info">
+                                                <td>
+                                                    @stt
+                                                </td>
+                                                <td>
+                                                    @cim.Name
+                                                </td>
+                                                <td>
+                                                    @cim.CreateDate.ToString()
+                                                </td>
+                                                <td>
+                                                    <a style="text-decoration: none;color:#ff6700;font-size: 20px;" href="/CGP/FamilyTree/?id=@cim.TreeID">Xem</a>
+                                                </td>
+                                            </tr>
+                                            stt++;
+                                        }
 
+                                    </tbody>
+                                </table>
 
-
-
-
-                    </tbody>
-                </table>
-
-
-                <table>
-                    <tr>
-                        <td style="width:300px"></td>
-                        <td style="width:500px">
-                            <input type="text" style="width:300px;background: antiquewhite; " class="k-textbox" id="txtName" name="Name" placeholder="Tên Gia Tộc" value="" />
-                            @*<div class="center-block">*@
-                            <button id="singlebutton"  name="singlebutton" class="btn btn-large btn-theme btn-rounded">Tạo mới</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-    
-        <div class="row">
-            <div class="span12">
-                <h4>Tạo gia phả <strong>Mới</strong></h4>
-
-                <form action="" method="post" role="form" class="contactForm">
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
-                    <div id="errormessage"></div>
-
-                    <div class="row">
-                        <div class="span4 form-group">
-                            <input type="text"  class="form-control" id="txtName" name="Name" placeholder="Tên Gia Tộc" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="span12 margintop10 form-group">
-                            <textarea class="form-control" name="message" rows="12" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                            <div class="validation"></div>
-                            <p class="text-center">
-                                <button class="btn btn-large btn-theme margintop10" type="submit">Tạo</button>
-                            </p>
+                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
+    </div>
+</section>
 
-     </div>
+
+
+<section id="content" style="margin-top:-60px;background:#fff1e4 ">
+    <div class="container">
+        <div class="row marginbot30">
+            <div class="span12">
+                <div class="row">
+                    <div class="span12" style="margin-left: 10px;">
+                        <div class="wrapper">
+                            <div class="testimonial">
+                                <h4 style="margin-left: 18em;"><strong>Tạo gia tộc mới</strong> </h4>
+                                <form action="" method="post" role="form" class="contactForm" style="margin-left: 30em;">
+                                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                                    <div id="errormessage"></div>
+
+                                    <div class="row">
+                                        <div class="span4 form-group">
+                                            <input type="text" class="form-control" style="background:antiquewhite" id="txtName" name="Name" placeholder="Tên Gia Tộc" data-rule="required" data-msg="Please enter at least 4 chars" />
+                                            <div class="validation"></div>
+                                        </div>
+                                    </div>
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-large btn-theme btn-rounded" style="margin-top: -3em;margin-left: 9em;">Tạo mới</button>
+
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
 
