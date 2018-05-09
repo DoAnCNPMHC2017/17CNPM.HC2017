@@ -16,7 +16,6 @@ namespace CayGiaPha.Helper
                 filterContext.Result = new RedirectResult("~/Home/Index");
                 return;
             }
-
             base.OnActionExecuting(filterContext);
         }
     }
