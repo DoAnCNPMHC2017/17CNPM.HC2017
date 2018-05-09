@@ -4,84 +4,104 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_2.cshtml";
 }
-<style>
-    .create-jumbotron {
-        background-repeat: no-repeat;
-        background-position: center;
-        /*background-image: url(assets/imgs/dragon.png);*/
-        background-color: #fff5cc;
-    }
 
-    .list-jumbotron {
-        background-repeat: no-repeat;
-        background-position: center;
-        /*background-image: url(assets/imgs/1.jpg);*/
-        background-color: #fffffd;
-    }
-</style>
 <link href="~/assets/newlayout/table/main.css" rel="stylesheet" />
-<div id="main">
 
-    <!-- Post -->
-    <article class="post" style="background: linear-gradient(to bottom, #4ca1af, #c4e0e5); ">
-        <p style="color:white;font-size:20px;text-align:center">Danh sách Gia Tộc</p>
-        @{
-            int stt = 1;
-        }
-        <table>
-            <tr>
-                <td style="width:auto">
-                    <div class="table100 ver1 m-b-110">
-                        <div class="table100-head">
-                            <table>
-                                <thead>
-                                    <tr class="row100 head">
-                                        <th class="cell100 column2" style="padding-left: 3em;">STT</th>
-                                        <th class="cell100 column1">Gia Phả</th>
-                                        <th class="cell100 column3" style="padding-left: 3em;">Ngày tạo</th>
-                                        <th class="cell100 column4" style="padding-left: 3em;">Chi tiết</th>
-                                    </tr>
-                                </thead>
-                            </table>
+<section id="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="span12">
+                <h4>Danh Sách Gia Tộc</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Gia tộc
+                            </th>
+                            <th>
+                                Ngày tạo
+                            </th>
+                            <th>
+                                Chi tiết
+                            </th>
+                        </tr>
+                    </thead>
+                    @{
+                        int stt = 1;
+                    }
+                    <tbody>
+
+                        @foreach (var cim in Model)
+                        {
+                            @*<tr class="success">*@
+                            <tr class="info">
+                                <td>
+                                    @stt
+                                </td>
+                                <td>
+                                    @cim.Name
+                                </td>
+                                <td>
+                                    @cim.CreateDate.ToString()
+                                </td>
+                                <td>
+                                    <a style="text-decoration: none;color:#ff6700;font-size: 20px;" href="/CGP/FamilyTree/?id=@cim.TreeID">Xem</a>
+                                </td>
+                            </tr>
+                            stt++;
+                        }
+
+
+
+
+
+                    </tbody>
+                </table>
+
+
+                <table>
+                    <tr>
+                        <td style="width:300px"></td>
+                        <td style="width:500px">
+                            <input type="text" style="width:300px;background: antiquewhite; " class="k-textbox" id="txtName" name="Name" placeholder="Tên Gia Tộc" value="" />
+                            @*<div class="center-block">*@
+                            <button id="singlebutton"  name="singlebutton" class="btn btn-large btn-theme btn-rounded">Tạo mới</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    
+        <div class="row">
+            <div class="span12">
+                <h4>Tạo gia phả <strong>Mới</strong></h4>
+
+                <form action="" method="post" role="form" class="contactForm">
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+
+                    <div class="row">
+                        <div class="span4 form-group">
+                            <input type="text"  class="form-control" id="txtName" name="Name" placeholder="Tên Gia Tộc" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <div class="validation"></div>
                         </div>
-
-                        <div class="table100-body js-pscroll">
-                            <table>
-                                <tbody>
-                                    @foreach (var cim in Model)
-                                    {
-                                        <tr class="row100 body">
-                                            <td class="cell100 column2" style="padding-left: 3em;font-size: 20px;">@stt</td>
-                                            <td class="cell100 column1" style="font-size: 20px;">@cim.Name</td>
-                                            <td class="cell100 column3" style="padding-left: 3em;font-size: 20px;">@cim.CreateDate.ToString()</td>
-                                            <td class="cell100 column4" style="padding-left: 4em;"><a style="text-decoration: none;color:cornflowerblue;font-size: 20px;" href="/CGP/FamilyTree/?id=@cim.TreeID">Xem</a></td>
-                                        </tr>
-                                        stt++;
-                                    }
-                                </tbody>
-                            </table>
+                        <div class="span12 margintop10 form-group">
+                            <textarea class="form-control" name="message" rows="12" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validation"></div>
+                            <p class="text-center">
+                                <button class="btn btn-large btn-theme margintop10" type="submit">Tạo</button>
+                            </p>
                         </div>
                     </div>
-                </td>
-            </tr>
-        </table>
-        <br />
-        <br />
-        <table>
-            <tr>
-                <td style="width:300px"></td>
-                <td style="width:500px">
-                    <input type="text" style="width:300px;background: antiquewhite; " class="k-textbox" id="txtName" name="Name" placeholder="Tên Gia Tộc" value="" />
-                    @*<div class="center-block">*@
-                    <button id="singlebutton" style="margin-left: 10em;margin-top: 3em;background: white;width:100px" name="singlebutton" class="btn btn-primary">Tạo mới</button>
-                </td>
-            </tr>
-        </table>
+                </form>
+            </div>
+        </div>
 
+     </div>
+</section>
 
-    </article>
-
-
-    <script src="~/assets/bootstrap/bootstrap.min.js"></script>
-
-</div>

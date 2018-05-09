@@ -116,44 +116,72 @@
         
     </script>
 <input hidden id="mes" value="@ViewBag.Mes" />
-<section class="login-block">
-    <div class="container123">
-        <div class="row">
-            <div class="col-md-3 login-sec">
-                <h2 class="text-center" style="letter-spacing:0px;text-align:center">Đăng Nhập</h2>
-                @if (@ViewBag.Mes == 2)
-                {
-                    <div class="alert alert-warning">
-                        <strong>Tên đăng nhặp hoặc mật khẩu chưa đúng!</strong>
-                    </div>
-                }
-                <form name=frmMr class="login-form" id="form_login" method="post" action="">
-                    <div class="form-group" style="padding-top:  0.8em;">
-                        <label for="txtUserName" class="text-uppercase" style="margin-bottom: -0.5px;">Tên đăng nhập</label>
-                        <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây')" type="text" class="form-control" id="txtUserName" style="height: 2.5em;width: 17em;" name="UserName" placeholder="Nhập tên đăng nhập" value="">
-                    </div>
-                    <div class="form-group" style="padding-top:  0.8em;">
-                        <label for="txtPassword" class="text-uppercase" style="margin-bottom: -0.5px;">Mật khẩu</label>
-                        <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây')" type="password" class="form-control" style="height: 2.5em;width: 17em;" id="txtPassword" name="PassWord" placeholder="Nhập mật khẩu">
-                    </div>
-                    @*<div class="form-check">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" name="Remember">
-                            <small>Ghi nhớ tài khoản</small>
-                        </label>
-                    </div>*@
-                    <div class="form-group" style="padding-top: 0.8em;">
-                        <button  type="submit" style="background-color:white;height:50px" class="btn btn-login float-left">
-                            
-                            Đăng nhập
-                        </button>
-                    </div>
-                   
 
-                </form>
-            </div>
-            <div class="col-md-8 banner-sec">
-                <img border-radius="20px" width="800" src="~/assets/imgs/family.jpg" />
+<section id="content">
+    <div class="container">
+        <div class="row marginbot30">
+            <div class="span12">
+                <div class="row">
+                    <div class="span12" style="width: 1300px;margin-left: -35px;">
+                        <div class="wrapper">
+                            <div class="testimonial">
+                                <p class="text">
+
+                                    <section class="login-block">
+                                        <div class="container123">
+                                            <div class="row">
+                                                <div class="col-md-3 login-sec">
+                                                    <h2 class="text-center" style="letter-spacing:0px;text-align:center">Đăng Nhập</h2>
+                                                    @if (@ViewBag.Mes == 2)
+                                                    {
+                                                        <div class="alert alert-warning">
+                                                            <strong>Tên đăng nhặp hoặc mật khẩu chưa đúng!</strong>
+                                                        </div>
+                                                    }
+                                                    <form name=frmMr class="login-form" id="form_login" method="post" action="">
+                                                        <div class="form-group" style="padding-top:  0.8em;">
+                                                            <label for="txtUserName" class="text-uppercase" style="margin-bottom: -0.5px;">Tên đăng nhập</label>
+                                                            <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây')" type="text" class="form-control" id="txtUserName" style="height: 2.5em;width: 17em;" name="UserName" placeholder="Nhập tên đăng nhập" value="">
+                                                        </div>
+                                                        <div class="form-group" style="padding-top:  0.8em;">
+                                                            <label for="txtPassword" class="text-uppercase" style="margin-bottom: -0.5px;">Mật khẩu</label>
+                                                            <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây')" type="password" class="form-control" style="height: 2.5em;width: 17em;" id="txtPassword" name="PassWord" placeholder="Nhập mật khẩu">
+                                                        </div>
+                                                        <div class="form-group" style="padding-top: 0.8em;">
+                                                            <button type="submit" style="background-color:white;height:50px" class="btn btn-login float-left">
+
+                                                                Đăng nhập
+                                                            </button>
+                                                        </div>
+
+
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-8 banner-sec">
+                                                    <img border-radius="20px" width="800" src="~/assets/imgs/family.jpg" />
+                                                </div>
+                                            </div>
+                                    </section>
+
+
+                                </p>
+                                <div class="author">
+                                    <img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="" />
+                                    <p class="name">
+                                        Tom Shaun Dealova
+                                        456
+                                    </p>
+                                    <span class="info">MBC Entertainment, <a href="#">www.sitename.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
+    </div>
 </section>
+
+

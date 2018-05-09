@@ -1,143 +1,166 @@
-﻿
+﻿@model Account
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_2.cshtml";
 }
-<style>
-    .jumbotron {
-        border-color: red;
-        border-style: double;
-    }
-</style>
-<style>
-    .login-block {
-        background: #DE6262; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        float: left;
-        width: 100%;
-        padding: 50px 0;
-    }
+<section id="featured">
+    <!-- start slider -->
+    <!-- Slider -->
+    <div id="nivo-slider">
+        <div class="nivo-slider">
+            <!-- Slide #1 image -->
+            <img src="~/assets/updatelayout/img/slides/nivo/bg-1.jpg" alt="" title="#caption-1" />
+            <!-- Slide #2 image -->
+            <img src="~/assets/updatelayout/img/slides/nivo/bg-2.jpg" alt="" title="#caption-2" />
+            <!-- Slide #3 image -->
+            <img src="~/assets/updatelayout/img/slides/nivo/bg-3.jpg" alt="" title="#caption-3" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <!-- Slide #1 caption -->
+                    <div class="nivo-caption" id="caption-1">
+                        <div>
+                            <h2>Cây có cội người có tông, lập gia phả lưu giữ tinh hoa dòng họ <strong></strong></h2>
+                            <p>
+                                Gia phả gìn giữ truyền thống quý báu gia đình, chứng tích gốc gác lịch sử dòng họ
+                            </p>
+                            @*<a href="#" class="btn btn-theme">Read More</a>*@
+                        </div>
+                    </div>
+                    <!-- Slide #2 caption -->
+                    <div class="nivo-caption" id="caption-2">
+                        <div>
+                            <h2>Gia phả - <strong>Khơi gợi đạo đức</strong></h2>
+                            <p>
+                                Nhắc con cháu sống sao cho xứng đáng với hào khí ông cha để lại.
+                            </p>
 
-    .banner-sec {
-        background-size: cover;
-        min-height: 500px;
-        border-radius: 0 10px 10px 0;
-        padding: 0;
-    }
+                        </div>
+                    </div>
+                    <!-- Slide #3 caption -->
+                    <div class="nivo-caption" id="caption-3">
+                        <div>
+                            <h2>Gia phả -  <strong>Sản phẩm tinh hoa văn hóa ngàn đời</strong></h2>
+                            <p>
+                                Cái nôi lịch sử mà chỉ Việt Nam mới có.
+                            </p>
 
-    .container123 {
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: 15px 20px 0px rgba(0,0,0,0.1);
-    }
+                        </div>
+                    </div>
+                    <div class="nivo-caption" id="caption-4">
+                        <div>
+                            <h2>Thiết kế gia phả,  <strong>xây dựng phả đồ</strong></h2>
+                            <p>
+                                làm sổ gia phả để chắp nối nguồn cội, nuôi dưỡng ước mơ, giữ gìn văn hóa dân tộc cho hôm nay và mai sau.
+                            </p>
 
-    .login-sec {
-        padding: 50px 30px;
-        position: relative;
-    }
-
-        .login-sec .copy-text {
-            position: absolute;
-            width: 80%;
-            bottom: 20px;
-            font-size: 13px;
-            text-align: center;
-        }
-
-            .login-sec .copy-text i {
-                color: #FEB58A;
-            }
-
-            .login-sec .copy-text a {
-                color: #E36262;
-            }
-
-        .login-sec h2 {
-            margin-bottom: 30px;
-            font-weight: 800;
-            font-size: 30px;
-            color: #DE6262;
-        }
-
-            .login-sec h2:after {
-                content: " ";
-                width: 100px;
-                height: 5px;
-                background: #FEB58A;
-                display: block;
-                margin-top: 20px;
-                border-radius: 3px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-    .btn-login {
-        background: #DE6262;
-        color: #fff;
-        font-weight: 600;
-    }
-
-    .banner-text {
-        width: 70%;
-        position: absolute;
-        bottom: 40px;
-        padding-left: 20px;
-    }
-
-        .banner-text h2 {
-            color: #fff;
-            font-weight: 600;
-        }
-
-            .banner-text h2:after {
-                content: " ";
-                width: 100px;
-                height: 5px;
-                background: #FFF;
-                display: block;
-                margin-top: 20px;
-                border-radius: 3px;
-            }
-
-        .banner-text p {
-            color: #fff;
-        }
-</style>
-
-
-
-<section class="login-block">
-    <div class="container123">
-        <div class="row">
-            <div class="col-md-5 banner-sec">
-                <img border-radius="20px" width="800" src="~/assets/imgs/family.jpg" />
-            </div>
-            <div class="col-md-6 login-sec" style="width:500px">
-                <div class="jumbotron text-center" style="text-align:center">
-                    <a href="@Url.Action("Index", "CGP")" style="color:indigo;text-align:center;text-decoration: none;font-size:20px">
-                        <i class="fa fa-address-book-o" aria-hidden="true"></i>
-                        @if (Session["isLogin"] != null && Session["isLogin"].ToString() == "1")
-                        {
-                            <span>Xem danh sách cây gia phả</span>
-                        }
-                        else
-                        {
-                            <span > LẬP CÂY GIA PHẢ </span>
-                        }
-
-                    </a>
-                </div>
-                <div class="col-item" style="padding-top:2em">
-                    <h3 style="letter-spacing:0">Cây có cội người có tông, lập gia phả lưu giữ tinh hoa dòng họ</h3>
-                    <ul>
-                        <li>Gia phả gìn giữ truyền thống quý báu gia đình, chứng tích gốc gác lịch sử dòng họ.</li>
-                        <li>Gia phả - Khơi gợi đạo đức, hiếu nghĩa gia đình, nhắc con cháu sống sao cho xứng đáng với hào khí ông cha để lại.</li>
-                        <li>Gia phả - Sản phẩm tinh hoa văn hóa ngàn đời, cái nôi lịch sử mà chỉ Việt Nam mới có.</li>
-                        <li>Thiết kế gia phả, xây dựng phả đồ, làm sổ gia phả để chắp nối nguồn cội, nuôi dưỡng ước mơ, giữ gìn văn hóa dân tộc cho hôm nay và mai sau.</li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
+    <!-- end slider -->
 </section>
+<section class="callaction" style="background:#ffd7b">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="big-cta">
+                    <div class="cta-text">
+                        <h3>Viết casigif ra đây giùm nha<span class="highlight"><strong>5000 websites</strong></span> this year!</h3>
+                    </div>
+                    <div class="cta floatright">
+                        <a class="btn btn-large btn-theme btn-rounded" href="@Url.Action("Index", "CGP")">Gia tộc của tôi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" style="background: #ffd7b5;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h4>Quản lý gia phả trực tuyến chỉ trong <strong>3 bước</strong></h4>
+            </div>
+            <div class="span4">
+                <div class="pricing-box-alt">
+                    <div class="pricing-heading">
+                        <h3>Bước <strong>1</strong></h3>
+                    </div>
+                    <div class="pricing-terms">
+                        <h6>&#36;Đăng ký tài khoản</h6>
+                    </div>
+                    <div class="pricing-content">
+                        <ul>
+                            <li><i class="icon-ok"></i> Miễn phí</li>
+                            <li><i class="icon-ok"></i> Dễ dàng</li>
+                            <li><i class="icon-ok"></i> Nhanh chóng</li>
+                            <li><i class="icon-ok"></i> Free 30-days trial</li>
+                            <li><i class="icon-ok"></i> Stop anytime easily</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng ký ngay</a>
+                    </div>
+                </div>
+            </div>
+            <div class="span4" >
+                <div class="pricing-box-alt " style="background:#ff9248">
+                    <div class="pricing-heading" style="background:#ff9248">
+                        <h3>Bước <strong>2</strong></h3>
+                    </div>
+                    <div class="pricing-terms">
+                        <h6>&#36;Đăng nhập</h6>
+                    </div>
+                    <div class="pricing-content">
+                        <ul>
+                            <li><i class="icon-ok"></i> Tiện lợi</li>
+                            <li><i class="icon-ok"></i> Gì nữa</li>
+                            <li><i class="icon-ok"></i> Ghi thêm đi</li>
+                            <li><i class="icon-ok"></i> Free 30-days trial</li>
+                            <li><i class="icon-ok"></i> Stop anytime easily</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="pricing-box-alt special">
+                    <div class="pricing-heading">
+                        <h3>Bước <strong>3</strong></h3>
+                    </div>
+                    <div class="pricing-terms">
+                        <h6>&#36;Tạo gia phả Online</h6>
+                    </div>
+                    <div class="pricing-content">
+                        <ul>
+                            <li><i class="icon-ok"></i> Tạo gia phả</li>
+                            <li><i class="icon-ok"></i> Quản lý thành viên</li>
+                            <li><i class="icon-ok"></i> No hidden fees</li>
+                            <li><i class="icon-ok"></i> Free 30-days trial</li>
+                            <li><i class="icon-ok"></i> Stop anytime easily</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Tạo Gia phả ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- divider -->
+        <div class="row">
+            <div class="span12">
+                <div class="solidline">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

@@ -7,7 +7,8 @@
 <script src="~/assets/Library/kendo.all.min.js"></script>
 <script src="~/assets/Report.js"></script>
 <input id="TreeID" value="@ViewBag.Id" hidden />
-<style>
+
+@*<style>
     .tooltip {
     /*position: relative;*/
     display: inline-block;
@@ -31,77 +32,79 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
-</style>
-<table>
-    <tr>
-        <td style="width:150px" class="tooltip"><img src="~/assets/imgs/backspace_black_96x96.png" style="" onclick="BackCGP()" /><span class='tooltiptext'>Về danh sách thành viên</span></td>
-    </tr>
-    <tr>
-        <td style="width:150px"></td>
-        <td style="width:30px">Từ</td>
-        <td style="width:200px"><input id="FromDate" />  </td>
-        <td style="width:30px">đến</td>
-        <td style="width:200px"><input id="ToDate" /></td>
-        <td style="width:190px"><input id="Type" /></td>
-        <td style="width:300px"><input type="button" class="k-button" onclick="XemBaoCao()" value="Xem Báo Cáo" /></td>
-    </tr>
-    <tr>
-        <td colspan="7">
-            <h1 id="lable" style="text-align:center;letter-spacing:0;padding-top:1em;text-transform: capitalize;"></h1>
-        </td>
-    </tr>
-    <tr>
-        @*<td colspan="7">
-    <h3 style="text-align:center" id="lable"></h3>
+</style>*@
 
 
-        </td>*@
-        <td id="tdGridReportNumber" colspan="7">
-            <div>
-                @*<h1 style="text-align:center;letter-spacing:0;padding-top:1em;text-transform: capitalize;">Báo Cáo Tăng Giảm Thành Viên</h1>*@
-                <div id="GridReportNumber">
-
-                </div>
-            </div>
-        </td>
-        <td id="tdGridReportTT" hidden colspan="7">
-            @*<h1 style="text-align:center;letter-spacing:0;padding-top:1em;text-transform: capitalize;">Báo Cáo Thành Tích Các Thành Viên</h1>*@
-            <div>
-                <div id="GridReportTT">
-
-                </div>
-            </div>
-        </td>
-    </tr>
-</table>
+<section id="content">
+    <div class="container">
+        <div class="row marginbot30">
+            <div class="span12">
+                <div class="row">
+                    <div class="span12" style="width: 1300px;margin-left: -35px;">
+                        <div class="wrapper">
+                            <div class="testimonial" style="background: #ffd7b5;">
+                                <p class="text">
 
 
-@*<table style="margin-left:25%">
-        <tr>
-            <td>Từ <input id="FromDate" /> đến </td>
-            <td><input id="ToDate" /></td>
-            <td><input id="Type" style="width:190px" /></td>
-            <td><input type="button" class="k-button" onclick="XemBaoCao()" value="Xem Báo Cáo" /></td>
-        </tr>
-    </table>
-    <h3 style="text-align:center" id="lable"></h3>
-    <table>
-        <tr>
-            <td id="tdGridReportNumber">
-                <div>
-                    <h1 style="text-align:center">Báo cáo Tăng Giảm Thanh Viên</h1>
-                    <div id="GridReportNumber">
+                                    <table>
+                                        <tr>
+                                            <td style="width:150px" class="tooltip"><img src="~/assets/imgs/backspace_black_96x96.png" style="" onclick="BackCGP()" /><span class='tooltiptext'>Về danh sách thành viên</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:150px"></td>
+                                            <td style="width:30px">Từ</td>
+                                            <td style="width:200px"><input id="FromDate" />  </td>
+                                            <td style="width:30px">đến</td>
+                                            <td style="width:200px"><input id="ToDate" /></td>
+                                            <td style="width:190px"><input id="Type" /></td>
+                                            <td style="width:300px"><input type="button" class="k-button" onclick="XemBaoCao()" value="Xem Báo Cáo" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <h3 id="lable" style="text-align:center;letter-spacing:0;padding-top:1em;text-transform: capitalize;"></h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            @*<td colspan="7">
+                <h3 style="text-align:center" id="lable"></h3>
 
+
+                    </td>*@
+                                            <td id="tdGridReportNumber" colspan="7">
+                                                <div>
+                                                    @*<h1 style="text-align:center;letter-spacing:0;padding-top:1em;text-transform: capitalize;">Báo Cáo Tăng Giảm Thành Viên</h1>*@
+                                                    <div id="GridReportNumber">
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td id="tdGridReportTT" hidden colspan="7">
+                                                @*<h1 style="text-align:center;letter-spacing:0;padding-top:1em;text-transform: capitalize;">Báo Cáo Thành Tích Các Thành Viên</h1>*@
+                                                <div>
+                                                    <div id="GridReportTT">
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+
+                                </p>
+                                <div class="author">
+                                    <img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="" />
+                                    <p class="name">
+                                       Gia tộc nào đó
+                                    </p>
+                                    <span class="info">MBC Entertainment, <a href="#">www.sitename.com</a></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td id="tdGridReportTT" hidden>
-                <h1 style="text-align:center">Báo cáo Thành Tích Các Thành Viên</h1>
-                <div>
-                    <div id="GridReportTT">
 
-                    </div>
                 </div>
-            </td>
-        </tr>
-    </table>*@
+
+            </div>
+        </div>
+    </div>
+</section>

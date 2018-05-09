@@ -13,7 +13,7 @@ namespace CayGiaPha.Helper
         {
             if (CurrentContext.IsLogged() == false)
             {
-                filterContext.Result = new RedirectResult("~/Account/Login");
+                filterContext.Result = new RedirectResult("~/Home/Index");
                 return;
             }
 

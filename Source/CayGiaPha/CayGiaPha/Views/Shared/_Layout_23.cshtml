@@ -1,0 +1,252 @@
+﻿@using CayGiaPha.Helper
+<!DOCTYPE HTML>
+<!--
+    Future Imperfect by HTML5 UP
+    html5up.net | ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Quản Lý Gia Phả</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/assets/newlayout/css/main.css" rel="stylesheet" />
+    <link href="~/assets/newlayout/css/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/assets/newlayout/css/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/assets/newlayout/css/kendo.default.mobile.min.css" rel="stylesheet" />
+    @*<script src="~/assets/newlayout/css/jquery.min.js"></script>
+        <script src="~/assets/newlayout/css/kendo.all.min.js"></script>*@
+
+    <link href="~/assets/newlayout/kendo/kendo.common-material.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
+    @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" />*@
+    @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />*@
+    @*<img src="~/assets/Library/Miami Dolphins.jpg" />*@
+    @*<script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>*@
+    <script src="~/assets/newlayout/kendo/jquery.min.js"></script>
+        <script src="~/assets/newlayout/kendo/kendo.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+@*<body style="background-image: url('../../assets/Library/Miami.jpg');text-align:left">*@
+<body style="text-align:left">
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" style='background: linear-gradient(to right, #ffa17f, #00223e); height:50px'>
+            @*<h1><a href='@Url.Action("Index", "Home")' style="background-color:wheat;font-family: 'Times New Roman', Times, serif;">Trang Chủ</a></h1>*@
+            <a href="/">
+                <img src="/assets/imgs/cen_bn.jpg" style="height:50px;">
+            </a>
+            <nav class="main">
+                <div id="example2" style="margin-top:-1.9em">
+                    @if (CurrentContext.IsLogged() == true)
+                    {
+                        @*<div class="dropdown">
+                            <button onclick="myFunction()" style="background-color:white;margin-top:8px;font-family: 'Times New Roman', Times, serif;" class="dropbtn">@CurrentContext.GetCurUser().Username </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a id="logoutID" href="javascript:;">
+                                    Đăng xuất
+                                </a>
+                            </div>
+                        </div>*@
+                        <div class="dropdown" style="width: 6em;">
+                            <a class="dropbtn" onclick="myFunction()" style="height:4.4em">
+                                @CurrentContext.GetCurUser().Username
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-content" id="myDropdown" style="margin-top: 0;">
+                                <a href="@Url.Action("Index", "CGP")">Gia phả</a>
+                                <a  id="logoutID" href="javascript:;">Đăng xuất</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="dropdown" style="display:inline;padding-top:1.5em">
+                            @*<a class="dropbtn" onclick="myFunction()" style="height:4.4em">
+                               123
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <a class="dropbtn" onclick="myFunction()" style="height:4.4em">
+                                123
+                                <i class="fa fa-caret-down"></i>
+                            </a>*@
+                            <p class="dropbtn" style="display:inline" >
+                            <a href='@Url.Action("Login","Account")'>Đăng nhập ||</a> 
+                            <a href='@Url.Action("Register","Account")'>Đăng ký</a>
+                            </p>
+                        </div>
+
+                    }
+
+
+
+
+                    <style>
+                        .dropdown {
+                            float: left;
+                            overflow: hidden;
+                            background-color: #ddd;
+                        }
+
+                            .dropdown .dropbtn {
+                                cursor: pointer;
+                                font-size: 16px;
+                                border: none;
+                                outline: none;
+                                color: black;
+                                padding: 14px 16px;
+                                background-color: inherit;
+                                font-family: inherit;
+                                margin: 0;
+                                height: 2em;
+                                display: block;
+                                margin-top: 10px;
+                            }
+
+                            a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+                                background-color: #ddd;
+                            }
+
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            background-color: #f9f9f9;
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                            z-index: 1;
+                        }
+
+                            .dropdown-content a {
+                                float: none;
+                                color: black;
+                                padding: 12px 16px;
+                                text-decoration: none;
+                                display: block;
+                                text-align: left;
+                            }
+
+                                .dropdown-content a:hover {
+                                    background-color: #ddd;
+                                }
+
+                        .show {
+                            display: block;
+                        }
+                    </style>
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        // Close the dropdown if the user clicks outside of it
+                        window.onclick = function (e) {
+                            if (!e.target.matches('.dropbtn')) {
+                                var myDropdown = document.getElementById("myDropdown");
+                                if (myDropdown.classList.contains('show')) {
+                                    myDropdown.classList.remove('show');
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+
+            </nav>
+        </header>
+        <form id="frmLogout" method="post" action="@Url.Action("Logout","Account")"></form>
+        <!-- Menu -->
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //$("#menu2X").kendoMenu();
+
+                $('#logoutID').on('click', function () {
+                    $('#frmLogout').submit();
+                })
+
+
+            });
+
+
+        </script>
+        <!-- 12312321-->
+        @RenderBody()
+    </div>
+
+
+
+
+    <style>
+        #tabstrip h2 {
+            font-weight: lighter;
+            font-size: 5em;
+            line-height: 1;
+            padding: 0 0 0 30px;
+            margin: 0;
+        }
+
+            #tabstrip h2 span {
+                background: none;
+                padding-left: 5px;
+                font-size: .3em;
+                vertical-align: top;
+            }
+
+        #tabstrip p {
+            margin: 0;
+            padding: 0;
+        }
+
+        #cap {
+            width: 242px;
+            height: 225px;
+            margin: 20px auto;
+            background-image: url('../content/web/dropdownlist/cap.png');
+            background-repeat: no-repeat;
+            background-color: transparent;
+        }
+
+        .black-cap {
+            background-position: 0 0;
+        }
+
+        .grey-cap {
+            background-position: 0 -225px;
+        }
+
+        .orange-cap {
+            background-position: 0 -450px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $("#tabstrip").kendoTabStrip({
+                    animation: {
+                        open: {
+                            effects: "fadeIn"
+                        }
+                    }
+                });
+            });
+
+
+            // create DropDownList from select HTML element
+
+        });
+    </script>
+    <!-- Scripts -->
+
+</body>
+<!-- About -->
+
+<section class="blurb" style="height: 130px;background: linear-gradient(to right, #ffa17f, #00223e); ">
+    <h2 style="text-align:center;color:white; padding-top:20px">QUẢN LÝ CÂY GIA PHẢ</h2>
+    <p style="text-align:center;color:white">NHÓM 17</p>
+</section>
+</html>
