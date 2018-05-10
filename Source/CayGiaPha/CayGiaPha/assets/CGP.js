@@ -544,7 +544,7 @@ function setColumns(typeID) {
                 {
                     title: "Họ Tên",
                     width: 150,
-                    template: "<a class='tooltip' style='text-decoration: none;color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#if(data.FullName == ''){#...#}else{##=FullName##}# <span class='tooltiptext'>cập nhật thành viên</span></a>"
+                    template: "<a style='color:blue' onclick='LoadInfomationMember(#=ID#)' href=\"javascript:;\">#if(data.FullName == ''){#...#}else{##=FullName##}#</a>"
                 }, { field: "bd", title: "Ngày sinh", width: 120 }
                 , {
                     //field: "Generation",
@@ -657,8 +657,8 @@ function Tree(Mbold)
                 BanDoi2 = TimVoChong(ItemsTemp.Id);
                 if(BanDoi2 != '')
                 {
-                    BanDoi1 = 'Cha: ' + ItemsTemp.FullName;
-                    BanDoi2 = ' Mẹ: ' + BanDoi2;
+                    BanDoi1 = 'Chồng: ' + ItemsTemp.FullName;
+                    BanDoi2 = '   Vợ: ' + BanDoi2;
                 }
                 else
                     BanDoi1 = ItemsTemp.FullName;
@@ -667,8 +667,8 @@ function Tree(Mbold)
             {                
                 BanDoi1 = TimVoChong(ItemsTemp.Id);
                 if (BanDoi1 != '') {
-                    BanDoi1 = 'Cha: ' + BanDoi1;
-                    BanDoi2 = ' Mẹ: ' + ItemsTemp.FullName;
+                    BanDoi1 = 'Chồng: ' + BanDoi1;
+                    BanDoi2 = '   Vợ: ' + ItemsTemp.FullName;
                 }
                 else
                     BanDoi2 = ItemsTemp.FullName;

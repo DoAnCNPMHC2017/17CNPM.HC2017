@@ -20,7 +20,7 @@ namespace CayGiaPha.Controllers
         {
             ViewBag.Tit = "Quản lý Gia Tộc";
             ViewBag.Show = 1;
-            ViewBag.Link = "CGP";
+            ViewBag.Link = "/CGP";
             ViewBag.Name = "CGP";
             ViewBag.Name2 = "Index";
             using (CGPEntities ctx = new CGPEntities())
@@ -47,8 +47,8 @@ namespace CayGiaPha.Controllers
                     model.CreateDate = DateTime.Now;
                     ctx.Trees.Add(model);
                     ctx.SaveChanges();
-                    string Query1 = "Select TreeID From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
-                    Session["ListTree"] = ctx.Database.SqlQuery<int>(Query1).ToList();
+                    //string Query1 = "Select TreeID From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
+                    //Session["ListTree"] = ctx.Database.SqlQuery<int>(Query1).ToList();
 
                     string Query = "Select Max(TreeID) From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
                     var kq = ctx.Database.SqlQuery<int>(Query).ToList();
@@ -139,6 +139,7 @@ namespace CayGiaPha.Controllers
                 return View();
             }
         }
+        [CheckLogin]
         public ActionResult FamilyTree(int? id)
         {
             ViewBag.Tit = "Quản lý thành viên";
@@ -155,7 +156,15 @@ namespace CayGiaPha.Controllers
             {
                 int idt = int.Parse(id.ToString());
                 CurrentContext.SetCurrentTree(idt);
-                var model = ctx.Trees.Where(p => p.TreeID == id).FirstOrDefault();
+                int AccID = int.Parse(Session["IdUser"].ToString());
+                var model = ctx.Trees.Where(p => p.TreeID == id && p.AccountID == AccID).ToList();
+                if (model.Count() > 0)
+                    Session["NameTree"] = "Gia tộc "+model[0].Name.ToString();
+                else
+                {
+                    Session["NameTree"] = "";
+                    return RedirectToAction("Index", "CGP");
+                }                 
                 return View();
             }
         }
@@ -200,14 +209,25 @@ namespace CayGiaPha.Controllers
         }
         public ActionResult Report(int? id)
         {
+            Session["NameTree"] = "";
             ViewBag.Tit = "Lập báo cáo";
             ViewBag.Show = 1;
-            ViewBag.Name = "CGP";
-            ViewBag.Link = "../";
+            ViewBag.Name = "FamilyTree";
+            ViewBag.Link = id.HasValue == false? "../" : "/CGP/FamilyTree/?id=" + id.ToString();
             ViewBag.Name2 = "Report";
             if (id.HasValue == false)
             {
                 return RedirectToAction("Index", "Home");
+            }
+            int AccID = int.Parse(Session["IdUser"] == null ? "-1" : Session["IdUser"].ToString());
+            using (var ctx = new CGPEntities())
+            {
+                var model = ctx.Trees.Where(p => p.TreeID == id && p.AccountID == AccID).ToList();
+                if (model.Count() ==  0)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                Session["NameTree"] = "Gia tộc " + model[0].Name.ToString();
             }
             ViewBag.Id = id;
             return View();
@@ -486,7 +506,7 @@ namespace CayGiaPha.Controllers
                 var Bp = dt.BurialPlaces.Where(b => b.TreeID == ID).ToList();
                 var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == ID).ToList();
                 var OldID = dt.Members.Where(b => b.TreeID == ID && b.TypeRelationship != 1).Select(b => new { ID = b.Id, Name = b.FullName }).ToList();
-                var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from CGP..Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from CGP..Member where TreeID = " + ID + " AND TypeRelationship <> 0 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id OR ISNULL(A.Memberold,0) =B.Id ").ToList();
+                var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from CGP..Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from CGP..Member where TreeID = " + ID + " AND TypeRelationship = 1 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id").ToList();
                 return Json(new { Ach = Ach, Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID, couple = couple }, JsonRequestBehavior.AllowGet);
             }
         }
