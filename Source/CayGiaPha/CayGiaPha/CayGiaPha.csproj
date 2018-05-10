@@ -191,37 +191,6 @@
     <Content Include="assets\Library\kendo.all.min.js" />
     <Content Include="assets\Library\Miami.jpg" />
     <Content Include="assets\meminfo.js" />
-    <Content Include="assets\newlayout\css\font-awesome.min.css" />
-    <Content Include="assets\newlayout\css\ie8.css" />
-    <Content Include="assets\newlayout\css\ie9.css" />
-    <Content Include="assets\newlayout\css\jquery.min.js" />
-    <Content Include="assets\newlayout\css\kendo.all.min.js" />
-    <Content Include="assets\newlayout\css\kendo.common.min.css" />
-    <Content Include="assets\newlayout\css\kendo.default.min.css" />
-    <Content Include="assets\newlayout\css\kendo.default.mobile.min.css" />
-    <Content Include="assets\newlayout\css\main.css" />
-    <Content Include="assets\newlayout\fonts\fontawesome-webfont.svg" />
-    <Content Include="assets\newlayout\js\ie\html5shiv.js" />
-    <Content Include="assets\newlayout\js\ie\respond.min.js" />
-    <Content Include="assets\newlayout\js\jquery.min.js" />
-    <Content Include="assets\newlayout\js\main.js" />
-    <Content Include="assets\newlayout\js\skel.min.js" />
-    <Content Include="assets\newlayout\js\util.js" />
-    <Content Include="assets\newlayout\kendo\jquery.min.js" />
-    <Content Include="assets\newlayout\kendo\kendo.all.min.js" />
-    <Content Include="assets\newlayout\kendo\kendo.common-material.min.css" />
-    <Content Include="assets\newlayout\table\animate.css" />
-    <Content Include="assets\newlayout\table\bootstrap.min.css" />
-    <Content Include="assets\newlayout\table\bootstrap.min.js" />
-    <Content Include="assets\newlayout\table\jquery-3.2.1.min.js" />
-    <Content Include="assets\newlayout\table\main.css" />
-    <Content Include="assets\newlayout\table\main.js" />
-    <Content Include="assets\newlayout\table\perfect-scrollbar.css" />
-    <Content Include="assets\newlayout\table\perfect-scrollbar.min.js" />
-    <Content Include="assets\newlayout\table\popper.js" />
-    <Content Include="assets\newlayout\table\select2.min.css" />
-    <Content Include="assets\newlayout\table\select2.min.js" />
-    <Content Include="assets\newlayout\table\util.css" />
     <Content Include="assets\Report.js" />
     <Content Include="assets\updatelayout\css\animate.css" />
     <Content Include="assets\updatelayout\css\bootstrap-responsive.css" />
@@ -241,6 +210,17 @@
     <Content Include="assets\updatelayout\css\style.css" />
     <Content Include="assets\updatelayout\font\customicon\Icons.svg" />
     <Content Include="assets\updatelayout\font\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="assets\updatelayout\icon\aaa.jpg" />
+    <Content Include="assets\updatelayout\icon\baocaocongbokh.png" />
+    <Content Include="assets\updatelayout\icon\bbb.png" />
+    <Content Include="assets\updatelayout\icon\cb-vc.png" />
+    <Content Include="assets\updatelayout\icon\ccc.png" />
+    <Content Include="assets\updatelayout\icon\ddd.png" />
+    <Content Include="assets\updatelayout\icon\eee.jpg" />
+    <Content Include="assets\updatelayout\icon\fff.jpg" />
+    <Content Include="assets\updatelayout\icon\ggg.jpg" />
+    <Content Include="assets\updatelayout\icon\hhh.png" />
+    <Content Include="assets\updatelayout\icon\tuyen-dung.png" />
     <Content Include="assets\updatelayout\ico\apple-touch-icon-114-precomposed.png" />
     <Content Include="assets\updatelayout\ico\apple-touch-icon-144-precomposed.png" />
     <Content Include="assets\updatelayout\ico\apple-touch-icon-57-precomposed.png" />
@@ -340,6 +320,10 @@
     <Content Include="assets\updatelayout\js\portfolio\setting.js" />
     <Content Include="assets\updatelayout\js\quicksand\jquery.quicksand.js" />
     <Content Include="assets\updatelayout\js\quicksand\setting.js" />
+    <Content Include="assets\updatelayout\kendoOld\jquery.min.js" />
+    <Content Include="assets\updatelayout\kendoOld\kendo.all.min-v2015.2.624.js" />
+    <Content Include="assets\updatelayout\kendoOld\kendo.bootstrap.min.css" />
+    <Content Include="assets\updatelayout\kendoOld\kendo.common-bootstrap.min.css" />
     <Content Include="assets\updatelayout\kendo\kendo.common-material.min.css" />
     <Content Include="assets\updatelayout\kendo\kendo.material.min.css" />
     <Content Include="assets\updatelayout\kendo\kendo.material.mobile.min.css" />
@@ -454,39 +438,6 @@
     <Content Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="assets\newlayout\fonts\fontawesome-webfont.eot" />
-    <Content Include="assets\newlayout\fonts\fontawesome-webfont.ttf" />
-    <Content Include="assets\newlayout\fonts\fontawesome-webfont.woff" />
-    <Content Include="assets\newlayout\fonts\fontawesome-webfont.woff2" />
-    <Content Include="assets\newlayout\fonts\FontAwesome.otf" />
-    <Content Include="assets\newlayout\sass\base\_page.scss" />
-    <Content Include="assets\newlayout\sass\base\_typography.scss" />
-    <Content Include="assets\newlayout\sass\components\_author.scss" />
-    <Content Include="assets\newlayout\sass\components\_blurb.scss" />
-    <Content Include="assets\newlayout\sass\components\_box.scss" />
-    <Content Include="assets\newlayout\sass\components\_button.scss" />
-    <Content Include="assets\newlayout\sass\components\_form.scss" />
-    <Content Include="assets\newlayout\sass\components\_icon.scss" />
-    <Content Include="assets\newlayout\sass\components\_image.scss" />
-    <Content Include="assets\newlayout\sass\components\_list.scss" />
-    <Content Include="assets\newlayout\sass\components\_mini-post.scss" />
-    <Content Include="assets\newlayout\sass\components\_post.scss" />
-    <Content Include="assets\newlayout\sass\components\_section.scss" />
-    <Content Include="assets\newlayout\sass\components\_table.scss" />
-    <Content Include="assets\newlayout\sass\ie8.scss" />
-    <Content Include="assets\newlayout\sass\ie9.scss" />
-    <Content Include="assets\newlayout\sass\layout\_footer.scss" />
-    <Content Include="assets\newlayout\sass\layout\_header.scss" />
-    <Content Include="assets\newlayout\sass\layout\_intro.scss" />
-    <Content Include="assets\newlayout\sass\layout\_main.scss" />
-    <Content Include="assets\newlayout\sass\layout\_menu.scss" />
-    <Content Include="assets\newlayout\sass\layout\_sidebar.scss" />
-    <Content Include="assets\newlayout\sass\layout\_wrapper.scss" />
-    <Content Include="assets\newlayout\sass\libs\_functions.scss" />
-    <Content Include="assets\newlayout\sass\libs\_mixins.scss" />
-    <Content Include="assets\newlayout\sass\libs\_skel.scss" />
-    <Content Include="assets\newlayout\sass\libs\_vars.scss" />
-    <Content Include="assets\newlayout\sass\main.scss" />
     <Content Include="assets\updatelayout\font\customicon\Icons.eot" />
     <Content Include="assets\updatelayout\font\customicon\Icons.ttf" />
     <Content Include="assets\updatelayout\font\customicon\Icons.woff" />
@@ -610,7 +561,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\NewFolder1\" />
     <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>

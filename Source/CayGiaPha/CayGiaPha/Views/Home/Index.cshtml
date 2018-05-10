@@ -1,4 +1,5 @@
-﻿@model Account
+﻿@using CayGiaPha.Helper
+@model Account
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_2.cshtml";
@@ -72,7 +73,14 @@
                         <h3>Viết casigif ra đây giùm nha<span class="highlight"><strong>5000 websites</strong></span> this year!</h3>
                     </div>
                     <div class="cta floatright">
-                        <a class="btn btn-large btn-theme btn-rounded" href="@Url.Action("Index", "CGP")">Gia tộc của tôi</a>
+                        @if (CurrentContext.IsLogged() == true)
+                        {
+                            <a class="btn btn-large btn-theme btn-rounded" href="@Url.Action("Index", "CGP")">Gia tộc của tôi</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-large btn-theme btn-rounded" href="#mySignin" data-toggle="modal">Gia tộc của tôi</a>
+                        }
                     </div>
                 </div>
             </div>
@@ -92,41 +100,37 @@
                         <h3>Bước <strong>1</strong></h3>
                     </div>
                     <div class="pricing-terms">
-                        <h6>&#36;Đăng ký tài khoản</h6>
+                        <h6>Đăng ký tài khoản</h6>
                     </div>
                     <div class="pricing-content">
                         <ul>
                             <li><i class="icon-ok"></i> Miễn phí</li>
                             <li><i class="icon-ok"></i> Dễ dàng</li>
                             <li><i class="icon-ok"></i> Nhanh chóng</li>
-                            <li><i class="icon-ok"></i> Free 30-days trial</li>
-                            <li><i class="icon-ok"></i> Stop anytime easily</li>
                         </ul>
                     </div>
                     <div class="pricing-action">
-                        <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng ký ngay</a>
+                        <a href="#mySignup" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng ký ngay</a>
                     </div>
                 </div>
             </div>
-            <div class="span4" >
+            <div class="span4">
                 <div class="pricing-box-alt " style="background:#ff9248">
                     <div class="pricing-heading" style="background:#ff9248">
                         <h3>Bước <strong>2</strong></h3>
                     </div>
                     <div class="pricing-terms">
-                        <h6>&#36;Đăng nhập</h6>
+                        <h6>Đăng nhập</h6>
                     </div>
                     <div class="pricing-content">
                         <ul>
                             <li><i class="icon-ok"></i> Tiện lợi</li>
-                            <li><i class="icon-ok"></i> Gì nữa</li>
-                            <li><i class="icon-ok"></i> Ghi thêm đi</li>
-                            <li><i class="icon-ok"></i> Free 30-days trial</li>
-                            <li><i class="icon-ok"></i> Stop anytime easily</li>
+                            <li><i class="icon-ok"></i> Lưu trữ</li>
+                            <li><i class="icon-ok"></i> An toàn</li>
                         </ul>
                     </div>
                     <div class="pricing-action">
-                        <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng nhập</a>
+                        <a href="#mySignin" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng nhập</a>
                     </div>
                 </div>
             </div>
@@ -136,19 +140,17 @@
                         <h3>Bước <strong>3</strong></h3>
                     </div>
                     <div class="pricing-terms">
-                        <h6>&#36;Tạo gia phả Online</h6>
+                        <h6>Tạo gia phả Online</h6>
                     </div>
                     <div class="pricing-content">
                         <ul>
-                            <li><i class="icon-ok"></i> Tạo gia phả</li>
+                            <li><i class="icon-ok"></i> Tạo gia tộc</li>
                             <li><i class="icon-ok"></i> Quản lý thành viên</li>
-                            <li><i class="icon-ok"></i> No hidden fees</li>
-                            <li><i class="icon-ok"></i> Free 30-days trial</li>
-                            <li><i class="icon-ok"></i> Stop anytime easily</li>
+                            <li><i class="icon-ok"></i> Và còn hơn thế</li>
                         </ul>
                     </div>
                     <div class="pricing-action">
-                        <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Tạo Gia phả ngay</a>
+                        <a href="@Url.Action("Index", "CGP")" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Tạo Gia phả ngay</a>
                     </div>
                 </div>
             </div>

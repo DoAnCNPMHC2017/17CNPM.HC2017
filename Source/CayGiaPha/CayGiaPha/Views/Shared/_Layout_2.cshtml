@@ -27,19 +27,14 @@
     <link rel="shortcut icon" href="ico/favicon.png" />
 
     <title></title>
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" />
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />
 
-    @*<link href="~/assets/updatelayout/kendo/kendo.common-material.min.css" rel="stylesheet" />
-        <link href="~/assets/updatelayout/kendo/kendo.material.min.css" rel="stylesheet" />
-        <link href="~/assets/updatelayout/kendo/kendo.material.mobile.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />
 
 
     <script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
-
-
     <!-- =======================================================
       Theme Name: Flattern
       Theme URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
@@ -119,12 +114,12 @@
                     <div class="span12">
                         @if (!CurrentContext.IsLogged() == true)
                         {
-                        <div class="headnav">
-                            <ul>
-                                <li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i>Đăng ký</a></li>
-                                <li><a href="#mySignin" data-toggle="modal">Đăng nhập</a></li>
-                            </ul>
-                        </div>}
+                            <div class="headnav">
+                                <ul>
+                                    <li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i>Đăng ký</a></li>
+                                    <li><a href="#mySignin" data-toggle="modal">Đăng nhập</a></li>
+                                </ul>
+                            </div>}
                         <!-- Signup Modal -->
 
                         <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
@@ -137,25 +132,25 @@
                                     @if (@ViewBag.Mes == 2)
                                     {
 
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <div class="alert alert-warning">
-                                                <strong>Tạo tài khoản thất bại.</strong>
-                                                <strong>Tài khoản đã tồn tại!</strong>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="alert alert-warning">
+                                                    <strong>Tạo tài khoản thất bại.</strong>
+                                                    <strong>Tài khoản đã tồn tại!</strong>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
                                     }
                                     @if (@ViewBag.Mes == 1)
                                     {
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <div class="alert alert-success">
-                                                <strong>Tạo tài khoản thành công.</strong>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="alert alert-success">
+                                                    <strong>Tạo tài khoản thành công.</strong>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     }
                                     <div class="control-group">
                                         <label class="control-label" for="inputEmail">Tên đăng nhập</label>
@@ -199,11 +194,11 @@
                                 <form class="form-horizontal" method="post" action="@Url.Action("Login", "Home", new { model = Model })">
                                     @if (@ViewBag.Mes == 2)
                                     {
-                                    <div class="control-group">
-                                        <<div class="alert alert-warning">
-                                            <strong>Tên đăng nhặp hoặc mật khẩu chưa đúng!</strong>
+                                        <div class="control-group">
+                                            <<div class="alert alert-warning">
+                                                <strong>Tên đăng nhặp hoặc mật khẩu chưa đúng!</strong>
+                                            </div>
                                         </div>
-                                    </div>
                                     }
                                     <div class="control-group">
                                         <label class="control-label" for="inputText">Tên đăng nhập</label>
@@ -277,7 +272,7 @@
                                     <nav>
                                         <ul class="nav topnav">
                                             <li class="dropdown active">
-                                            <a href="#">@CurrentContext.GetCurUser().Username <i class="icon-angle-down"></i></a>
+                                                <a href="#">@CurrentContext.GetCurUser().Username <i class="icon-angle-down"></i></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a id="logoutID" href="javascript:;">Đăng xuất</a></li>
                                                     <li><a href="@Url.Action("Index", "CGP")">Quản lý</a></li>
@@ -361,27 +356,65 @@
                         </div>
                     </div>
                     <div class="span3">
-                        <div class="widget">
-                            <h5 class="widgetheading">FIT HCMUS</h5>
-                            <div class="flickr_badge">
-                                <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=34178660@N03"></script>
-                            </div>
-                            <div class="clear">
+                        <div class="span3">
+                            <div class="widget">
+                                <h5 class="widgetheading">FIT HCMUS</h5>
+                                <div class="flickr_badge">
+                                    @*<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=34178660@N03"></script>*@
+                                    <!-- DEVELOPER WARNING: The Flickr badge code is likely to be deprecated, and we recommend changing to a new method to embed photo as soon as possible.  See https://www.flickr.com/api for information on how to access Flickr data. Thanks. -->
+                                    <div class="flickr_badge_image" id="flickr_badge_image1">
+                                        <a href="#">
+                                            <img src="~/assets/updatelayout/icon/aaa.jpg" alt="Ảnh trên Flickr" title="Culture: Twitter HQ (Archive)" height="75" width="75">
+                                        </a>
+                                    </div><div class="flickr_badge_image" id="flickr_badge_image2">
+                                        <a href="#">
+                                            <img src="~/assets/updatelayout/icon/ggg.jpg" alt="Ảnh trên Flickr" title="Visitor: Steve Blank (Archive)" height="75" width="75">
+                                        </a>
+                                    </div><div class="flickr_badge_image" id="flickr_badge_image3">
+                                        <a href="#">
+                                            <img src="~/assets/updatelayout/icon/bbb.png" alt="Ảnh trên Flickr" title="Culture: Twitter HQ (Archive)" height="75" width="75">
+                                        </a>
+                                    </div><div class="flickr_badge_image" id="flickr_badge_image4">
+                                        <a href="#">
+
+                                            <img src="~/assets/updatelayout/icon/hhh.png" alt="Ảnh trên Flickr" title="Culture: Twitter HQ (Archive)" height="75" width="75">
+                                        </a>
+                                    </div><div class="flickr_badge_image" id="flickr_badge_image5">
+                                        <a href="#">
+                                            <img src="~/assets/updatelayout/icon/ccc.png" alt="Ảnh trên Flickr" title="Culture: Twitter HQ (Archive)" height="75" width="75">
+                                        </a>
+                                    </div><div class="flickr_badge_image" id="flickr_badge_image6">
+                                        <a href="#">
+                                            <img src="~/assets/updatelayout/icon/ddd.png" alt="Ảnh trên Flickr" title="Culture: Twitter HQ (Archive)" height="75" width="75">
+                                        </a>
+                                    </div>
+                                    <div class="flickr_badge_image" id="flickr_badge_image7">
+                                        <a href="#">
+                                            <img src="~/assets/updatelayout/icon/eee.jpg" alt="Ảnh trên Flickr" title="Culture: Twitter HQ (Archive)" height="75" width="75">
+                                        </a>
+                                    </div><div class="flickr_badge_image" id="flickr_badge_image8">
+                                        <a href="#">
+                                            <img src="~/assets/updatelayout/icon/fff.jpg" alt="Ảnh trên Flickr" title="Culture: Twitter HQ (Archive)" height="75" width="75">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="span3">
                         <div class="widget">
-                            <h5 class="widgetheading">www.hcmus.edu.vn</h5>
+                            <h5 class="widgetheading"><a href="www.hcmus.edu.vn">www.hcmus.edu.vn</a></h5>
                             <address>
-                                <strong>Flattern studio, Pte Ltd</strong><br>
-                                Springville center X264, Park Ave S.01<br>
-                                Semarang 16425 Indonesia
+                                <strong>Trường Đại Học Khoa Học Tự Nhiên</strong><br>
+                                227 Nguyễn Văn Cừ, P4, Q5, TP. Hồ Chí Minh<br>
                             </address>
                             <p>
-                                <i class="icon-phone"></i>(123) 456-7890 - (123) 555-7891
+                                <i class="icon-phone"></i>(84) 286 2884 499 - (84) 287 3089 899
+
                                 <br>
-                                <i class="icon-envelope-alt"></i>email@domainname.com
+                                <i class="icon-envelope-alt"></i>bantin@hcmus.edu.vn
                             </p>
                         </div>
                     </div>

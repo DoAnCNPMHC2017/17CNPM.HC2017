@@ -82,16 +82,23 @@ function CreateGridReport() {
 }
 function CreateControl() {
     $("#FromDate").kendoDatePicker({
-        value: new Date(),
-        start: "year",
+        value: new Date('1990,1,1'),
+        start: "decade",
+        depth: "decade",
         format: "yyyy",
         dateInput: true
     });
     $("#ToDate").kendoDatePicker({
         value: new Date(),
-        start: "year",
+        start: "decade",
+        depth: "decade",
         format: "yyyy",
         dateInput: true
+
+        //value: new Date(),
+        //start: "year",
+        //format: "yyyy",
+        //dateInput: true
     });
     $("#Type").kendoDropDownList({
         serverFiltering: false,
