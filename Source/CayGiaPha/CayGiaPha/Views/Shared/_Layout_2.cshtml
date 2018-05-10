@@ -203,19 +203,20 @@
                                     <div class="control-group">
                                         <label class="control-label" for="inputText">Tên đăng nhập</label>
                                         <div class="controls">
-                                            <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây')" type="text" class="form-control" id="txtUserName" name="UserName" placeholder="Nhập tên đăng nhập" value="">
+                                            <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây')" type="text" class="form-control" id="LUserName" name="UserName" placeholder="Nhập tên đăng nhập" value="">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputSigninPassword">Mật khẩu</label>
                                         <div class="controls">
-                                            <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây')" type="password" class="form-control" id="txtPassword" name="PassWord" placeholder="Nhập mật khẩu">
+                                            <input required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây')" type="password" class="form-control" id="LPassword" name="PassWord" placeholder="Nhập mật khẩu">
                                         </div>
                                     </div>
                                     <input type="hidden" id="type" name="type" value="1" />
                                     <div class="control-group">
                                         <div class="controls">
-                                            <button type="submit" class="btn">Đăng nhập</button>
+                                            @*<button type="submit" class="btn" id="btnLogin">Đăng nhập</button>*@
+                                            <button type="button" class="btn" id="btnLogin">Đăng nhập</button>
                                         </div>
                                         <p class="aligncenter margintop20">
                                             Bạn đã quên mật khẩu? <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Lấy lại mật khẩu</a>
@@ -475,6 +476,6 @@
 
     <!-- Template Custom JavaScript File -->
     <script src="~/assets/updatelayout/js/custom.js"></script>
-
+    <script src="~/assets/Family.js"></script>
 </body>
 </html>

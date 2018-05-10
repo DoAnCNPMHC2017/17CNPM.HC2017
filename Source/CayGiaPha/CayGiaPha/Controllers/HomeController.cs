@@ -12,6 +12,16 @@ namespace CayGiaPha.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            try
+            {
+                int a = int.Parse(TempData["state"].ToString());
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            
             string s = Request.Url.AbsolutePath;
             if (s == "/Home/Index" || s == "/" || s == "/Home/")
                 ViewBag.Show = 0;
@@ -35,15 +45,45 @@ namespace CayGiaPha.Controllers
             ViewBag.Mes = 3;
             return RedirectToAction("Index", "Home");
         }
-        [HttpPost]
-        public ActionResult Login(Account model)
+        public ActionResult Login2(string u,string p)
         {
             using (CGPEntities dt = new CGPEntities())
             {
-                string pass = StringUtils.MD5(model.Password);
+                string pass = StringUtils.MD5(p);
+
                 Account us = dt.Accounts
-                    .Where(p => p.Username == model.Username && p.Password == pass)
+                    .Where(pu => pu.Username == u && pu.Password == pass)
                     .FirstOrDefault();
+
+                if (us != null)
+                {
+                    Session["isLogin"] = 1;
+                    Session["user"] = us;
+                    Session["IdUser"] = us.ID;
+                    Session["username"] = us.Username;
+                    ViewBag.Mes = 1;
+                    return Content("success");
+                }
+                TempData["state"] = 5;
+                ViewBag.Mes = 2;
+                return Content("error");
+            }
+        }
+        [HttpPost]
+        //public ActionResult Login(Account model)
+        public ActionResult Login(string u,string pa)
+        {
+            using (CGPEntities dt = new CGPEntities())
+            {
+                //string pass = StringUtils.MD5(model.Password);
+                //Account us = dt.Accounts
+                //    .Where(p => p.Username == model.Username && p.Password == pass)
+                //    .FirstOrDefault();
+
+                Account us = dt.Accounts
+                    .Where(p => p.Username == u && p.Password == pa)
+                    .FirstOrDefault();
+
                 if (us != null)
                 {
                     //if (model.Remember != null)
@@ -58,12 +98,13 @@ namespace CayGiaPha.Controllers
                     Session["username"] = us.Username;
                     ViewBag.Mes = 1;
                     //Response.Write("<script LANGUAGE='JavaScript' >alert('Đăng nhập thành công.')</script>");
-                    return RedirectToAction("Index", "Home");
+                    return Content("success");
                 }
+                TempData["state"] = 5;
                 ViewBag.Mes = 2;
                 //Response.Write("<script LANGUAGE='JavaScript' >alert('Tên đăng nhập hoặc mật khẩu không đúng')</script>");
-
-                return RedirectToAction("Index", "Home");
+                return Content("error");
+                //return RedirectToAction("Index", "Home");
             }
         }
         public ActionResult Logout()
