@@ -332,8 +332,6 @@ function LoadInfomationMember(ID)
 {
     var tabStrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
     tabStrip.select(1);
-    var dropdownlist = $("#OldID").data("kendoDropDownList");
-    dropdownlist.enable(false);
     $.ajax({
         async: false,
         dataType: 'json',
@@ -359,6 +357,8 @@ function LoadInfomationMember(ID)
                 //$('#trdOldID').show();
             }
             $('#OldID').data('kendoDropDownList').value(Res[0].Memberold);
+            var dropdownlist = $("#OldID").data("kendoDropDownList");
+            dropdownlist.enable(false);
             $('#FullName').val(Res[0].FullName);
             $('#Address').val(Res[0].AddressID);
             $('#Sex').data('kendoDropDownList').value(Res[0].Sex);

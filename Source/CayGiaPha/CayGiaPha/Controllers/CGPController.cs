@@ -59,7 +59,7 @@ namespace CayGiaPha.Controllers
                     ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Giải Toán Học", TreeID = kq[0] });
                     ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Doanh Nhân Giỏi", TreeID = kq[0] });
                     ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Thành tích Địa Phương", TreeID = kq[0] });
-                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đặt giải Quốc Gia", TreeID = kq[0] });
+                    ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đạt giải Quốc Gia", TreeID = kq[0] });
                     ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đỗ Tú Tài", TreeID = kq[0] });
                     ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đỗ Thi Hương", TreeID = kq[0] });
                     ctx.ListAchievements.Add(new ListAchievement { AchievementName = "Đỗ Trạng Nguyên", TreeID = kq[0] });
@@ -570,7 +570,7 @@ namespace CayGiaPha.Controllers
                 }
             using (CGPEntities dt = new CGPEntities())
             {
-                string Query = "Select  M1.*,Format(Birthday,'dd/MM/yyyy hh:mm:tt') bd" +
+                string Query = "Select  M1.*,Format(Birthday,'dd/MM/yyyy HH:mm') bd" +
                     ",Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
                                " From" +
                                " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 0 " + Where + ") AS M1" +
@@ -579,7 +579,7 @@ namespace CayGiaPha.Controllers
                                " LEFT JOIN" +
                                " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
                                " UNION" +
-                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy hh:mm') bd,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 " + Where ;
+                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy HH:mm') bd,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 " + Where ;
                 var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
                 //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
                 //    .ToList();
