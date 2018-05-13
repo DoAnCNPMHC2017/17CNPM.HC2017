@@ -36,7 +36,6 @@
                             <p>
                                 Nhắc con cháu sống sao cho xứng đáng với hào khí ông cha để lại.
                             </p>
-
                         </div>
                     </div>
                     <!-- Slide #3 caption -->
@@ -46,7 +45,6 @@
                             <p>
                                 Cái nôi lịch sử mà chỉ Việt Nam mới có.
                             </p>
-
                         </div>
                     </div>
                     <div class="nivo-caption" id="caption-4">
@@ -55,7 +53,6 @@
                             <p>
                                 làm sổ gia phả để chắp nối nguồn cội, nuôi dưỡng ước mơ, giữ gìn văn hóa dân tộc cho hôm nay và mai sau.
                             </p>
-
                         </div>
                     </div>
                 </div>
@@ -70,7 +67,7 @@
             <div class="span12">
                 <div class="big-cta">
                     <div class="cta-text">
-                        <h3>Viết casigif ra đây giùm nha<span class="highlight"><strong>5000 websites</strong></span> this year!</h3>
+                        <h3><span class="highlight"><strong>Thân thiết cùng gia đình</strong></span></h3>
                     </div>
                     <div class="cta floatright">
                         @if (CurrentContext.IsLogged() == true)
@@ -87,7 +84,6 @@
         </div>
     </div>
 </section>
-
 <section id="content" style="background: #ffd7b5;">
     <div class="container">
         <div class="row">
@@ -110,7 +106,14 @@
                         </ul>
                     </div>
                     <div class="pricing-action">
-                        <a href="#mySignup" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng ký ngay</a>
+                        @if (!CurrentContext.IsLogged() == true)
+                        {
+                            <a href="#mySignup" data-toggle="modal" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng ký ngay</a>
+                        }
+                        else
+                        {
+                            <a href="#" data-toggle="modal" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng ký ngay</a>
+                        }
                     </div>
                 </div>
             </div>
@@ -130,8 +133,15 @@
                         </ul>
                     </div>
                     <div class="pricing-action">
-                        <a href="#mySignin" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng nhập</a>
-                    </div>
+                        @if (!CurrentContext.IsLogged() == true)
+                        {
+                            <a href="#mySignin" data-toggle="modal" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng nhập</a>
+                        }
+                        else
+                        {
+                            <a href="#" data-toggle="modal" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Đăng nhập</a>
+                        }
+                      </div>
                 </div>
             </div>
             <div class="span4">
@@ -163,6 +173,4 @@
             </div>
         </div>
     </div>
-
 </section>
-

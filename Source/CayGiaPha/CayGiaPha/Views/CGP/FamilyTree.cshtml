@@ -8,9 +8,11 @@
     .csPicker{
         width:100%;
         height:38px;
+
     }
     input{
             border-radius: 5px;
+            
     }
 </style>
 <input id="TreeID" value="@ViewBag.Id" hidden />
@@ -168,56 +170,56 @@
                                                                     <td colspan="2" style="text-align:center"><b style="font-size:20px">Thông tin thành viên</b></td>
                                                                 </tr>*@
                                                             <tr id="trdOldID" hidden>
-                                                                <td style="width: auto;">Thành viên của</td>
+                                                                <td style="width: auto;"><b>Thành viên của</b></td>
                                                                 <td style="width: auto;"><input id="OldID" class="" style="width: 255px" /></td>
-                                                                <td style="width: auto;">Loại quan hệ </td>
+                                                                <td style="width: auto;"><b>Loại quan hệ</b> </td>
                                                                 <td style="width: auto;"> <input id="Relasionship" style="width: 255px" /></td>
                                                                 <td style="width: auto;">
-                                                                    <div type="button" id="AddMember" class="k-button" onclick="AddMemberNew()" style="width:150px">Thêm</div>
-                                                                    <div type="button" id="UpdateMember" class="k-button" onclick="UpdateMemberNew()" style="width:150px">Cập Nhật</div>
+                                                                    <div type="button" id="AddMember" class="btn btn-theme" onclick="AddMemberNew()" style="width:150px">Thêm</div>
+                                                                    <div type="button" id="UpdateMember" class="btn btn-theme" onclick="UpdateMemberNew()" style="width:150px">Cập Nhật</div>
                                                                 </td>
 
                                                             </tr>
                                                             <tr>
-                                                                <td style="width: auto;">Ngày phát sinh </td>
-                                                                <td style="width: auto;"> <input id="CreateDate" style="width: 255px;height: 38px;" /></td>
-                                                                <td style="width: auto;">Họ và tên </td>
+                                                                <td style="width: auto;"><b>Ngày phát sinh </b></td>
+                                                                <td style="width: auto;"> <input id="CreateDate" style="width: 255px;height: 38px;" class="cspicker"/></td>
+                                                                <td style="width: auto;"><b>Họ và tên </b></td>
                                                                 <td style="width: auto;"> <input class="k-textbox" id="FullName" name="FullName" style="width: 255px" /></td>
                                                                 <td style="width: auto;">
-                                                                    <div type="button" id="ChangeStatus" class="k-button" onclick="ChangeAddMember()" style="width:150px">Làm mới</div>
+                                                                    <div type="button" id="ChangeStatus" class="btn btn-theme" onclick="ChangeAddMember()" style="width:150px">Làm mới</div>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="width: auto;"> Giới tính</td>
+                                                                <td style="width: auto;"> <b>Giới tính</b></td>
                                                                 <td style="width: auto;"> <input id="Sex" name="" style="width: 255px" /></td>
-                                                                <td style="width: auto;">Ngày giờ sinh </td>
+                                                                <td style="width: auto;"><b>Ngày giờ sinh </b></td>
                                                                 <td style="width: auto;"> <input id="BirthDate" name="Birthday" style="width:255px;height: 38px;" class="cspicker" /></td>
 
                                                             </tr>
                                                             <tr>
-                                                                <td style="width: auto;"> Quê quán</td>
+                                                                <td style="width: auto;"> <b>Quê quán</b></td>
                                                                 <td style="width: auto;"> <input id="BirthPlace" name="BirthPlaceId" style="width: 255px" /></td>
-                                                                <td style="width: auto;"> Nghề nghiệp</td>
+                                                                <td style="width: auto;"><b> Nghề nghiệp</b></td>
                                                                 <td style="width: auto;"> <input id="Job" name="Job" style="width: 255px" /></td>
 
                                                             </tr>
                                                             <tr>
-                                                                <td style="width: auto;">Địa chỉ</td>
+                                                                <td style="width: auto;"><b>Địa chỉ</b></td>
                                                                 <td style="width: auto;"><input class="k-textbox" id="Address" name="AddressID" style="width: 255px" /></td>
                                                             </tr>
 
                                                             <tr id="tbDateOfDeath" hidden>
-                                                                <td class="lablename">Ngày giờ mất</td>
+                                                                <td class="lablename"><b>Ngày giờ mất</b></td>
                                                                 <td>
                                                                     <input id="DateOfDeath" name="DateOfDeath" style="width:255px;height: 38px;" />
                                                                 </td>
-                                                                <td class="lablename">Nguyên nhân mất</td>
+                                                                <td class="lablename"><b>Nguyên nhân mất</b></td>
                                                                 <td>
                                                                     <input id="CauseOfDeath" name="CauseOfDeath" style="width: 255px" />
                                                                 </td>
                                                             </tr>
                                                             <tr id="tbBurialPlace" hidden>
-                                                                <td class="lablename">Địa điểm mai táng</td>
+                                                                <td class="lablename"><b>Địa điểm mai táng</b></td>
                                                                 <td>
                                                                     <input id="BurialPlace" name="BurialPlaceId" style="width: 255px" />
                                                                 </td>
@@ -241,7 +243,7 @@
                                 <div class="author">
                                     <img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="" />
                                     <p class="name" style="color: blue;font-size: 29px;">@NameTree</p>
-                                    <span class="info">MBC Entertainment, <a href="#">www.sitename.com</a></span>
+                                    @*<span class="info">MBC Entertainment, <a href="#">www.sitename.com</a></span>*@
                                 </div>
                             </div>
                         </div>

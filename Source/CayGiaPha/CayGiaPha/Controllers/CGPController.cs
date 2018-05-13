@@ -621,7 +621,7 @@ namespace CayGiaPha.Controllers
                 Mem.Job = Int32.Parse(VLam);
             Mem.TypeRelationship = QHe;
             Mem.Birthday = DateTime.ParseExact(NSinh, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
-            Mem.Date_Create = DateTime.Parse(CDate);
+            Mem.Date_Create = DateTime.ParseExact(CDate, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
             if (NoiSinh != "")
                 Mem.BirthPlaceId = Int32.Parse(NoiSinh);
             int SoDoi = 1;
@@ -667,7 +667,7 @@ namespace CayGiaPha.Controllers
                         Mem.Job = null;
                     Mem.TypeRelationship = QHe;
                     Mem.Birthday = DateTime.ParseExact(NSinh, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
-                    Mem.Date_Create = DateTime.Parse(CDate);
+                    Mem.Date_Create = DateTime.ParseExact(CDate, "dd/MM/yyyy HH:mm:tt", CultureInfo.InvariantCulture);
                     if (NoiSinh != "")
                         Mem.BirthPlaceId = Int32.Parse(NoiSinh);
                     else

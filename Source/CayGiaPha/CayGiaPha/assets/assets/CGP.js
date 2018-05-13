@@ -117,15 +117,9 @@ function CreateControl() {
         ,filter: "contains"
 
     });
-    //$("#CreateDate").kendoDatePicker({
-    //    value: new Date(),
-    //    format: "dd/MM/yyyy",
-    //    dateInput: true
-    //});
-    $("#CreateDate").kendoDateTimePicker({
-        format: "dd/MM/yyyy HH:mm:tt",
-        parseFormats: ["MMMM yyyy", "HH:mm:tt"],
+    $("#CreateDate").kendoDatePicker({
         value: new Date(),
+        format: "dd/MM/yyyy",
         dateInput: true
     });
     $("#BirthDate").kendoDateTimePicker({

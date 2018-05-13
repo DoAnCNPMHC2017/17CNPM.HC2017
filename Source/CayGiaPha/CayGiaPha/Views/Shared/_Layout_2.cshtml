@@ -29,9 +29,11 @@
     <title></title>
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" />
 
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
+     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />
+<link href="~/assets/updatelayout/olde/kendo.custom.css" rel="stylesheet" />
 
+  @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
 
     <script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
@@ -71,7 +73,7 @@
             })
         });
         function check(input) {
-            if (input.value == "" || input.value != document.getElementById('txtPassword').value) {
+            if (input.value == "" || input.value != document.getElementById('RPassword').value) {
                 input.setCustomValidity('Nhập lại mật khẩu ở đây!');
             }
             else if (input.value == "") {
@@ -92,7 +94,7 @@
                 <div class="row">
                     <div class="span12">
                         <ul>
-                            <li><strong>Chúc bạn may mắn lần sau</strong></li>
+                            <li><strong>Chúc mọi người vui vẻ!!!</strong></li>
                             @*<li>Main office: Springville center X264, Park Ave S.01</li>
                                 <li>Call us <i class="icon-phone"></i>(123) 456-7890 - (123) 555-7891</li>*@
                         </ul>
@@ -105,9 +107,9 @@
         <header>
             <div class="container ">
                 <!-- hidden top area toggle link -->
-                <div id="header-hidden-link">
+                @*<div id="header-hidden-link">
                     <a href="#" class="toggle-link" title="Click me you'll get a surprise" data-target=".hidden-top"><i></i>Open</a>
-                </div>
+                </div>*@
                 <!-- end toggle link -->
 
                 <div class="row nomargin">
@@ -125,54 +127,47 @@
                         <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 id="mySignupModalLabel">Tạo <strong>tài khoản mới</strong></h4>
+                                <h4 id="mySignupModalLabel"> <strong>Đăng ký tài khoản</strong></h4>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal" method="post" action="@Url.Action("Register", "Home", new { model = Model })">
-                                    @if (@ViewBag.Mes == 2)
-                                    {
-
-                                        <div class="control-group">
-                                            <div class="controls">
-                                                <div class="alert alert-warning">
-                                                    <strong>Tạo tài khoản thất bại.</strong>
-                                                    <strong>Tài khoản đã tồn tại!</strong>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    }
-                                    @if (@ViewBag.Mes == 1)
-                                    {
-                                        <div class="control-group">
-                                            <div class="controls">
-                                                <div class="alert alert-success">
-                                                    <strong>Tạo tài khoản thành công.</strong>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
+<div class="control-group" id="RegErr1" hidden>
+                                        <div class="alert alert-warning">
+    <strong>Lỗi!</strong> Vui lòng nhập đầy đủ các thông tin.
+  </div></div>
+<div class="control-group" id="RegErr2" hidden>
+                                        <div class="alert alert-warning">
+    <strong>Lỗi!</strong> Mật khẩu nhập lại chưa đúng.
+  </div></div>                                     
+<div class="control-group" id="RegErr" hidden>
+                                        <div class="alert alert-danger">
+    <strong>Lỗi!</strong> Tên đăng nhập đã tồn tại.
+  </div></div>
+<div class="control-group" id="RegSuc" hidden>
+                                        <div class="alert alert-success">
+    <strong>Tạo tài khoản thành công.   </strong><a href="#mySignin" data-dismiss="modal" aria-hidden="true" data-toggle="modal"><b>Đăng nhập ngay</b></a>
+  </div></div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputEmail">Tên đăng nhập</label>
                                         <div class="controls">
-                                            <input type="text" required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây!')" class="form-control" id="txtUserName" name="UserName" placeholder="Nhập tên đăng nhập" value="">
+                                            <input type="text" required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Nhập tên đăng nhập ở đây!')" class="form-control" id="RUserName" name="UserName" placeholder="Nhập tên đăng nhập" value="">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputSignupPassword">Mật khẩu</label>
                                         <div class="controls">
-                                            <input type="password" oninput="this.setCustomValidity('')" required oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây!')" class="form-control" id="txtPassword" name="PassWord" placeholder="Nhập mật khẩu">
+                                            <input type="password" oninput="this.setCustomValidity('')" required oninvalid="this.setCustomValidity('Nhập mật khẩu ở đây!')" class="form-control" id="RPassword" name="PassWord" placeholder="Nhập mật khẩu">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputSignupPassword2">Nhập lại mật khẩu</label>
                                         <div class="controls">
-                                            <input type="password" oninput="check(this)" required oninvalid="this.setCustomValidity('Nhập lại mật khẩu ở đây!')" class="form-control" id="txtCPassWord" name="txtCPassWord" placeholder="Nhập lại mật khẩu">
+                                            <input type="password" oninput="check(this)" required oninvalid="this.setCustomValidity('Nhập lại mật khẩu ở đây!')" class="form-control" id="RRPassword" name="txtCPassWord" placeholder="Nhập lại mật khẩu">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <div class="controls">
-                                            <button type="submit" id="loginID" class="btn">Đăng ký</button>
+                                            <button type="button" id="btnReg" class="btn">Đăng ký</button>
                                         </div>
                                         <p class="aligncenter margintop20">
                                             Bạn đã có tài khoản? <a href="#mySignin" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Đăng nhập ngay</a>
@@ -188,18 +183,22 @@
                         <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 id="mySigninModalLabel">Đăng nhập <strong>TÀI KHOẢN</strong></h4>
+                                <h4 id="mySigninModalLabel"><strong>Đăng nhập</strong></h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" method="post" action="@Url.Action("Login", "Home", new { model = Model })">
-                                    @if (@ViewBag.Mes == 2)
-                                    {
-                                        <div class="control-group">
-                                            <<div class="alert alert-warning">
-                                                <strong>Tên đăng nhặp hoặc mật khẩu chưa đúng!</strong>
-                                            </div>
-                                        </div>
-                                    }
+                                <form class="form-horizontal"  >
+                                    <div class="control-group" id="LogEr" hidden>
+                                        <div class="alert alert-danger">
+    <strong>Lỗi!</strong> Tên đăng nhập hoặc mật khẩu chưa đúng.
+  </div></div>
+<div class="control-group" id="LogSu" hidden>
+                                        <div class="alert alert-success">
+    <strong>Đăng nhập thành công.</strong> Vui lòng chờ.
+  </div></div>
+<div class="control-group" id="LogEr1" hidden>
+                                        <div class="alert alert-warning">
+    <strong>Vui lòng nhập đầy đủ các thông tin</strong>
+  </div></div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputText">Tên đăng nhập</label>
                                         <div class="controls">
@@ -219,7 +218,7 @@
                                             <button type="button" class="btn" id="btnLogin">Đăng nhập</button>
                                         </div>
                                         <p class="aligncenter margintop20">
-                                            Bạn đã quên mật khẩu? <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Lấy lại mật khẩu</a>
+                                            Bạn chưa có tài khoản <a href="#mySignup" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Đăng ký ngay</a>
                                         </p>
                                     </div>
                                 </form>
@@ -275,8 +274,8 @@
                                             <li class="dropdown active">
                                                 <a href="#">@CurrentContext.GetCurUser().Username <i class="icon-angle-down"></i></a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a id="logoutID" href="javascript:;">Đăng xuất</a></li>
                                                     <li><a href="@Url.Action("Index", "CGP")">Quản lý</a></li>
+                                                    <li><a id="logoutID" href="javascript:;">Đăng xuất</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -314,7 +313,21 @@
         }
         @RenderBody()
 
-
+@*<div class="container">
+  <h2>Alerts</h2>
+  <div class="alert alert-success">
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  </div>
+  <div class="alert alert-info">
+    <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+  </div>
+  <div class="alert alert-warning">
+    <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+  </div>
+  <div class="alert alert-danger">
+    <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+  </div>
+</div>*@
 
 
 
@@ -341,9 +354,9 @@
                         <div class="widget">
                             <h5 class="widgetheading">Sinh viên thực hiện</h5>
                             <ul class="link-list">
-                                <li><a href="#">1742013 Nguyễn Ngọc Bình Dương</a></li>
-                                <li><a href="#">Nguyễn Đình Vương</a></li>
-                                <li><a href="#">Trịnh Văn Thịnh</a></li>
+                                <li><a href="#">1742013 - Nguyễn Ngọc Bình Dương</a></li>
+                                <li><a href="#">1742087 - Nguyễn Đình Vương</a></li>
+                                <li><a href="#">1742066 - Trịnh Văn Thịnh</a></li>
                             </ul>
                         </div>
                     </div>

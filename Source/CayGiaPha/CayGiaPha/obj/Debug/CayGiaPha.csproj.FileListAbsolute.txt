@@ -246,7 +246,6 @@ D:\Courses\22022018\17CNPM.HC2017\Source\CayGiaPha\CayGiaPha\bin\System.Web.Help
 D:\Courses\22022018\17CNPM.HC2017\Source\CayGiaPha\CayGiaPha\bin\System.Web.Mvc.xml
 D:\Courses\22022018\17CNPM.HC2017\Source\CayGiaPha\CayGiaPha\obj\Debug\CayGiaPha.dll
 D:\Courses\22022018\17CNPM.HC2017\Source\CayGiaPha\CayGiaPha\obj\Debug\CayGiaPha.pdb
-D:\Courses\22022018\17CNPM.HC2017\Source\CayGiaPha\CayGiaPha\obj\Debug\CayGiaPha.csprojResolveAssemblyReference.cache
 T:\HCDH Nam 1\NMCNPM\Cool\Source\CayGiaPha\CayGiaPha\bin\ApplicationInsights.config
 T:\HCDH Nam 1\NMCNPM\Cool\Source\CayGiaPha\CayGiaPha\bin\roslyn\csc.exe
 T:\HCDH Nam 1\NMCNPM\Cool\Source\CayGiaPha\CayGiaPha\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -295,3 +294,4 @@ T:\HCDH Nam 1\NMCNPM\Cool\Source\CayGiaPha\CayGiaPha\bin\System.Web.Helpers.xml
 T:\HCDH Nam 1\NMCNPM\Cool\Source\CayGiaPha\CayGiaPha\bin\System.Web.Mvc.xml
 T:\HCDH Nam 1\NMCNPM\Cool\Source\CayGiaPha\CayGiaPha\obj\Debug\CayGiaPha.dll
 T:\HCDH Nam 1\NMCNPM\Cool\Source\CayGiaPha\CayGiaPha\obj\Debug\CayGiaPha.pdb
+D:\Courses\22022018\17CNPM.HC2017\Source\CayGiaPha\CayGiaPha\obj\Debug\CayGiaPha.csprojResolveAssemblyReference.cache

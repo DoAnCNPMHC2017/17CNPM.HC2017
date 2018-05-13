@@ -12,23 +12,7 @@ namespace CayGiaPha.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            try
-            {
-                int a = int.Parse(TempData["state"].ToString());
-            }
-            catch (Exception)
-            {
-
-                
-            }
-            
-            string s = Request.Url.AbsolutePath;
-            if (s == "/Home/Index" || s == "/" || s == "/Home/")
-                ViewBag.Show = 0;
-            else
-            {
-                ViewBag.Show = 1;
-            }
+            ViewBag.Show = 0;
             return View();
         }
 
@@ -42,10 +26,10 @@ namespace CayGiaPha.Controllers
             }
             Account model = new Account();
             model.Username = "";
-            ViewBag.Mes = 3;
+            
             return RedirectToAction("Index", "Home");
         }
-        public ActionResult Login2(string u,string p)
+        public ActionResult Login2(string u, string p)
         {
             using (CGPEntities dt = new CGPEntities())
             {
@@ -64,14 +48,13 @@ namespace CayGiaPha.Controllers
                     ViewBag.Mes = 1;
                     return Content("success");
                 }
-                TempData["state"] = 5;
                 ViewBag.Mes = 2;
                 return Content("error");
             }
         }
         [HttpPost]
         //public ActionResult Login(Account model)
-        public ActionResult Login(string u,string pa)
+        public ActionResult Login(string u, string pa)
         {
             using (CGPEntities dt = new CGPEntities())
             {
@@ -121,6 +104,42 @@ namespace CayGiaPha.Controllers
             ViewBag.Mes = 3;
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Register2(string un, string pw)
+        {
+            using (CGPEntities ctx = new CGPEntities())
+            {
+                Account us = ctx.Accounts.Where(p1 => p1.Username == un).FirstOrDefault();
+                if (us != null)
+                {
+                    return Content("error");
+                }
+                else
+                {
+
+                    Account u = new Account();
+                    u.Username = un;
+                    //Mã hóa password
+                    u.Password = StringUtils.MD5(pw);
+
+                    try
+                    {
+                        ctx.Accounts.Add(u);
+                        ctx.SaveChanges();
+
+                        return Content("success");
+                    }
+                    catch (Exception ex)
+                    {
+                        return Content("error");
+                    }
+
+
+                }
+
+            }
+        }
+
         [HttpPost]
         public ActionResult Register(Account model)
         {
