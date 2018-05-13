@@ -336,7 +336,7 @@ function LoadInfomationMember(ID)
         async: false,
         dataType: 'json',
         url: '/CGP/InfomationMember',
-        data: { TreeID: $('#TreeID').val(), ID: ID },
+        data: {  ID: ID },
         success: function (result) {
             Res = result;
             //console.log(Res);

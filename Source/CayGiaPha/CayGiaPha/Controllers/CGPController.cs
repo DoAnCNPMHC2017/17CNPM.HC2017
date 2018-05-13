@@ -592,7 +592,7 @@ namespace CayGiaPha.Controllers
             {                
                 try
                 {
-                    string Query = "Select * From CGP.dbo.Member Where ID =" + ID;
+                    string Query = "Select * From Member Where ID =" + ID;
                     var kq = dt.Database.SqlQuery<Member>(Query).ToList();
                     //int? memberold = kq[0].Memberold;
                     //var IdNodept = dt.Database.SqlQuery<int>("Select * From CGP.dbo.Member Where TreeID=" + TreeID + " AND ID =" + ID).ToList();
@@ -722,7 +722,7 @@ namespace CayGiaPha.Controllers
                     else if(Type == 1)
                     {
                         string Query = "Select row_number() OVER (ORDER BY A.AchievementID) STT,B.AchievementName TenTT,count(*) Sl" +
-                                       " From CGP.dbo.AchievementDetail A ,CGP.dbo.ListAchievement B" +
+                                       " From AchievementDetail A ,ListAchievement B" +
                                        " Where A.AchievementID = B.IDAchievement AND Year(DateIncurred) BETWEEN " + Year + " AND " + Year1 + " AND A.TreeID = " + TreeID +
                                        "Group BY A.AchievementID,B.AchievementName";
                         var kq = dt.Database.SqlQuery<ReportTC>(Query).ToList();
