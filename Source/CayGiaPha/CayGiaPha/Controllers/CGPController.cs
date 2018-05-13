@@ -50,7 +50,7 @@ namespace CayGiaPha.Controllers
                     //string Query1 = "Select TreeID From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
                     //Session["ListTree"] = ctx.Database.SqlQuery<int>(Query1).ToList();
 
-                    string Query = "Select Max(TreeID) From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
+                    string Query = "Select Max(TreeID) From Tree Where AccountID=" + Session["IdUser"].ToString();
                     var kq = ctx.Database.SqlQuery<int>(Query).ToList();
                     //@ViewBag.Error = false;
                     //Auto create
@@ -506,7 +506,7 @@ namespace CayGiaPha.Controllers
                 var Bp = dt.BurialPlaces.Where(b => b.TreeID == ID).ToList();
                 var Cod = dt.CauseOfDeaths.Where(b => b.TreeID == ID).ToList();
                 var OldID = dt.Members.Where(b => b.TreeID == ID && b.TypeRelationship != 1).Select(b => new { ID = b.Id, Name = b.FullName }).ToList();
-                var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from CGP..Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from CGP..Member where TreeID = " + ID + " AND TypeRelationship = 1 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id").ToList();
+                var couple = dt.Database.SqlQuery<Couple>("select A.Id ID1,A.Sex Sex1,ISNULL(B.Id,0) ID2,ISNULL(B.Sex,'') Sex2 from (Select Id,Memberold,Sex from Member  where TreeID = " + ID + ") A LEFT JOIN (Select ID,Memberold,Sex from Member where TreeID = " + ID + " AND TypeRelationship = 1 ) B ON A.ID = ISNULL(B.Memberold,0) OR ISNULL(A.Memberold,0) =B.Id").ToList();
                 return Json(new { Ach = Ach, Bl = Bl, Jo = Jo, Bp = Bp, Cod = Cod, OldID = OldID, couple = couple }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -573,13 +573,13 @@ namespace CayGiaPha.Controllers
                 string Query = "Select  M1.*,Format(Birthday,'dd/MM/yyyy HH:mm') bd" +
                     ",Case when M2.Sex = 'M' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Fa,Case when M2.Sex = 'F' THEN M2.FullName ELSE ISNULL(M3.FullName,'') END Mo" +
                                " From" +
-                               " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 0 " + Where + ") AS M1" +
+                               " (Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday from Member where TreeID = " + TreeID + " AND TypeRelationship = 0 " + Where + ") AS M1" +
                                " INNER JOIN" +
-                               " (Select ID,Memberold,FullName,Sex from CGP..Member where TreeID = " + TreeID + ") AS M2 ON M1.Memberold = M2.Id" +
+                               " (Select ID,Memberold,FullName,Sex from Member where TreeID = " + TreeID + ") AS M2 ON M1.Memberold = M2.Id" +
                                " LEFT JOIN" +
-                               " (Select ID,Memberold,FullName from CGP..Member where TreeID = " + TreeID + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
+                               " (Select ID,Memberold,FullName from Member where TreeID = " + TreeID + " AND TypeRelationship = 1   ) AS M3 ON M2.Id = M3.Memberold" +
                                " UNION" +
-                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy HH:mm') bd,'' Fa,'' Mo from CGP..Member where TreeID =" + TreeID + " AND TypeRelationship != 0 " + Where ;
+                               " Select ID,Generation,FullName,Sex,ISNULL(Memberold,0) Memberold,Birthday,Format(Birthday,'dd/MM/yyyy HH:mm') bd,'' Fa,'' Mo from Member where TreeID =" + TreeID + " AND TypeRelationship != 0 " + Where ;
                 var kq = dt.Database.SqlQuery<DSMember>(Query).ToList();
                 //var kq = dt.Members.FromSql("EXECUTE CGP.dbo.GetMostPopularBlogsForUser {0}", TreeID)
                 //    .ToList();
@@ -703,13 +703,13 @@ namespace CayGiaPha.Controllers
                                        " FROM" +
                                        "(" +
                                            " Select Year(Birthday) Nam,1 S,0 KH,0 MT" +
-                                           " From CGP..Member where TreeID = " + TreeID + " AND Year(Birthday) BETWEEN " + Year + " AND " + Year1 +
+                                           " From Member where TreeID = " + TreeID + " AND Year(Birthday) BETWEEN " + Year + " AND " + Year1 +
                                            " UNION ALL" +
                                            " Select Year(Date_Create) Nam,0 S,1 KH,0 MT" +
-                                           " From CGP..Member where TreeID = " + TreeID + " AND Year(Date_Create) BETWEEN " + Year + " AND " + Year1 + " AND TypeRelationship = 1" +
+                                           " From Member where TreeID = " + TreeID + " AND Year(Date_Create) BETWEEN " + Year + " AND " + Year1 + " AND TypeRelationship = 1" +
                                            " UNION ALL" +
                                            " Select ISNULL(Year(DateOfDeath),0) Nam, 0 S,0 KH,1 MT" +
-                                           " From CGP..Member where TreeID = " + TreeID + " AND ISNULL(Year(DateOfDeath),0) BETWEEN " + Year + " AND " + Year1 +
+                                           " From Member where TreeID = " + TreeID + " AND ISNULL(Year(DateOfDeath),0) BETWEEN " + Year + " AND " + Year1 +
                                        " ) AS A" +
                                        " Group by Nam";
                         var kq = dt.Database.SqlQuery<ReportTG>(Query).ToList();
