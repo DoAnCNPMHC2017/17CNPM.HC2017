@@ -128,71 +128,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\admin\css\sb-admin.css" />
-    <Content Include="assets\admin\css\sb-admin.min.css" />
-    <Content Include="assets\admin\js\sb-admin-charts.js" />
-    <Content Include="assets\admin\js\sb-admin-charts.min.js" />
-    <Content Include="assets\admin\js\sb-admin-datatables.js" />
-    <Content Include="assets\admin\js\sb-admin-datatables.min.js" />
-    <Content Include="assets\admin\js\sb-admin.js" />
-    <Content Include="assets\admin\js\sb-admin.min.js" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap-grid.css" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap-grid.min.css" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap-reboot.css" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap-reboot.min.css" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap.css" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap.min.css" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.bundle.js" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.bundle.min.js" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.js" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.min.js" />
-    <Content Include="assets\admin\vendor\chart.js\Chart.bundle.js" />
-    <Content Include="assets\admin\vendor\chart.js\Chart.bundle.min.js" />
-    <Content Include="assets\admin\vendor\chart.js\Chart.js" />
-    <Content Include="assets\admin\vendor\chart.js\Chart.min.js" />
-    <Content Include="assets\admin\vendor\datatables\dataTables.bootstrap4.css" />
-    <Content Include="assets\admin\vendor\datatables\dataTables.bootstrap4.js" />
-    <Content Include="assets\admin\vendor\datatables\jquery.dataTables.js" />
-    <Content Include="assets\admin\vendor\font-awesome\css\font-awesome.css" />
-    <Content Include="assets\admin\vendor\font-awesome\css\font-awesome.min.css" />
-    <Content Include="assets\admin\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="assets\admin\vendor\jquery-easing\jquery.easing.compatibility.js" />
-    <Content Include="assets\admin\vendor\jquery-easing\jquery.easing.js" />
-    <Content Include="assets\admin\vendor\jquery-easing\jquery.easing.min.js" />
-    <Content Include="assets\admin\vendor\jquery\jquery.js" />
-    <Content Include="assets\admin\vendor\jquery\jquery.min.js" />
-    <Content Include="assets\admin\vendor\jquery\jquery.slim.js" />
-    <Content Include="assets\admin\vendor\jquery\jquery.slim.min.js" />
-    <Content Include="assets\bootstrap\bootstrap-datetimepicker.css" />
-    <Content Include="assets\bootstrap\bootstrap-datetimepicker.fr.js" />
-    <Content Include="assets\bootstrap\bootstrap-datetimepicker.js" />
-    <Content Include="assets\bootstrap\bootstrap-datetimepicker.min.css" />
-    <Content Include="assets\bootstrap\bootstrap.min.css" />
-    <Content Include="assets\bootstrap\bootstrap.min.js" />
-    <Content Include="assets\CGP.js" />
-    <Content Include="assets\css\simple-sidebar.css" />
-    <Content Include="assets\Family.js" />
-    <Content Include="assets\imgs\asq.jpg" />
-    <Content Include="assets\imgs\avatar.png" />
-    <Content Include="assets\imgs\backspace_black_96x96.png" />
-    <Content Include="assets\imgs\banner.jpg" />
-    <Content Include="assets\imgs\camera-photo-128.png" />
-    <Content Include="assets\imgs\cen_bn.jpg" />
-    <Content Include="assets\imgs\dm_hover.png" />
-    <Content Include="assets\imgs\family.jpg" />
-    <Content Include="assets\imgs\intro_bg.jpg" />
-    <Content Include="assets\imgs\la.jpg" />
-    <Content Include="assets\imgs\logo.png" />
-    <Content Include="assets\imgs\tnbd.png" />
-    <Content Include="assets\imgs\topnews_bg.png" />
-    <Content Include="assets\jquery-3.3.1.min.js" />
-    <Content Include="assets\jquery.validate.min.js" />
+    <Content Include="assets\Library\CGP.js" />
+    <Content Include="assets\Library\Family.js" />
     <Content Include="assets\Library\CGP_Rule.js" />
     <Content Include="assets\Library\jquery.min.js" />
     <Content Include="assets\Library\kendo.all.min.js" />
-    <Content Include="assets\Library\Miami.jpg" />
-    <Content Include="assets\meminfo.js" />
-    <Content Include="assets\Report.js" />
+    <Content Include="assets\Library\kendo.custom.css" />
+    <Content Include="assets\Library\Report.js" />
     <Content Include="assets\updatelayout\css\animate.css" />
     <Content Include="assets\updatelayout\css\bootstrap-responsive.css" />
     <Content Include="assets\updatelayout\css\bootstrap.css" />
@@ -321,13 +263,6 @@
     <Content Include="assets\updatelayout\js\portfolio\setting.js" />
     <Content Include="assets\updatelayout\js\quicksand\jquery.quicksand.js" />
     <Content Include="assets\updatelayout\js\quicksand\setting.js" />
-    <Content Include="assets\updatelayout\kendoOld\jquery.min.js" />
-    <Content Include="assets\updatelayout\kendoOld\kendo.all.min-v2015.2.624.js" />
-    <Content Include="assets\updatelayout\kendoOld\kendo.bootstrap.min.css" />
-    <Content Include="assets\updatelayout\kendoOld\kendo.common-bootstrap.min.css" />
-    <Content Include="assets\updatelayout\kendo\kendo.common-material.min.css" />
-    <Content Include="assets\updatelayout\kendo\kendo.material.min.css" />
-    <Content Include="assets\updatelayout\kendo\kendo.material.mobile.min.css" />
     <Content Include="assets\updatelayout\skins\blue.css" />
     <Content Include="assets\updatelayout\skins\default.css" />
     <Content Include="assets\updatelayout\skins\green.css" />
@@ -338,12 +273,6 @@
     <Content Include="assets\updatelayout\skins\rose.css" />
     <Content Include="assets\updatelayout\skins\sand.css" />
     <Content Include="assets\updatelayout\skins\yellow.css" />
-    <Content Include="assets\WinDownKendoUi.js" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\kendo.bootstrap-v4.min.css" />
-    <Content Include="Content\popper.min.js" />
-    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Model.Context.tt">
@@ -356,82 +285,6 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Content Include="scripts\ai.0.22.9-build00167.js" />
-    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="assets\admin\pug\blank.pug" />
-    <Content Include="assets\admin\pug\cards.pug" />
-    <Content Include="assets\admin\pug\charts.pug" />
-    <Content Include="assets\admin\pug\forgot-password.pug" />
-    <Content Include="assets\admin\pug\includes\css\core.pug" />
-    <Content Include="assets\admin\pug\includes\css\custom.pug" />
-    <Content Include="assets\admin\pug\includes\footer.pug" />
-    <Content Include="assets\admin\pug\includes\js\core.pug" />
-    <Content Include="assets\admin\pug\includes\js\custom.pug" />
-    <Content Include="assets\admin\pug\includes\modals\logout.pug" />
-    <Content Include="assets\admin\pug\includes\navbar.pug" />
-    <Content Include="assets\admin\pug\includes\scroll-to-top.pug" />
-    <Content Include="assets\admin\pug\index.pug" />
-    <Content Include="assets\admin\pug\login.pug" />
-    <Content Include="assets\admin\pug\navbar.pug" />
-    <Content Include="assets\admin\pug\register.pug" />
-    <Content Include="assets\admin\pug\tables.pug" />
-    <Content Include="assets\admin\scss\navbar\_navbar_colors.scss" />
-    <Content Include="assets\admin\scss\navbar\_navbar_fixed.scss" />
-    <Content Include="assets\admin\scss\navbar\_navbar_global.scss" />
-    <Content Include="assets\admin\scss\navbar\_navbar_static.scss" />
-    <Content Include="assets\admin\scss\navbar\_navbar_toggle.scss" />
-    <Content Include="assets\admin\scss\sb-admin.scss" />
-    <Content Include="assets\admin\scss\_cards.scss" />
-    <Content Include="assets\admin\scss\_footer.scss" />
-    <Content Include="assets\admin\scss\_global.scss" />
-    <Content Include="assets\admin\scss\_login.scss" />
-    <Content Include="assets\admin\scss\_mixins.scss" />
-    <Content Include="assets\admin\scss\_utilities.scss" />
-    <Content Include="assets\admin\scss\_variables.scss" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap.css.map" />
-    <Content Include="assets\admin\vendor\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.bundle.js.map" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.js.map" />
-    <Content Include="assets\admin\vendor\bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="assets\admin\vendor\font-awesome\css\font-awesome.css.map" />
-    <Content Include="assets\admin\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="assets\admin\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="assets\admin\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="assets\admin\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="assets\admin\vendor\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="assets\admin\vendor\font-awesome\less\animated.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\bordered-pulled.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\core.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\fixed-width.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\font-awesome.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\icons.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\larger.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\list.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\mixins.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\path.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\rotated-flipped.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\screen-reader.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\stacked.less" />
-    <Content Include="assets\admin\vendor\font-awesome\less\variables.less" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\font-awesome.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_animated.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_bordered-pulled.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_core.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_fixed-width.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_icons.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_larger.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_list.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_mixins.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_path.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_rotated-flipped.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_screen-reader.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_stacked.scss" />
-    <Content Include="assets\admin\vendor\font-awesome\scss\_variables.scss" />
-    <Content Include="assets\admin\vendor\jquery\jquery.min.map" />
-    <Content Include="assets\admin\vendor\jquery\jquery.slim.min.map" />
     <EntityDeploy Include="Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -446,15 +299,9 @@
     <Content Include="assets\updatelayout\font\fontawesome\fontawesome-webfont.ttf" />
     <Content Include="assets\updatelayout\font\fontawesome\fontawesome-webfont.woff" />
     <Content Include="assets\updatelayout\font\fontawesome\FontAwesome.otf" />
-    <None Include="scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="scripts\jquery-1.10.2.js" />
-    <Content Include="scripts\jquery-1.10.2.min.js" />
-    <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs">
@@ -476,8 +323,6 @@
     <Compile Include="CauseOfDeath.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CGPController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -531,28 +376,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\CGP\Index.cshtml" />
-    <Content Include="Views\CGP\CreateCGP.cshtml" />
-    <Content Include="Views\Account\Profile.cshtml" />
-    <Content Include="Views\Admin\Manage.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Test\Edit.cshtml" />
-    <Content Include="Views\Test\Create.cshtml" />
-    <Content Include="Views\CGP\MemberInfo.cshtml" />
     <Content Include="Views\Shared\_Layout_2.cshtml" />
     <Content Include="Views\CGP\FamilyTree.cshtml" />
-    <Content Include="Views\Account\Register2.cshtml" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\CGP\Report21.cshtml" />
     <Content Include="Views\CGP\Report.cshtml" />
-    <Content Include="Views\CGP\Index2.cshtml" />
-    <Content Include="Views\Shared\_Layout_23.cshtml" />
-    <Content Include="Views\Home\Index - Copy %282%29.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -562,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="scripts\" />
     <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>

@@ -32,20 +32,20 @@ namespace CayGiaPha.Controllers
             }            
         }
         //POST: CGP
-        [HttpPost]
+        //[HttpPost]
         [CheckLogin]
-        public ActionResult Index(Tree model)
+        public ActionResult AddTree(string treename)
         {
             using (CGPEntities ctx = new CGPEntities())
             {
 
                 try
                 {
-                    string t = model.Name;
-                    string t2 = model.TreeID.ToString();
-                    model.AccountID = Int32.Parse(Session["IdUser"].ToString());
-                    model.CreateDate = DateTime.Now;
-                    ctx.Trees.Add(model);
+                    Tree t = new Tree();
+                    t.Name = treename;
+                    t.AccountID = Int32.Parse(Session["IdUser"].ToString());
+                    t.CreateDate = DateTime.Now;
+                    ctx.Trees.Add(t);
                     ctx.SaveChanges();
                     //string Query1 = "Select TreeID From CGP..Tree Where AccountID=" + Session["IdUser"].ToString();
                     //Session["ListTree"] = ctx.Database.SqlQuery<int>(Query1).ToList();
@@ -109,17 +109,16 @@ namespace CayGiaPha.Controllers
                     ctx.BirthPlaces.Add(new BirthPlace { BirthPlaceName = "Long An", TreeID = kq[0] });
                     ctx.SaveChanges();
                     //
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('Tạo  cây thành công')</script>");
-                    return RedirectToAction("Index", "CGP");
+                    return Json(new { success = true, responseText = "success" }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('Lỗi.')</script>" + ex.ToString());
+                    
                 }
 
 
             }
-            return View();
+            return Json(new { success = false, responseText = "error" }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: CGP/CreateCGP 

@@ -46,10 +46,13 @@ namespace CayGiaPha.Controllers
                     Session["IdUser"] = us.ID;
                     Session["username"] = us.Username;
                     ViewBag.Mes = 1;
-                    return Content("success");
+                    //return Content("success");
+                    return Json(new { success = true, responseText = "success" }, JsonRequestBehavior.AllowGet);
+   
                 }
                 ViewBag.Mes = 2;
-                return Content("error");
+                //return Content("error");
+                return Json(new { success = false, responseText = "error" }, JsonRequestBehavior.AllowGet);
             }
         }
         [HttpPost]
@@ -80,14 +83,13 @@ namespace CayGiaPha.Controllers
                     Session["IdUser"] = us.ID;
                     Session["username"] = us.Username;
                     ViewBag.Mes = 1;
-                    //Response.Write("<script LANGUAGE='JavaScript' >alert('Đăng nhập thành công.')</script>");
-                    return Content("success");
+                    //return Content("success");
+                    return Json(new { success = true, responseText = "success" }, JsonRequestBehavior.AllowGet);
                 }
                 TempData["state"] = 5;
                 ViewBag.Mes = 2;
-                //Response.Write("<script LANGUAGE='JavaScript' >alert('Tên đăng nhập hoặc mật khẩu không đúng')</script>");
-                return Content("error");
-                //return RedirectToAction("Index", "Home");
+                //return Content("error");
+                return Json(new { success = false, responseText = "error" }, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult Logout()
@@ -112,7 +114,8 @@ namespace CayGiaPha.Controllers
                 Account us = ctx.Accounts.Where(p1 => p1.Username == un).FirstOrDefault();
                 if (us != null)
                 {
-                    return Content("error");
+                    //return Content("error");
+                    return Json(new { success = false, responseText = "error" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
@@ -127,11 +130,13 @@ namespace CayGiaPha.Controllers
                         ctx.Accounts.Add(u);
                         ctx.SaveChanges();
 
-                        return Content("success");
+                       // return Content("success");
+                        return Json(new { success = true, responseText = "success" }, JsonRequestBehavior.AllowGet);
                     }
                     catch (Exception ex)
                     {
-                        return Content("error");
+                        //return Content("error");
+                        return Json(new { success = false, responseText = "error" }, JsonRequestBehavior.AllowGet);
                     }
 
 

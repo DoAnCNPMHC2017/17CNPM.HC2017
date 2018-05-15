@@ -79,7 +79,7 @@
                         <div class="wrapper">
                             <div class="testimonial">
                                 <h4 style="margin-left: 18em;"><strong>Tạo gia tộc mới</strong> </h4>
-                                <form action="" method="post" role="form" class="contactForm" style="margin-left: 30em;">
+                                <div action="" method="post" role="form" class="contactForm" style="margin-left: 30em;">
                                     <div id="sendmessage">Your message has been sent. Thank you!</div>
                                     <div id="errormessage"></div>
 
@@ -89,10 +89,10 @@
                                             <div class="validation"></div>
                                         </div>
                                     </div>
-                                    <button id="singlebutton" name="singlebutton" class="btn btn-large btn-theme btn-rounded" style="margin-top: -3em;margin-left: 9em;">Tạo mới</button>
+                                    <button id="btnAddtree" name="singlebutton" class="btn btn-large btn-theme btn-rounded" style="margin-top: -3em;margin-left: 9em;">Tạo mới</button>
 
 
-                                </form>
+                                </div>
                             </div>
                         </div>
 
@@ -104,3 +104,38 @@
     </div>
 </section>
 
+<script>
+    $( document ).ready(function() {
+
+        $("#btnAddtree").click(function () {
+            var treename = $("#txtName").val();
+            if (treename == "") {
+                alert("Không được để trống!!");
+                return;
+            }
+            $.ajax({
+                async: false,
+                type: "post",
+                dataType: 'json',
+                url: '/CGP/AddTree',
+                data: { treename: treename },
+                success: function (response) {
+                    if (response.success) {
+                        alert("Tạo Gia phả thành công.")
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        alert("Lỗi!");
+                    }
+                },
+                error: function () {
+                    alert("error!");
+                }
+            });
+        });
+
+
+    });
+</script>

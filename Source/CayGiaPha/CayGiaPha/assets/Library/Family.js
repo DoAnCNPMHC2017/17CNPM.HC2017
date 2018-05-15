@@ -3,7 +3,7 @@
         //alert("123");
         var jName = $("#LUserName").val();
         var jPass = $("#LPassword").val();
-        
+
         if (jName == "" || jPass == "") {
             $("#LogEr").hide();
             $("#LogSu").hide
@@ -18,11 +18,8 @@
             dataType: 'json',
             data: { u: jName, p: jPass },
             url: '/Home/Login2',
-            success: function (data) {
-
-            },
-            error: function (data) {
-                if (data.responseText == "success") {
+            success: function (response) {
+                if (response.success) {
                     $("#LogEr1").hide();
                     $("#LogEr").hide();
                     $("#LogSu").show();
@@ -30,12 +27,13 @@
                     setTimeout(function () {
                         location.reload();
                     }, 1000);
-                }
-                if (data.responseText == "error") {
+                } else {
                     $("#LogEr1").hide();
                     $("#LogEr").show();
-                    //alert("loi nha");
                 }
+            },
+            error: function (response) {
+                alert("error!");  // 
             }
         });
     });
@@ -67,11 +65,8 @@
             dataType: 'json',
             data: { un: jName, pw: jPass },
             url: '/Home/Register2',
-            success: function (data) {
-
-            },
-            error: function (data) {
-                if (data.responseText == "success") {
+            success: function (response) {
+                if (response.success) {
                     $("#RegErr").hide();
                     $("#RegErr2").hide();
                     $("#RegErr1").hide();
@@ -80,18 +75,15 @@
                     $("#RUserName").val("");
                     $("#RPassword").val("");
                     $("#RRPassword").val("");
-
-                    //setTimeout(function () {
-                    //    location.reload();
-                    //}, 1000);
-                }
-                if (data.responseText == "error") {
+                } else {
                     $("#RegErr2").hide();
                     $("#RegErr1").hide();
                     $("#RegSuc").hide();
                     $("#RegErr").show();
-                    //alert("loi nha");
                 }
+            },
+            error: function (response) {
+                alert("error!");  // 
             }
         });
     });
